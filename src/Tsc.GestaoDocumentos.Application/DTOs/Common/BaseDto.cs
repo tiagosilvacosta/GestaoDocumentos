@@ -11,7 +11,7 @@ public class BaseDto
 
 public class TenantBaseDto : BaseDto
 {
-    public Guid TenantId { get; set; }
+    public IdOrganizacao idOrganizacao { get; set; }
 }
 
 public class PagedResult<T>

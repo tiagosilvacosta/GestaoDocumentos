@@ -6,7 +6,7 @@ namespace Tsc.GestaoDocumentos.Domain.Services;
 public interface IAuditoriaService
 {
     Task RegistrarOperacaoAsync(
-        Guid tenantId,
+        IdOrganizacao idOrganizacao,
         Guid usuarioId,
         string entidadeAfetada,
         Guid entidadeId,
@@ -18,21 +18,21 @@ public interface IAuditoriaService
         CancellationToken cancellationToken = default);
 
     Task RegistrarLoginAsync(
-        Guid tenantId,
+        IdOrganizacao idOrganizacao,
         Guid usuarioId,
         string ipUsuario,
         string? userAgent = null,
         CancellationToken cancellationToken = default);
 
     Task RegistrarLogoutAsync(
-        Guid tenantId,
+        IdOrganizacao idOrganizacao,
         Guid usuarioId,
         string ipUsuario,
         string? userAgent = null,
         CancellationToken cancellationToken = default);
 
     Task RegistrarDownloadDocumentoAsync(
-        Guid tenantId,
+        IdOrganizacao idOrganizacao,
         Guid usuarioId,
         Guid documentoId,
         string ipUsuario,

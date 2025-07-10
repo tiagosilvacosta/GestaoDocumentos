@@ -3,20 +3,52 @@
   "WorkspaceRootPath": "C:\\tiago\\projects\\GestaoDocumentos\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{7F0F2F6F-6789-9012-3456-678901234567}|tests\\Tsc.GestaoDocumentos.Domain.Tests\\Tsc.GestaoDocumentos.Domain.Tests.csproj|c:\\tiago\\projects\\gestaodocumentos\\tests\\tsc.gestaodocumentos.domain.tests\\entities\\usuariotests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{7F0F2F6F-6789-9012-3456-678901234567}|tests\\Tsc.GestaoDocumentos.Domain.Tests\\Tsc.GestaoDocumentos.Domain.Tests.csproj|solutionrelative:tests\\tsc.gestaodocumentos.domain.tests\\entities\\usuariotests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{2B5F8C1D-1234-4567-8901-123456789012}|src\\Tsc.GestaoDocumentos.Domain\\Tsc.GestaoDocumentos.Domain.csproj|c:\\tiago\\projects\\gestaodocumentos\\src\\tsc.gestaodocumentos.domain\\repositories\\ilogauditoriarepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2B5F8C1D-1234-4567-8901-123456789012}|src\\Tsc.GestaoDocumentos.Domain\\Tsc.GestaoDocumentos.Domain.csproj|solutionrelative:src\\tsc.gestaodocumentos.domain\\repositories\\ilogauditoriarepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{9F2F4F8F-8901-1234-5678-890123456789}|tests\\Tsc.GestaoDocumentos.Infrastructure.Tests\\Tsc.GestaoDocumentos.Infrastructure.Tests.csproj|c:\\tiago\\projects\\gestaodocumentos\\tests\\tsc.gestaodocumentos.infrastructure.tests\\services\\servicetests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{9F2F4F8F-8901-1234-5678-890123456789}|tests\\Tsc.GestaoDocumentos.Infrastructure.Tests\\Tsc.GestaoDocumentos.Infrastructure.Tests.csproj|solutionrelative:tests\\tsc.gestaodocumentos.infrastructure.tests\\services\\servicetests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{2B5F8C1D-1234-4567-8901-123456789012}|src\\Tsc.GestaoDocumentos.Domain\\Tsc.GestaoDocumentos.Domain.csproj|c:\\tiago\\projects\\gestaodocumentos\\src\\tsc.gestaodocumentos.domain\\entities\\donodocumento.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2B5F8C1D-1234-4567-8901-123456789012}|src\\Tsc.GestaoDocumentos.Domain\\Tsc.GestaoDocumentos.Domain.csproj|solutionrelative:src\\tsc.gestaodocumentos.domain\\entities\\donodocumento.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{4D7F9E3F-3456-6789-0123-345678901234}|src\\Tsc.GestaoDocumentos.Infrastructure\\Tsc.GestaoDocumentos.Infrastructure.csproj|c:\\tiago\\projects\\gestaodocumentos\\src\\tsc.gestaodocumentos.infrastructure\\services\\armazenamentoarquivoservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{4D7F9E3F-3456-6789-0123-345678901234}|src\\Tsc.GestaoDocumentos.Infrastructure\\Tsc.GestaoDocumentos.Infrastructure.csproj|solutionrelative:src\\tsc.gestaodocumentos.infrastructure\\services\\armazenamentoarquivoservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{2B5F8C1D-1234-4567-8901-123456789012}|src\\Tsc.GestaoDocumentos.Domain\\Tsc.GestaoDocumentos.Domain.csproj|c:\\tiago\\projects\\gestaodocumentos\\src\\tsc.gestaodocumentos.domain\\entities\\documento.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2B5F8C1D-1234-4567-8901-123456789012}|src\\Tsc.GestaoDocumentos.Domain\\Tsc.GestaoDocumentos.Domain.csproj|solutionrelative:src\\tsc.gestaodocumentos.domain\\entities\\documento.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{7F0F2F6F-6789-9012-3456-678901234567}|tests\\Tsc.GestaoDocumentos.Domain.Tests\\Tsc.GestaoDocumentos.Domain.Tests.csproj|c:\\tiago\\projects\\gestaodocumentos\\tests\\tsc.gestaodocumentos.domain.tests\\entities\\tenanttests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{7F0F2F6F-6789-9012-3456-678901234567}|tests\\Tsc.GestaoDocumentos.Domain.Tests\\Tsc.GestaoDocumentos.Domain.Tests.csproj|solutionrelative:tests\\tsc.gestaodocumentos.domain.tests\\entities\\tenanttests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{2B5F8C1D-1234-4567-8901-123456789012}|src\\Tsc.GestaoDocumentos.Domain\\Tsc.GestaoDocumentos.Domain.csproj|c:\\tiago\\projects\\gestaodocumentos\\src\\tsc.gestaodocumentos.domain\\entities\\documentodonodocumento.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2B5F8C1D-1234-4567-8901-123456789012}|src\\Tsc.GestaoDocumentos.Domain\\Tsc.GestaoDocumentos.Domain.csproj|solutionrelative:src\\tsc.gestaodocumentos.domain\\entities\\documentodonodocumento.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2B5F8C1D-1234-4567-8901-123456789012}|src\\Tsc.GestaoDocumentos.Domain\\Tsc.GestaoDocumentos.Domain.csproj|c:\\tiago\\projects\\gestaodocumentos\\src\\tsc.gestaodocumentos.domain\\entities\\iddocumentodonodocumento.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2B5F8C1D-1234-4567-8901-123456789012}|src\\Tsc.GestaoDocumentos.Domain\\Tsc.GestaoDocumentos.Domain.csproj|solutionrelative:src\\tsc.gestaodocumentos.domain\\entities\\iddocumentodonodocumento.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2B5F8C1D-1234-4567-8901-123456789012}|src\\Tsc.GestaoDocumentos.Domain\\Tsc.GestaoDocumentos.Domain.csproj|c:\\tiago\\projects\\gestaodocumentos\\src\\tsc.gestaodocumentos.domain\\repositories\\idonodocumentorepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2B5F8C1D-1234-4567-8901-123456789012}|src\\Tsc.GestaoDocumentos.Domain\\Tsc.GestaoDocumentos.Domain.csproj|solutionrelative:src\\tsc.gestaodocumentos.domain\\repositories\\idonodocumentorepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2B5F8C1D-1234-4567-8901-123456789012}|src\\Tsc.GestaoDocumentos.Domain\\Tsc.GestaoDocumentos.Domain.csproj|c:\\tiago\\projects\\gestaodocumentos\\src\\tsc.gestaodocumentos.domain\\repositories\\idocumentorepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2B5F8C1D-1234-4567-8901-123456789012}|src\\Tsc.GestaoDocumentos.Domain\\Tsc.GestaoDocumentos.Domain.csproj|solutionrelative:src\\tsc.gestaodocumentos.domain\\repositories\\idocumentorepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2B5F8C1D-1234-4567-8901-123456789012}|src\\Tsc.GestaoDocumentos.Domain\\Tsc.GestaoDocumentos.Domain.csproj|c:\\tiago\\projects\\gestaodocumentos\\src\\tsc.gestaodocumentos.domain\\entities\\iddonodocumento.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2B5F8C1D-1234-4567-8901-123456789012}|src\\Tsc.GestaoDocumentos.Domain\\Tsc.GestaoDocumentos.Domain.csproj|solutionrelative:src\\tsc.gestaodocumentos.domain\\entities\\iddonodocumento.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2B5F8C1D-1234-4567-8901-123456789012}|src\\Tsc.GestaoDocumentos.Domain\\Tsc.GestaoDocumentos.Domain.csproj|c:\\tiago\\projects\\gestaodocumentos\\src\\tsc.gestaodocumentos.domain\\repositories\\iddocumento.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2B5F8C1D-1234-4567-8901-123456789012}|src\\Tsc.GestaoDocumentos.Domain\\Tsc.GestaoDocumentos.Domain.csproj|solutionrelative:src\\tsc.gestaodocumentos.domain\\repositories\\iddocumento.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4D7F9E3F-3456-6789-0123-345678901234}|src\\Tsc.GestaoDocumentos.Infrastructure\\Tsc.GestaoDocumentos.Infrastructure.csproj|c:\\tiago\\projects\\gestaodocumentos\\src\\tsc.gestaodocumentos.infrastructure\\repositories\\baserepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4D7F9E3F-3456-6789-0123-345678901234}|src\\Tsc.GestaoDocumentos.Infrastructure\\Tsc.GestaoDocumentos.Infrastructure.csproj|solutionrelative:src\\tsc.gestaodocumentos.infrastructure\\repositories\\baserepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2B5F8C1D-1234-4567-8901-123456789012}|src\\Tsc.GestaoDocumentos.Domain\\Tsc.GestaoDocumentos.Domain.csproj|c:\\tiago\\projects\\gestaodocumentos\\src\\tsc.gestaodocumentos.domain\\irepositoriocomorganizacao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2B5F8C1D-1234-4567-8901-123456789012}|src\\Tsc.GestaoDocumentos.Domain\\Tsc.GestaoDocumentos.Domain.csproj|solutionrelative:src\\tsc.gestaodocumentos.domain\\irepositoriocomorganizacao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2B5F8C1D-1234-4567-8901-123456789012}|src\\Tsc.GestaoDocumentos.Domain\\Tsc.GestaoDocumentos.Domain.csproj|c:\\tiago\\projects\\gestaodocumentos\\src\\tsc.gestaodocumentos.domain\\repositories\\itipodocumentorepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2B5F8C1D-1234-4567-8901-123456789012}|src\\Tsc.GestaoDocumentos.Domain\\Tsc.GestaoDocumentos.Domain.csproj|solutionrelative:src\\tsc.gestaodocumentos.domain\\repositories\\itipodocumentorepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -26,19 +58,162 @@
       "DocumentGroups": [
         {
           "DockedWidth": 619,
-          "SelectedChildIndex": 13,
+          "SelectedChildIndex": 0,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "ServiceTests.cs",
-              "DocumentMoniker": "C:\\tiago\\projects\\GestaoDocumentos\\tests\\Tsc.GestaoDocumentos.Infrastructure.Tests\\Services\\ServiceTests.cs",
-              "RelativeDocumentMoniker": "tests\\Tsc.GestaoDocumentos.Infrastructure.Tests\\Services\\ServiceTests.cs",
-              "ToolTip": "C:\\tiago\\projects\\GestaoDocumentos\\tests\\Tsc.GestaoDocumentos.Infrastructure.Tests\\Services\\ServiceTests.cs",
-              "RelativeToolTip": "tests\\Tsc.GestaoDocumentos.Infrastructure.Tests\\Services\\ServiceTests.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABgAAAAiAAAAAAAAAA==",
+              "DocumentIndex": 0,
+              "Title": "ILogAuditoriaRepository.cs",
+              "DocumentMoniker": "C:\\tiago\\projects\\GestaoDocumentos\\src\\Tsc.GestaoDocumentos.Domain\\Repositories\\ILogAuditoriaRepository.cs",
+              "RelativeDocumentMoniker": "src\\Tsc.GestaoDocumentos.Domain\\Repositories\\ILogAuditoriaRepository.cs",
+              "ToolTip": "C:\\tiago\\projects\\GestaoDocumentos\\src\\Tsc.GestaoDocumentos.Domain\\Repositories\\ILogAuditoriaRepository.cs",
+              "RelativeToolTip": "src\\Tsc.GestaoDocumentos.Domain\\Repositories\\ILogAuditoriaRepository.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAArAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-10T00:08:00.515Z",
+              "WhenOpened": "2025-07-10T01:40:43.685Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "IdDocumentoDonoDocumento.cs",
+              "DocumentMoniker": "C:\\tiago\\projects\\GestaoDocumentos\\src\\Tsc.GestaoDocumentos.Domain\\Entities\\IdDocumentoDonoDocumento.cs",
+              "RelativeDocumentMoniker": "src\\Tsc.GestaoDocumentos.Domain\\Entities\\IdDocumentoDonoDocumento.cs",
+              "ToolTip": "C:\\tiago\\projects\\GestaoDocumentos\\src\\Tsc.GestaoDocumentos.Domain\\Entities\\IdDocumentoDonoDocumento.cs",
+              "RelativeToolTip": "src\\Tsc.GestaoDocumentos.Domain\\Entities\\IdDocumentoDonoDocumento.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-10T01:36:15.401Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "DocumentoDonoDocumento.cs",
+              "DocumentMoniker": "C:\\tiago\\projects\\GestaoDocumentos\\src\\Tsc.GestaoDocumentos.Domain\\Entities\\DocumentoDonoDocumento.cs",
+              "RelativeDocumentMoniker": "src\\Tsc.GestaoDocumentos.Domain\\Entities\\DocumentoDonoDocumento.cs",
+              "ToolTip": "C:\\tiago\\projects\\GestaoDocumentos\\src\\Tsc.GestaoDocumentos.Domain\\Entities\\DocumentoDonoDocumento.cs",
+              "RelativeToolTip": "src\\Tsc.GestaoDocumentos.Domain\\Entities\\DocumentoDonoDocumento.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAqwAYAAAANAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-10T01:35:22.497Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "IdDonoDocumento.cs",
+              "DocumentMoniker": "C:\\tiago\\projects\\GestaoDocumentos\\src\\Tsc.GestaoDocumentos.Domain\\Entities\\IdDonoDocumento.cs",
+              "RelativeDocumentMoniker": "src\\Tsc.GestaoDocumentos.Domain\\Entities\\IdDonoDocumento.cs",
+              "ToolTip": "C:\\tiago\\projects\\GestaoDocumentos\\src\\Tsc.GestaoDocumentos.Domain\\Entities\\IdDonoDocumento.cs",
+              "RelativeToolTip": "src\\Tsc.GestaoDocumentos.Domain\\Entities\\IdDonoDocumento.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-10T01:32:48.859Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "DonoDocumento.cs",
+              "DocumentMoniker": "C:\\tiago\\projects\\GestaoDocumentos\\src\\Tsc.GestaoDocumentos.Domain\\Entities\\DonoDocumento.cs",
+              "RelativeDocumentMoniker": "src\\Tsc.GestaoDocumentos.Domain\\Entities\\DonoDocumento.cs",
+              "ToolTip": "C:\\tiago\\projects\\GestaoDocumentos\\src\\Tsc.GestaoDocumentos.Domain\\Entities\\DonoDocumento.cs",
+              "RelativeToolTip": "src\\Tsc.GestaoDocumentos.Domain\\Entities\\DonoDocumento.cs",
+              "ViewState": "AgIAAE4AAAAAAAAAAAAMwFwAAABGAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-10T01:32:30.703Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Documento.cs",
+              "DocumentMoniker": "C:\\tiago\\projects\\GestaoDocumentos\\src\\Tsc.GestaoDocumentos.Domain\\Entities\\Documento.cs",
+              "RelativeDocumentMoniker": "src\\Tsc.GestaoDocumentos.Domain\\Entities\\Documento.cs",
+              "ToolTip": "C:\\tiago\\projects\\GestaoDocumentos\\src\\Tsc.GestaoDocumentos.Domain\\Entities\\Documento.cs",
+              "RelativeToolTip": "src\\Tsc.GestaoDocumentos.Domain\\Entities\\Documento.cs",
+              "ViewState": "AgIAAE0AAAAAAAAAAAAYwHMAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-10T01:31:41.344Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "IdDocumento.cs",
+              "DocumentMoniker": "C:\\tiago\\projects\\GestaoDocumentos\\src\\Tsc.GestaoDocumentos.Domain\\Repositories\\IdDocumento.cs",
+              "RelativeDocumentMoniker": "src\\Tsc.GestaoDocumentos.Domain\\Repositories\\IdDocumento.cs",
+              "ToolTip": "C:\\tiago\\projects\\GestaoDocumentos\\src\\Tsc.GestaoDocumentos.Domain\\Repositories\\IdDocumento.cs",
+              "RelativeToolTip": "src\\Tsc.GestaoDocumentos.Domain\\Repositories\\IdDocumento.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-10T01:30:22.937Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "IDonoDocumentoRepository.cs",
+              "DocumentMoniker": "C:\\tiago\\projects\\GestaoDocumentos\\src\\Tsc.GestaoDocumentos.Domain\\Repositories\\IDonoDocumentoRepository.cs",
+              "RelativeDocumentMoniker": "src\\Tsc.GestaoDocumentos.Domain\\Repositories\\IDonoDocumentoRepository.cs",
+              "ToolTip": "C:\\tiago\\projects\\GestaoDocumentos\\src\\Tsc.GestaoDocumentos.Domain\\Repositories\\IDonoDocumentoRepository.cs",
+              "RelativeToolTip": "src\\Tsc.GestaoDocumentos.Domain\\Repositories\\IDonoDocumentoRepository.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAfAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-10T01:28:03.315Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "IDocumentoRepository.cs",
+              "DocumentMoniker": "C:\\tiago\\projects\\GestaoDocumentos\\src\\Tsc.GestaoDocumentos.Domain\\Repositories\\IDocumentoRepository.cs",
+              "RelativeDocumentMoniker": "src\\Tsc.GestaoDocumentos.Domain\\Repositories\\IDocumentoRepository.cs",
+              "ToolTip": "C:\\tiago\\projects\\GestaoDocumentos\\src\\Tsc.GestaoDocumentos.Domain\\Repositories\\IDocumentoRepository.cs",
+              "RelativeToolTip": "src\\Tsc.GestaoDocumentos.Domain\\Repositories\\IDocumentoRepository.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-10T01:28:00.883Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "IRepositorioComOrganizacao.cs",
+              "DocumentMoniker": "C:\\tiago\\projects\\GestaoDocumentos\\src\\Tsc.GestaoDocumentos.Domain\\IRepositorioComOrganizacao.cs",
+              "RelativeDocumentMoniker": "src\\Tsc.GestaoDocumentos.Domain\\IRepositorioComOrganizacao.cs",
+              "ToolTip": "C:\\tiago\\projects\\GestaoDocumentos\\src\\Tsc.GestaoDocumentos.Domain\\IRepositorioComOrganizacao.cs",
+              "RelativeToolTip": "src\\Tsc.GestaoDocumentos.Domain\\IRepositorioComOrganizacao.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABYAAABPAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-10T01:25:51.806Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "BaseRepository.cs",
+              "DocumentMoniker": "C:\\tiago\\projects\\GestaoDocumentos\\src\\Tsc.GestaoDocumentos.Infrastructure\\Repositories\\BaseRepository.cs",
+              "RelativeDocumentMoniker": "src\\Tsc.GestaoDocumentos.Infrastructure\\Repositories\\BaseRepository.cs",
+              "ToolTip": "C:\\tiago\\projects\\GestaoDocumentos\\src\\Tsc.GestaoDocumentos.Infrastructure\\Repositories\\BaseRepository.cs",
+              "RelativeToolTip": "src\\Tsc.GestaoDocumentos.Infrastructure\\Repositories\\BaseRepository.cs",
+              "ViewState": "AgIAAEQAAAAAAAAAAAAAAHoAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-10T01:19:19.673Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "ITipoDocumentoRepository.cs",
+              "DocumentMoniker": "C:\\tiago\\projects\\GestaoDocumentos\\src\\Tsc.GestaoDocumentos.Domain\\Repositories\\ITipoDocumentoRepository.cs",
+              "RelativeDocumentMoniker": "src\\Tsc.GestaoDocumentos.Domain\\Repositories\\ITipoDocumentoRepository.cs",
+              "ToolTip": "C:\\tiago\\projects\\GestaoDocumentos\\src\\Tsc.GestaoDocumentos.Domain\\Repositories\\ITipoDocumentoRepository.cs",
+              "RelativeToolTip": "src\\Tsc.GestaoDocumentos.Domain\\Repositories\\ITipoDocumentoRepository.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAgAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-10T01:17:02.216Z",
               "EditorCaption": ""
             },
             {
@@ -84,45 +259,6 @@
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{34e76e81-ee4a-11d0-ae2e-00a0c90fffc3}"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "ArmazenamentoArquivoService.cs",
-              "DocumentMoniker": "C:\\tiago\\projects\\GestaoDocumentos\\src\\Tsc.GestaoDocumentos.Infrastructure\\Services\\ArmazenamentoArquivoService.cs",
-              "RelativeDocumentMoniker": "src\\Tsc.GestaoDocumentos.Infrastructure\\Services\\ArmazenamentoArquivoService.cs",
-              "ToolTip": "C:\\tiago\\projects\\GestaoDocumentos\\src\\Tsc.GestaoDocumentos.Infrastructure\\Services\\ArmazenamentoArquivoService.cs",
-              "RelativeToolTip": "src\\Tsc.GestaoDocumentos.Infrastructure\\Services\\ArmazenamentoArquivoService.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABMAAABPAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-10T00:07:34.616Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "UsuarioTests.cs",
-              "DocumentMoniker": "C:\\tiago\\projects\\GestaoDocumentos\\tests\\Tsc.GestaoDocumentos.Domain.Tests\\Entities\\UsuarioTests.cs",
-              "RelativeDocumentMoniker": "tests\\Tsc.GestaoDocumentos.Domain.Tests\\Entities\\UsuarioTests.cs",
-              "ToolTip": "C:\\tiago\\projects\\GestaoDocumentos\\tests\\Tsc.GestaoDocumentos.Domain.Tests\\Entities\\UsuarioTests.cs",
-              "RelativeToolTip": "tests\\Tsc.GestaoDocumentos.Domain.Tests\\Entities\\UsuarioTests.cs",
-              "ViewState": "AgIAAD8AAAAAAAAAAAAgwC8AAAAsAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-10T00:05:48.93Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "TenantTests.cs",
-              "DocumentMoniker": "C:\\tiago\\projects\\GestaoDocumentos\\tests\\Tsc.GestaoDocumentos.Domain.Tests\\Entities\\TenantTests.cs",
-              "RelativeDocumentMoniker": "tests\\Tsc.GestaoDocumentos.Domain.Tests\\Entities\\TenantTests.cs",
-              "ToolTip": "C:\\tiago\\projects\\GestaoDocumentos\\tests\\Tsc.GestaoDocumentos.Domain.Tests\\Entities\\TenantTests.cs",
-              "RelativeToolTip": "tests\\Tsc.GestaoDocumentos.Domain.Tests\\Entities\\TenantTests.cs",
-              "ViewState": "AgIAABAAAAAAAAAAAAAUwCMAAAASAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-10T00:05:47.923Z",
-              "EditorCaption": ""
             }
           ]
         },

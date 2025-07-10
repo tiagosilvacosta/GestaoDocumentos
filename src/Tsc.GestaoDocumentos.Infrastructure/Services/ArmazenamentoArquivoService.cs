@@ -26,7 +26,7 @@ public class ArmazenamentoArquivoService : IArmazenamentoArquivoService
         }
     }
 
-    public async Task<string> ArmazenarArquivoAsync(Stream arquivo, string nomeArquivo, Guid tenantId, CancellationToken cancellationToken = default)
+    public async Task<string> ArmazenarArquivoAsync(Stream arquivo, string nomeArquivo, IdOrganizacao idOrganizacao, CancellationToken cancellationToken = default)
     {
         try
         {
@@ -115,7 +115,7 @@ public class ArmazenamentoArquivoService : IArmazenamentoArquivoService
         }
     }
 
-    public string GerarChaveArmazenamento(string nomeArquivo, Guid tenantId, Guid documentoId)
+    public string GerarChaveArmazenamento(string nomeArquivo, IdOrganizacao idOrganizacao, Guid documentoId)
     {
         var extensao = Path.GetExtension(nomeArquivo);
         var nomeSeguro = Path.GetFileNameWithoutExtension(nomeArquivo)

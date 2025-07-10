@@ -9,7 +9,7 @@ public abstract class TenantEntity : AggregateRoot
     /// <summary>
     /// Identificador do tenant ao qual a entidade pertence.
     /// </summary>
-    public Guid TenantId { get; protected set; }
+    public IdOrganizacao idOrganizacao { get; protected set; }
 
     /// <summary>
     /// Construtor protegido padrão.
@@ -22,7 +22,7 @@ public abstract class TenantEntity : AggregateRoot
     /// Construtor protegido com ID do tenant.
     /// </summary>
     /// <param name="tenantId">Identificador do tenant</param>
-    protected TenantEntity(Guid tenantId) : base()
+    protected TenantEntity(IdOrganizacao idOrganizacao) : base()
     {
         DefinirTenant(tenantId);
     }
@@ -32,7 +32,7 @@ public abstract class TenantEntity : AggregateRoot
     /// </summary>
     /// <param name="id">Identificador da entidade</param>
     /// <param name="tenantId">Identificador do tenant</param>
-    protected TenantEntity(EntityId id, Guid tenantId) : base(id)
+    protected TenantEntity(EntityId id, IdOrganizacao idOrganizacao) : base(id)
     {
         DefinirTenant(tenantId);
     }
@@ -42,7 +42,7 @@ public abstract class TenantEntity : AggregateRoot
     /// </summary>
     /// <param name="tenantId">Identificador do tenant</param>
     /// <exception cref="ArgumentException">Quando o tenantId é vazio</exception>
-    public void DefinirTenant(Guid tenantId)
+    public void DefinirTenant(IdOrganizacao idOrganizacao)
     {
         if (tenantId == Guid.Empty)
             throw new ArgumentException("TenantId não pode ser vazio", nameof(tenantId));

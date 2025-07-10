@@ -1,6 +1,8 @@
 using Microsoft.EntityFrameworkCore;
 using Tsc.GestaoDocumentos.Domain.Common.Interfaces;
 using Tsc.GestaoDocumentos.Domain.Entities;
+using Tsc.GestaoDocumentos.Domain.Organizacoes;
+using Tsc.GestaoDocumentos.Domain.Usuarios;
 using Tsc.GestaoDocumentos.Infrastructure.Data.Configurations;
 
 namespace Tsc.GestaoDocumentos.Infrastructure.Data;
@@ -22,7 +24,7 @@ public class GestaoDocumentosDbContext : DbContext
         _tenantContext = tenantContext;
     }
 
-    public DbSet<Tenant> Tenants { get; set; }
+    public DbSet<Organizacao> Tenants { get; set; }
     public DbSet<Usuario> Usuarios { get; set; }
     public DbSet<TipoDono> TiposDono { get; set; }
     public DbSet<TipoDocumento> TiposDocumento { get; set; }
@@ -51,28 +53,28 @@ public class GestaoDocumentosDbContext : DbContext
         if (_tenantContext != null)
         {
             modelBuilder.Entity<Usuario>()
-                .HasQueryFilter(e => e.TenantId == _tenantContext.TenantId);
+                .HasQueryFilter(e => e.IdOrganizacao == _tenantContext.IdOrganizacao);
 
             modelBuilder.Entity<TipoDono>()
-                .HasQueryFilter(e => e.TenantId == _tenantContext.TenantId);
+                .HasQueryFilter(e => e.TenantId == _tenantContext.IdOrganizacao);
 
             modelBuilder.Entity<TipoDocumento>()
-                .HasQueryFilter(e => e.TenantId == _tenantContext.TenantId);
+                .HasQueryFilter(e => e.TenantId == _tenantContext.IdOrganizacao);
 
             modelBuilder.Entity<TipoDonoTipoDocumento>()
-                .HasQueryFilter(e => e.TenantId == _tenantContext.TenantId);
+                .HasQueryFilter(e => e.TenantId == _tenantContext.IdOrganizacao);
 
             modelBuilder.Entity<DonoDocumento>()
-                .HasQueryFilter(e => e.TenantId == _tenantContext.TenantId);
+                .HasQueryFilter(e => e.TenantId == _tenantContext.IdOrganizacao);
 
             modelBuilder.Entity<Documento>()
-                .HasQueryFilter(e => e.TenantId == _tenantContext.TenantId);
+                .HasQueryFilter(e => e.TenantId == _tenantContext.IdOrganizacao);
 
             modelBuilder.Entity<DocumentoDonoDocumento>()
-                .HasQueryFilter(e => e.TenantId == _tenantContext.TenantId);
+                .HasQueryFilter(e => e.TenantId == _tenantContext.IdOrganizacao);
 
             modelBuilder.Entity<LogAuditoria>()
-                .HasQueryFilter(e => e.TenantId == _tenantContext.TenantId);
+                .HasQueryFilter(e => e.TenantId == _tenantContext.IdOrganizacao);
         }
     }
 

@@ -1,6 +1,7 @@
 using FluentAssertions;
-using Tsc.GestaoDocumentos.Domain.Entities;
 using Tsc.GestaoDocumentos.Domain.Enums;
+using Tsc.GestaoDocumentos.Domain.Organizacoes;
+using Tsc.GestaoDocumentos.Domain.Usuarios;
 using Xunit;
 
 namespace Tsc.GestaoDocumentos.Domain.Tests.Entities;
@@ -11,19 +12,19 @@ public class UsuarioTests
     public void Usuario_DeveCriarComDadosValidos()
     {
         // Arrange
-        var tenantId = Guid.NewGuid();
+        var tenantId = IdOrganizacao.CriarNovo();
         var nome = "João Silva";
         var email = "joao@exemplo.com";
         var login = "joao.silva";
         var senhaHash = "hash_da_senha";
         var perfil = PerfilUsuario.Usuario;
-        var usuarioCriacao = Guid.NewGuid();
+        var usuarioCriacao = IdUsuario.GerarNovo();
 
         // Act
         var usuario = new Usuario(tenantId, nome, email, login, senhaHash, perfil, usuarioCriacao);
 
         // Assert
-        usuario.TenantId.Should().Be(tenantId);
+        usuario.IdOrganizacao.Should().Be(tenantId);
         usuario.Nome.Should().Be(nome);
         usuario.Email.Should().Be(email.ToLowerInvariant());
         usuario.Login.Should().Be(login.ToLowerInvariant());
@@ -40,12 +41,12 @@ public class UsuarioTests
     public void Usuario_DeveRejeitarNomeInvalido(string? nomeInvalido)
     {
         // Arrange
-        var tenantId = Guid.NewGuid();
+        var tenantId = IdOrganizacao.CriarNovo();
         var email = "joao@exemplo.com";
         var login = "joao.silva";
         var senhaHash = "hash_da_senha";
         var perfil = PerfilUsuario.Usuario;
-        var usuarioCriacao = Guid.NewGuid();
+        var usuarioCriacao = IdUsuario.GerarNovo();
 
         // Act & Assert
         Assert.Throws<ArgumentException>(() => 
@@ -60,12 +61,12 @@ public class UsuarioTests
     public void Usuario_DeveRejeitarEmailInvalido(string emailInvalido)
     {
         // Arrange
-        var tenantId = Guid.NewGuid();
+        var tenantId = IdOrganizacao.CriarNovo();
         var nome = "João Silva";
         var login = "joao.silva";
         var senhaHash = "hash_da_senha";
         var perfil = PerfilUsuario.Usuario;
-        var usuarioCriacao = Guid.NewGuid();
+        var usuarioCriacao = IdUsuario.GerarNovo();
 
         // Act & Assert
         Assert.Throws<ArgumentException>(() => 
@@ -76,13 +77,13 @@ public class UsuarioTests
     public void Usuario_DeveNormalizarEmailParaMinusculo()
     {
         // Arrange
-        var tenantId = Guid.NewGuid();
+        var tenantId = IdOrganizacao.CriarNovo();
         var nome = "João Silva";
         var email = "JOAO@EXEMPLO.COM";
         var login = "joao.silva";
         var senhaHash = "hash_da_senha";
         var perfil = PerfilUsuario.Usuario;
-        var usuarioCriacao = Guid.NewGuid();
+        var usuarioCriacao = IdUsuario.GerarNovo();
 
         // Act
         var usuario = new Usuario(tenantId, nome, email, login, senhaHash, perfil, usuarioCriacao);
@@ -95,13 +96,13 @@ public class UsuarioTests
     public void Usuario_DeveNormalizarLoginParaMinusculo()
     {
         // Arrange
-        var tenantId = Guid.NewGuid();
+        var tenantId = IdOrganizacao.CriarNovo();
         var nome = "João Silva";
         var email = "joao@exemplo.com";
         var login = "JOAO.SILVA";
         var senhaHash = "hash_da_senha";
         var perfil = PerfilUsuario.Usuario;
-        var usuarioCriacao = Guid.NewGuid();
+        var usuarioCriacao = IdUsuario.GerarNovo();
 
         // Act
         var usuario = new Usuario(tenantId, nome, email, login, senhaHash, perfil, usuarioCriacao);
@@ -115,7 +116,7 @@ public class UsuarioTests
     {
         // Arrange
         var usuario = CriarUsuarioValido();
-        var usuarioAlteracao = Guid.NewGuid();
+        var usuarioAlteracao = IdUsuario.GerarNovo();
         var novoStatus = StatusUsuario.Inativo;
 
         // Act
@@ -131,7 +132,7 @@ public class UsuarioTests
     {
         // Arrange
         var usuario = CriarUsuarioValido();
-        var usuarioAlteracao = Guid.NewGuid();
+        var usuarioAlteracao = IdUsuario.GerarNovo();
         var novoPerfil = PerfilUsuario.Administrador;
 
         // Act
@@ -171,12 +172,12 @@ public class UsuarioTests
     private static Usuario CriarUsuarioValido()
     {
         return new Usuario(
-            Guid.NewGuid(),
+            IdOrganizacao.CriarNovo(),
             "João Silva",
             "joao@exemplo.com",
             "joao.silva",
             "hash_da_senha",
             PerfilUsuario.Usuario,
-            Guid.NewGuid());
+            IdUsuario.GerarNovo());
     }
 }

@@ -1,11 +1,13 @@
+using DddBase.Base;
 using Tsc.GestaoDocumentos.Domain.Common;
+using Tsc.GestaoDocumentos.Domain.Organizacoes;
 
 namespace Tsc.GestaoDocumentos.Domain.Entities;
 
-public class TipoDonoTipoDocumento : TenantEntity
+public class TipoDonoTipoDocumento : EntidadeComAuditoriaEOrganizacao<IdTipoDonoDocumento>, IRaizAgregado
 {
-    public Guid TipoDonoId { get; private set; }
-    public Guid TipoDocumentoId { get; private set; }
+    public IdTipoDono IdTipoDono { get; private set; } = null!;
+    public IdTipoDocumento IdTipoDocumento { get; private set; } = null!;
 
     // Navegação
     public TipoDono TipoDono { get; private set; } = null!;
@@ -13,10 +15,10 @@ public class TipoDonoTipoDocumento : TenantEntity
 
     protected TipoDonoTipoDocumento() : base() { }
 
-    public TipoDonoTipoDocumento(Guid tipoDonoId, Guid tipoDocumentoId, Guid tenantId)
-        : base(tenantId)
+    public TipoDonoTipoDocumento(IdTipoDono tipoDonoId, IdTipoDocumento tipoDocumentoId, IdOrganizacao idOrganizacao)
+        : base(IdTipoDonoDocumento.CriarNovo(), idOrganizacao)
     {
-        TipoDonoId = tipoDonoId;
-        TipoDocumentoId = tipoDocumentoId;
+        IdTipoDono = tipoDonoId;
+        IdTipoDocumento = tipoDocumentoId;
     }
 }

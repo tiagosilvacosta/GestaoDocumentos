@@ -1,12 +1,12 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using Tsc.GestaoDocumentos.Domain.Entities;
+using Tsc.GestaoDocumentos.Domain.Organizacoes;
 
 namespace Tsc.GestaoDocumentos.Infrastructure.Data.Configurations;
 
-public class TenantConfiguration : IEntityTypeConfiguration<Tenant>
+public class TenantConfiguration : IEntityTypeConfiguration<Organizacao>
 {
-    public void Configure(EntityTypeBuilder<Tenant> builder)
+    public void Configure(EntityTypeBuilder<Organizacao> builder)
     {
         builder.ToTable("Tenants");
 
@@ -52,8 +52,8 @@ public class TenantConfiguration : IEntityTypeConfiguration<Tenant>
 
         // Relacionamentos
         builder.HasMany(t => t.Usuarios)
-            .WithOne(u => u.Tenant)
-            .HasForeignKey(u => u.TenantId)
+            .WithOne(u => u.Organizacao)
+            .HasForeignKey(u => u.IdOrganizacao)
             .OnDelete(DeleteBehavior.Cascade);
 
         builder.HasMany(t => t.TiposDono)

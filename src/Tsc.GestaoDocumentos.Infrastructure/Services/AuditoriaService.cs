@@ -3,6 +3,7 @@ using Tsc.GestaoDocumentos.Domain.Common;
 using Tsc.GestaoDocumentos.Domain.Entities;
 using Tsc.GestaoDocumentos.Domain.Enums;
 using Tsc.GestaoDocumentos.Domain.Services;
+using Tsc.GestaoDocumentos.Domain.Usuarios;
 
 namespace Tsc.GestaoDocumentos.Infrastructure.Services;
 
@@ -16,7 +17,7 @@ public class AuditoriaService : IAuditoriaService
     }
 
     public async Task RegistrarOperacaoAsync(
-        Guid tenantId,
+        IdOrganizacao idOrganizacao,
         Guid usuarioId,
         string entidadeAfetada,
         Guid entidadeId,
@@ -42,7 +43,7 @@ public class AuditoriaService : IAuditoriaService
     }
 
     public async Task RegistrarLoginAsync(
-        Guid tenantId,
+        IdOrganizacao idOrganizacao,
         Guid usuarioId,
         string ipUsuario,
         string? userAgent = null,
@@ -62,7 +63,7 @@ public class AuditoriaService : IAuditoriaService
     }
 
     public async Task RegistrarLogoutAsync(
-        Guid tenantId,
+        IdOrganizacao idOrganizacao,
         Guid usuarioId,
         string ipUsuario,
         string? userAgent = null,
@@ -82,7 +83,7 @@ public class AuditoriaService : IAuditoriaService
     }
 
     public async Task RegistrarDownloadDocumentoAsync(
-        Guid tenantId,
+        IdOrganizacao idOrganizacao,
         Guid usuarioId,
         Guid documentoId,
         string ipUsuario,

@@ -1,14 +1,18 @@
+using DddBase.Base;
 using Tsc.GestaoDocumentos.Domain.Common;
+using Tsc.GestaoDocumentos.Domain.Organizacoes;
+using Tsc.GestaoDocumentos.Domain.Repositories;
+using Tsc.GestaoDocumentos.Domain.Usuarios;
 
 namespace Tsc.GestaoDocumentos.Domain.Entities;
 
-public class DonoDocumento : TenantEntity
+public class DonoDocumento : EntidadeComAuditoriaEOrganizacao<IdDonoDocumento>, IRaizAgregado
 {
     public string NomeAmigavel { get; private set; } = string.Empty;
-    public Guid TipoDonoId { get; private set; }
+    public IdTipoDono IdTipoDono { get; private set; } = null!;
 
     // Navegação
-    public Tenant Tenant { get; private set; } = null!;
+    public Organizacao Tenant { get; private set; } = null!;
     public TipoDono TipoDono { get; private set; } = null!;
     
     private readonly List<DocumentoDonoDocumento> _documentosVinculados = new();
@@ -17,14 +21,14 @@ public class DonoDocumento : TenantEntity
     protected DonoDocumento() : base() { }
 
     public DonoDocumento(
-        Guid tenantId,
+        IdOrganizacao idOrganizacao,
         string nomeAmigavel,
-        Guid tipoDonoId,
-        Guid usuarioCriacao)
-        : base(tenantId)
+        IdTipoDono idTipoDono,
+        IdUsuario usuarioCriacao)
+        : base(IdDonoDocumento.CriarNovo(), idOrganizacao)
     {
         DefinirNomeAmigavel(nomeAmigavel);
-        TipoDonoId = tipoDonoId;
+        IdTipoDono = idTipoDono;
         UsuarioCriacao = usuarioCriacao;
         UsuarioUltimaAlteracao = usuarioCriacao;
     }
@@ -42,34 +46,34 @@ public class DonoDocumento : TenantEntity
 
     public void VincularDocumento(Documento documento)
     {
-        if (documento.TenantId != TenantId)
+        if (documento.IdOrganizacao != IdOrganizacao)
             throw new ArgumentException("Documento deve pertencer ao mesmo tenant");
 
         // Verificar se o tipo de documento é compatível com o tipo de dono
-        if (!TipoDono.PodeReceberTipoDocumento(documento.TipoDocumentoId))
+        if (!TipoDono.PodeReceberTipoDocumento(documento.IdTipoDocumento))
             throw new InvalidOperationException("Tipo de documento não é compatível com o tipo de dono");
 
         // Verificar se já existe documento ativo do mesmo tipo se não permite múltiplos
         if (!documento.TipoDocumento.PermiteMultiplosDocumentos)
         {
             var documentoExistente = _documentosVinculados
-                .Where(x => x.Documento.TipoDocumentoId == documento.TipoDocumentoId)
+                .Where(x => x.Documento.IdTipoDocumento == documento.IdTipoDocumento)
                 .Any(x => x.Documento.EstaAtivo());
 
             if (documentoExistente)
                 throw new InvalidOperationException("Já existe um documento ativo deste tipo para este dono");
         }
 
-        if (_documentosVinculados.Any(x => x.DocumentoId == documento.Id.Valor))
+        if (_documentosVinculados.Any(x => x.IdDocumento == documento.Id))
             return; // Já vinculado
 
-        var vinculo = new DocumentoDonoDocumento(documento.Id.Valor, Id.Valor, TenantId);
+        var vinculo = new DocumentoDonoDocumento(documento.Id, Id, IdOrganizacao);
         _documentosVinculados.Add(vinculo);
     }
 
-    public void DesvincularDocumento(Guid documentoId)
+    public void DesvincularDocumento(IdDocumento idDocumento)
     {
-        var vinculo = _documentosVinculados.FirstOrDefault(x => x.DocumentoId == documentoId);
+        var vinculo = _documentosVinculados.FirstOrDefault(x => x.IdDocumento == idDocumento);
         if (vinculo != null)
         {
             _documentosVinculados.Remove(vinculo);
@@ -83,10 +87,10 @@ public class DonoDocumento : TenantEntity
             .Select(x => x.Documento);
     }
 
-    public IEnumerable<Documento> ObterDocumentosPorTipo(Guid tipoDocumentoId)
+    public IEnumerable<Documento> ObterDocumentosPorTipo(IdTipoDocumento idTipoDocumento)
     {
         return _documentosVinculados
-            .Where(x => x.Documento.TipoDocumentoId == tipoDocumentoId)
+            .Where(x => x.Documento.IdTipoDocumento == idTipoDocumento)
             .Select(x => x.Documento);
     }
 }

@@ -7,11 +7,7 @@ public enum StatusTenant
     Suspenso = 3
 }
 
-public enum StatusUsuario
-{
-    Ativo = 1,
-    Inativo = 2
-}
+
 
 public enum StatusDocumento
 {
@@ -19,11 +15,7 @@ public enum StatusDocumento
     Inativo = 2
 }
 
-public enum PerfilUsuario
-{
-    Administrador = 1,
-    Usuario = 2
-}
+
 
 public enum TipoOperacaoAuditoria
 {

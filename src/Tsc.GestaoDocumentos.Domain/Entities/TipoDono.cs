@@ -1,13 +1,16 @@
+using DddBase.Base;
 using Tsc.GestaoDocumentos.Domain.Common;
+using Tsc.GestaoDocumentos.Domain.Organizacoes;
+using Tsc.GestaoDocumentos.Domain.Usuarios;
 
 namespace Tsc.GestaoDocumentos.Domain.Entities;
 
-public class TipoDono : TenantEntity
+public class TipoDono : EntidadeComAuditoriaEOrganizacao<IdTipoDono>, IRaizAgregado
 {
     public string Nome { get; private set; } = string.Empty;
 
     // Navegação
-    public Tenant Tenant { get; private set; } = null!;
+    public Organizacao Tenant { get; private set; } = null!;
     
     private readonly List<DonoDocumento> _donosDocumento = new();
     public IReadOnlyCollection<DonoDocumento> DonosDocumento => _donosDocumento.AsReadOnly();
@@ -17,8 +20,8 @@ public class TipoDono : TenantEntity
 
     protected TipoDono() : base() { }
 
-    public TipoDono(Guid tenantId, string nome, Guid usuarioCriacao)
-        : base(tenantId)
+    public TipoDono(IdOrganizacao idOrganizacao, string nome, IdUsuario usuarioCriacao)
+        : base(IdTipoDono.CriarNovo(), idOrganizacao)
     {
         DefinirNome(nome);
         UsuarioCriacao = usuarioCriacao;
@@ -38,27 +41,27 @@ public class TipoDono : TenantEntity
 
     public void VincularTipoDocumento(TipoDocumento tipoDocumento)
     {
-        if (tipoDocumento.TenantId != TenantId)
+        if (tipoDocumento.IdOrganizacao != IdOrganizacao)
             throw new ArgumentException("Tipo de documento deve pertencer ao mesmo tenant");
 
-        if (_tiposDocumentoVinculados.Any(x => x.TipoDocumentoId == tipoDocumento.Id.Valor))
+        if (_tiposDocumentoVinculados.Any(x => x.IdTipoDocumento == tipoDocumento.Id))
             return; // Já vinculado
 
-        var vinculo = new TipoDonoTipoDocumento(Id.Valor, tipoDocumento.Id.Valor, TenantId);
+        var vinculo = new TipoDonoTipoDocumento(Id, tipoDocumento.Id, IdOrganizacao);
         _tiposDocumentoVinculados.Add(vinculo);
     }
 
-    public void DesvincularTipoDocumento(Guid tipoDocumentoId)
+    public void DesvincularTipoDocumento(IdTipoDocumento idTipoDocumento)
     {
-        var vinculo = _tiposDocumentoVinculados.FirstOrDefault(x => x.TipoDocumentoId == tipoDocumentoId);
+        var vinculo = _tiposDocumentoVinculados.FirstOrDefault(x => x.IdTipoDocumento == idTipoDocumento);
         if (vinculo != null)
         {
             _tiposDocumentoVinculados.Remove(vinculo);
         }
     }
 
-    public bool PodeReceberTipoDocumento(Guid tipoDocumentoId)
+    public bool PodeReceberTipoDocumento(IdTipoDocumento idTipoDocumento)
     {
-        return _tiposDocumentoVinculados.Any(x => x.TipoDocumentoId == tipoDocumentoId);
+        return _tiposDocumentoVinculados.Any(x => x.IdTipoDocumento == idTipoDocumento);
     }
 }

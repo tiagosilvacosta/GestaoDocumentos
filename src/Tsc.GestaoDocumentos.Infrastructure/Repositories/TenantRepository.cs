@@ -1,7 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using Tsc.GestaoDocumentos.Domain.Common;
-using Tsc.GestaoDocumentos.Domain.Entities;
-using Tsc.GestaoDocumentos.Domain.Repositories;
+using Tsc.GestaoDocumentos.Domain.Organizacoes;
+using Tsc.GestaoDocumentos.Domain.Organizacoes;
 using Tsc.GestaoDocumentos.Infrastructure.Data;
 
 namespace Tsc.GestaoDocumentos.Infrastructure.Repositories;
@@ -9,13 +9,13 @@ namespace Tsc.GestaoDocumentos.Infrastructure.Repositories;
 /// <summary>
 /// Implementação do repositório de Tenants.
 /// </summary>
-public class TenantRepository : BaseRepository<Tenant>, ITenantRepository
+public class TenantRepository : BaseRepository<Organizacao>, ITenantRepository
 {
     public TenantRepository(GestaoDocumentosDbContext context) : base(context)
     {
     }
 
-    public async Task<Tenant?> ObterPorSlugAsync(string slug, CancellationToken cancellationToken = default)
+    public async Task<Organizacao?> ObterPorSlugAsync(string slug, CancellationToken cancellationToken = default)
     {
         return await _dbSet
             .Where(t => t.Slug == slug.ToLowerInvariant())

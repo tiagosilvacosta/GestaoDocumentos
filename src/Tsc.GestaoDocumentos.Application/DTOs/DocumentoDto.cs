@@ -12,7 +12,7 @@ public class DocumentoDto : TenantBaseDto
     public string TipoArquivo { get; set; } = string.Empty;
     public int Versao { get; set; }
     public string Status { get; set; } = string.Empty;
-    public Guid TipoDocumentoId { get; set; }
+    public IdTipoDocumento idTipoDocumento { get; set; }
     public string TipoDocumentoNome { get; set; } = string.Empty;
     public List<DonoDocumentoDto> DonosVinculados { get; set; } = new();
 }
@@ -23,7 +23,7 @@ public class CreateDocumentoDto
     public Stream Arquivo { get; set; } = Stream.Null;
     public long TamanhoArquivo { get; set; }
     public string TipoArquivo { get; set; } = string.Empty;
-    public Guid TipoDocumentoId { get; set; }
+    public IdTipoDocumento idTipoDocumento { get; set; }
     public List<Guid> DonosDocumentoIds { get; set; } = new();
 }
 

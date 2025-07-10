@@ -2,6 +2,8 @@ using AutoMapper;
 using Tsc.GestaoDocumentos.Application.DTOs;
 using Tsc.GestaoDocumentos.Domain.Entities;
 using Tsc.GestaoDocumentos.Domain.Enums;
+using Tsc.GestaoDocumentos.Domain.Organizacoes;
+using Tsc.GestaoDocumentos.Domain.Usuarios;
 
 namespace Tsc.GestaoDocumentos.Application.Mappings;
 
@@ -9,7 +11,7 @@ public class DomainToDtoProfile : Profile
 {
     public DomainToDtoProfile()
     {
-        CreateMap<Tenant, TenantDto>()
+        CreateMap<Organizacao, TenantDto>()
             .ForMember(dest => dest.Status, opt => opt.MapFrom(src => src.Status.ToString()));
 
         CreateMap<Usuario, UsuarioDto>()

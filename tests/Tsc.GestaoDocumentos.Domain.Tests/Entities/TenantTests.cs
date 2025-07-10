@@ -1,6 +1,8 @@
 using FluentAssertions;
 using Tsc.GestaoDocumentos.Domain.Entities;
 using Tsc.GestaoDocumentos.Domain.Enums;
+using Tsc.GestaoDocumentos.Domain.Organizacoes;
+using Tsc.GestaoDocumentos.Domain.Usuarios;
 using Xunit;
 
 namespace Tsc.GestaoDocumentos.Domain.Tests.Entities;
@@ -13,10 +15,10 @@ public class TenantTests
         // Arrange
         var nomeOrganizacao = "Organização Teste";
         var slug = "organizacao-teste";
-        var usuarioCriacao = Guid.NewGuid();
+        var usuarioCriacao = IdUsuario.GerarNovo();
 
         // Act
-        var tenant = new Tenant(nomeOrganizacao, slug, usuarioCriacao);
+        var tenant = new Organizacao(nomeOrganizacao, slug, usuarioCriacao);
 
         // Assert
         tenant.NomeOrganizacao.Should().Be(nomeOrganizacao);
@@ -35,10 +37,10 @@ public class TenantTests
     {
         // Arrange
         var slug = "organizacao-teste";
-        var usuarioCriacao = Guid.NewGuid();
+        var usuarioCriacao = IdUsuario.GerarNovo();
 
         // Act & Assert
-        Assert.Throws<ArgumentException>(() => new Tenant(nomeInvalido, slug, usuarioCriacao));
+        Assert.Throws<ArgumentException>(() => new Organizacao(nomeInvalido, slug, usuarioCriacao));
     }
 
     [Theory]
@@ -49,10 +51,10 @@ public class TenantTests
     {
         // Arrange
         var nomeOrganizacao = "Organização Teste";
-        var usuarioCriacao = Guid.NewGuid();
+        var usuarioCriacao = IdUsuario.GerarNovo();
 
         // Act & Assert
-        Assert.Throws<ArgumentException>(() => new Tenant(nomeOrganizacao, slugInvalido, usuarioCriacao));
+        Assert.Throws<ArgumentException>(() => new Organizacao(nomeOrganizacao, slugInvalido, usuarioCriacao));
     }
 
     [Fact]
@@ -61,10 +63,10 @@ public class TenantTests
         // Arrange
         var nomeOrganizacao = "Organização Teste";
         var slug = "organizacao-teste-123";
-        var usuarioCriacao = Guid.NewGuid();
+        var usuarioCriacao = IdUsuario.GerarNovo();
 
         // Act
-        var tenant = new Tenant(nomeOrganizacao, slug, usuarioCriacao);
+        var tenant = new Organizacao(nomeOrganizacao, slug, usuarioCriacao);
 
         // Assert
         tenant.Slug.Should().Be(slug);
@@ -74,8 +76,8 @@ public class TenantTests
     public void Tenant_DeveAlterarStatus()
     {
         // Arrange
-        var tenant = new Tenant("Organização", "organizacao", Guid.NewGuid());
-        var usuarioAlteracao = Guid.NewGuid();
+        var tenant = new Organizacao("Organização", "organizacao", IdUsuario.GerarNovo());
+        var usuarioAlteracao = IdUsuario.GerarNovo();
         var novoStatus = StatusTenant.Suspenso;
 
         // Act
@@ -90,8 +92,8 @@ public class TenantTests
     public void Tenant_DeveValidarDataExpiracao()
     {
         // Arrange
-        var tenant = new Tenant("Organização", "organizacao", Guid.NewGuid());
-        var usuarioAlteracao = Guid.NewGuid();
+        var tenant = new Organizacao("Organização", "organizacao", IdUsuario.GerarNovo());
+        var usuarioAlteracao = IdUsuario.GerarNovo();
         var dataExpiracaoPassada = DateTime.UtcNow.AddDays(-1);
 
         // Act & Assert
@@ -103,7 +105,7 @@ public class TenantTests
     public void Tenant_DeveEstarAtivo()
     {
         // Arrange
-        var tenant = new Tenant("Organização", "organizacao", Guid.NewGuid());
+        var tenant = new Organizacao("Organização", "organizacao", IdUsuario.GerarNovo());
 
         // Act & Assert
         tenant.EstaAtivo().Should().BeTrue();
@@ -113,8 +115,8 @@ public class TenantTests
     public void Tenant_DeveValidarSeEstaExpirado()
     {
         // Arrange
-        var tenant = new Tenant("Organização", "organizacao", Guid.NewGuid());
-        var usuarioAlteracao = Guid.NewGuid();
+        var tenant = new Organizacao("Organização", "organizacao", IdUsuario.GerarNovo());
+        var usuarioAlteracao = IdUsuario.GerarNovo();
         var dataExpiracao = DateTime.UtcNow.AddDays(1);
 
         // Act

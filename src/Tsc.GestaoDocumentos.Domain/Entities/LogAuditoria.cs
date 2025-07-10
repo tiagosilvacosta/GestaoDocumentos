@@ -1,5 +1,7 @@
 using Tsc.GestaoDocumentos.Domain.Common;
 using Tsc.GestaoDocumentos.Domain.Enums;
+using Tsc.GestaoDocumentos.Domain.Organizacoes;
+using Tsc.GestaoDocumentos.Domain.Usuarios;
 
 namespace Tsc.GestaoDocumentos.Domain.Entities;
 
@@ -16,13 +18,13 @@ public class LogAuditoria : TenantEntity
     public string? UserAgent { get; private set; }
 
     // Navegação
-    public Tenant Tenant { get; private set; } = null!;
+    public Organizacao Tenant { get; private set; } = null!;
     public Usuario Usuario { get; private set; } = null!;
 
     protected LogAuditoria() : base() { }
 
     public LogAuditoria(
-        Guid tenantId,
+        IdOrganizacao idOrganizacao,
         Guid usuarioId,
         string entidadeAfetada,
         Guid entidadeId,

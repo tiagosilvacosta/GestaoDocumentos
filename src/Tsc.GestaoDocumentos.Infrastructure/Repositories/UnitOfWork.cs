@@ -1,6 +1,8 @@
 using Microsoft.EntityFrameworkCore.Storage;
 using Tsc.GestaoDocumentos.Domain.Common;
+using Tsc.GestaoDocumentos.Domain.Organizacoes;
 using Tsc.GestaoDocumentos.Domain.Repositories;
+using Tsc.GestaoDocumentos.Domain.Usuarios;
 using Tsc.GestaoDocumentos.Infrastructure.Data;
 
 namespace Tsc.GestaoDocumentos.Infrastructure.Repositories;

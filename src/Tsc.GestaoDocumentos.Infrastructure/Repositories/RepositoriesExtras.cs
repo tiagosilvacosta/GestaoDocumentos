@@ -11,19 +11,19 @@ public class TipoDonoRepository : TenantBaseRepository<TipoDono>, ITipoDonoRepos
     {
     }
 
-    public async Task<bool> NomeExisteAsync(string nome, Guid tenantId, CancellationToken cancellationToken = default)
+    public async Task<bool> NomeExisteAsync(string nome, IdOrganizacao idOrganizacao, CancellationToken cancellationToken = default)
     {
         return await _dbSet
             .AnyAsync(td => td.Nome == nome && td.TenantId == tenantId, cancellationToken);
     }
 
-    public async Task<bool> NomeExisteAsync(string nome, Guid tenantId, Guid excluirId, CancellationToken cancellationToken = default)
+    public async Task<bool> NomeExisteAsync(string nome, IdOrganizacao idOrganizacao, Guid excluirId, CancellationToken cancellationToken = default)
     {
         return await _dbSet
             .AnyAsync(td => td.Nome == nome && td.TenantId == tenantId && td.Id.Valor != excluirId, cancellationToken);
     }
 
-    public async Task<IEnumerable<TipoDono>> ObterComTiposDocumentoAsync(Guid tenantId, CancellationToken cancellationToken = default)
+    public async Task<IEnumerable<TipoDono>> ObterComTiposDocumentoAsync(IdOrganizacao idOrganizacao, CancellationToken cancellationToken = default)
     {
         return await _dbSet
             .Include(td => td.TiposDocumentoVinculados)
@@ -39,19 +39,19 @@ public class TipoDocumentoRepository : TenantBaseRepository<TipoDocumento>, ITip
     {
     }
 
-    public async Task<bool> NomeExisteAsync(string nome, Guid tenantId, CancellationToken cancellationToken = default)
+    public async Task<bool> NomeExisteAsync(string nome, IdOrganizacao idOrganizacao, CancellationToken cancellationToken = default)
     {
         return await _dbSet
             .AnyAsync(td => td.Nome == nome && td.TenantId == tenantId, cancellationToken);
     }
 
-    public async Task<bool> NomeExisteAsync(string nome, Guid tenantId, Guid excluirId, CancellationToken cancellationToken = default)
+    public async Task<bool> NomeExisteAsync(string nome, IdOrganizacao idOrganizacao, Guid excluirId, CancellationToken cancellationToken = default)
     {
         return await _dbSet
             .AnyAsync(td => td.Nome == nome && td.TenantId == tenantId && td.Id.Valor != excluirId, cancellationToken);
     }
 
-    public async Task<IEnumerable<TipoDocumento>> ObterComTiposDonoAsync(Guid tenantId, CancellationToken cancellationToken = default)
+    public async Task<IEnumerable<TipoDocumento>> ObterComTiposDonoAsync(IdOrganizacao idOrganizacao, CancellationToken cancellationToken = default)
     {
         return await _dbSet
             .Include(td => td.TiposDonoVinculados)
@@ -60,7 +60,7 @@ public class TipoDocumentoRepository : TenantBaseRepository<TipoDocumento>, ITip
             .ToListAsync(cancellationToken);
     }
 
-    public async Task<IEnumerable<TipoDocumento>> ObterPorTipoDonoAsync(Guid tipoDonoId, Guid tenantId, CancellationToken cancellationToken = default)
+    public async Task<IEnumerable<TipoDocumento>> ObterPorTipoDonoAsync(Guid tipoDonoId, IdOrganizacao idOrganizacao, CancellationToken cancellationToken = default)
     {
         return await _dbSet
             .Include(td => td.TiposDonoVinculados)
@@ -76,7 +76,7 @@ public class DonoDocumentoRepository : TenantBaseRepository<DonoDocumento>, IDon
     {
     }
 
-    public async Task<IEnumerable<DonoDocumento>> ObterComDocumentosAsync(Guid tenantId, CancellationToken cancellationToken = default)
+    public async Task<IEnumerable<DonoDocumento>> ObterComDocumentosAsync(IdOrganizacao idOrganizacao, CancellationToken cancellationToken = default)
     {
         return await _dbSet
             .Include(dd => dd.TipoDono)
@@ -87,7 +87,7 @@ public class DonoDocumentoRepository : TenantBaseRepository<DonoDocumento>, IDon
             .ToListAsync(cancellationToken);
     }
 
-    public async Task<IEnumerable<DonoDocumento>> ObterPorTipoDonoAsync(Guid tipoDonoId, Guid tenantId, CancellationToken cancellationToken = default)
+    public async Task<IEnumerable<DonoDocumento>> ObterPorTipoDonoAsync(Guid tipoDonoId, IdOrganizacao idOrganizacao, CancellationToken cancellationToken = default)
     {
         return await _dbSet
             .Include(dd => dd.TipoDono)
@@ -98,7 +98,7 @@ public class DonoDocumentoRepository : TenantBaseRepository<DonoDocumento>, IDon
             .ToListAsync(cancellationToken);
     }
 
-    public async Task<DonoDocumento?> ObterComDocumentosCompletosAsync(Guid id, Guid tenantId, CancellationToken cancellationToken = default)
+    public async Task<DonoDocumento?> ObterComDocumentosCompletosAsync(Guid id, IdOrganizacao idOrganizacao, CancellationToken cancellationToken = default)
     {
         return await _dbSet
             .Include(dd => dd.TipoDono)
@@ -118,7 +118,7 @@ public class LogAuditoriaRepository : TenantBaseRepository<LogAuditoria>, ILogAu
     {
     }
 
-    public async Task<IEnumerable<LogAuditoria>> ObterPorUsuarioAsync(Guid usuarioId, Guid tenantId, CancellationToken cancellationToken = default)
+    public async Task<IEnumerable<LogAuditoria>> ObterPorUsuarioAsync(Guid usuarioId, IdOrganizacao idOrganizacao, CancellationToken cancellationToken = default)
     {
         return await _dbSet
             .Include(la => la.Usuario)
@@ -127,7 +127,7 @@ public class LogAuditoriaRepository : TenantBaseRepository<LogAuditoria>, ILogAu
             .ToListAsync(cancellationToken);
     }
 
-    public async Task<IEnumerable<LogAuditoria>> ObterPorEntidadeAsync(string entidadeAfetada, Guid entidadeId, Guid tenantId, CancellationToken cancellationToken = default)
+    public async Task<IEnumerable<LogAuditoria>> ObterPorEntidadeAsync(string entidadeAfetada, Guid entidadeId, IdOrganizacao idOrganizacao, CancellationToken cancellationToken = default)
     {
         return await _dbSet
             .Include(la => la.Usuario)
@@ -136,7 +136,7 @@ public class LogAuditoriaRepository : TenantBaseRepository<LogAuditoria>, ILogAu
             .ToListAsync(cancellationToken);
     }
 
-    public async Task<IEnumerable<LogAuditoria>> ObterPorOperacaoAsync(Domain.Enums.TipoOperacaoAuditoria operacao, Guid tenantId, CancellationToken cancellationToken = default)
+    public async Task<IEnumerable<LogAuditoria>> ObterPorOperacaoAsync(Domain.Enums.TipoOperacaoAuditoria operacao, IdOrganizacao idOrganizacao, CancellationToken cancellationToken = default)
     {
         return await _dbSet
             .Include(la => la.Usuario)
@@ -145,7 +145,7 @@ public class LogAuditoriaRepository : TenantBaseRepository<LogAuditoria>, ILogAu
             .ToListAsync(cancellationToken);
     }
 
-    public async Task<IEnumerable<LogAuditoria>> ObterPorPeriodoAsync(DateTime dataInicio, DateTime dataFim, Guid tenantId, CancellationToken cancellationToken = default)
+    public async Task<IEnumerable<LogAuditoria>> ObterPorPeriodoAsync(DateTime dataInicio, DateTime dataFim, IdOrganizacao idOrganizacao, CancellationToken cancellationToken = default)
     {
         return await _dbSet
             .Include(la => la.Usuario)

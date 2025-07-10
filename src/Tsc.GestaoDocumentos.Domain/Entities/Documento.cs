@@ -1,9 +1,12 @@
-using Tsc.GestaoDocumentos.Domain.Common;
+using DddBase.Base;
 using Tsc.GestaoDocumentos.Domain.Enums;
+using Tsc.GestaoDocumentos.Domain.Organizacoes;
+using Tsc.GestaoDocumentos.Domain.Repositories;
+using Tsc.GestaoDocumentos.Domain.Usuarios;
 
 namespace Tsc.GestaoDocumentos.Domain.Entities;
 
-public class Documento : TenantEntity
+public class Documento : EntidadeComAuditoriaEOrganizacao<IdDocumento>, IRaizAgregado
 {
     public string NomeArquivo { get; private set; } = string.Empty;
     public string ChaveArmazenamento { get; private set; } = string.Empty;
@@ -12,10 +15,10 @@ public class Documento : TenantEntity
     public string TipoArquivo { get; private set; } = string.Empty;
     public int Versao { get; private set; }
     public StatusDocumento Status { get; private set; }
-    public Guid TipoDocumentoId { get; private set; }
+    public IdTipoDocumento IdTipoDocumento { get; private set; }
 
     // Navegação
-    public Tenant Tenant { get; private set; } = null!;
+    public Organizacao Tenant { get; private set; } = null!;
     public TipoDocumento TipoDocumento { get; private set; } = null!;
     
     private readonly List<DocumentoDonoDocumento> _donosVinculados = new();
@@ -24,20 +27,20 @@ public class Documento : TenantEntity
     protected Documento() : base() { }
 
     public Documento(
-        Guid tenantId,
+        IdOrganizacao idOrganizacao,
         string nomeArquivo,
         string chaveArmazenamento,
         long tamanhoArquivo,
         string tipoArquivo,
-        Guid tipoDocumentoId,
-        Guid usuarioCriacao)
-        : base(tenantId)
+        IdTipoDocumento idTipoDocumento,
+        IdUsuario usuarioCriacao)
+        : base(IdDocumento.CriarNovo(), idOrganizacao)
     {
         DefinirNomeArquivo(nomeArquivo);
         DefinirChaveArmazenamento(chaveArmazenamento);
         DefinirTamanhoArquivo(tamanhoArquivo);
         DefinirTipoArquivo(tipoArquivo);
-        TipoDocumentoId = tipoDocumentoId;
+        IdTipoDocumento = idTipoDocumento;
         DataUpload = DateTime.UtcNow;
         Versao = 1;
         Status = StatusDocumento.Ativo;
@@ -86,7 +89,7 @@ public class Documento : TenantEntity
         TipoArquivo = tipoArquivo.Trim().ToLowerInvariant();
     }
 
-    public void AlterarStatus(StatusDocumento novoStatus, Guid usuarioAlteracao)
+    public void AlterarStatus(StatusDocumento novoStatus, IdUsuario usuarioAlteracao)
     {
         Status = novoStatus;
         AtualizarDataAlteracao(usuarioAlteracao);
@@ -102,19 +105,19 @@ public class Documento : TenantEntity
 
     public void VincularDonoDocumento(DonoDocumento donoDocumento)
     {
-        if (donoDocumento.TenantId != TenantId)
+        if (donoDocumento.IdOrganizacao != IdOrganizacao)
             throw new ArgumentException("Dono do documento deve pertencer ao mesmo tenant");
 
-        if (_donosVinculados.Any(x => x.DonoDocumentoId == donoDocumento.Id.Valor))
+        if (_donosVinculados.Any(x => x.IdDonoDocumento == donoDocumento.Id))
             return; // Já vinculado
 
-        var vinculo = new DocumentoDonoDocumento(Id.Valor, donoDocumento.Id.Valor, TenantId);
+        var vinculo = new DocumentoDonoDocumento(Id, donoDocumento.Id, IdOrganizacao);
         _donosVinculados.Add(vinculo);
     }
 
-    public void DesvincularDonoDocumento(Guid donoDocumentoId)
+    public void DesvincularDonoDocumento(IdDonoDocumento idDonoDocumento)
     {
-        var vinculo = _donosVinculados.FirstOrDefault(x => x.DonoDocumentoId == donoDocumentoId);
+        var vinculo = _donosVinculados.FirstOrDefault(x => x.IdDocumento == idDonoDocumento);
         if (vinculo != null)
         {
             _donosVinculados.Remove(vinculo);

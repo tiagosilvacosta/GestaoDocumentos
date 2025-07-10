@@ -3,8 +3,8 @@ using Tsc.GestaoDocumentos.Application.DTOs;
 using Tsc.GestaoDocumentos.Application.DTOs.Common;
 using Tsc.GestaoDocumentos.Domain.Common;
 using Tsc.GestaoDocumentos.Domain.Common.Interfaces;
-using Tsc.GestaoDocumentos.Domain.Entities;
 using Tsc.GestaoDocumentos.Domain.Enums;
+using Tsc.GestaoDocumentos.Domain.Organizacoes;
 using Tsc.GestaoDocumentos.Domain.Services;
 
 namespace Tsc.GestaoDocumentos.Application.Services;
@@ -70,7 +70,7 @@ public class TenantAppService : ITenantAppService
         if (await _unitOfWork.Tenants.SlugExisteAsync(createTenant.Slug, cancellationToken))
             throw new InvalidOperationException("Slug já está em uso");
 
-        var tenant = new Tenant(
+        var tenant = new Organizacao(
             createTenant.NomeOrganizacao,
             createTenant.Slug,
             _currentUserService.UserId);
@@ -84,7 +84,7 @@ public class TenantAppService : ITenantAppService
         await _auditoriaService.RegistrarOperacaoAsync(
             tenant.Id,
             _currentUserService.UserId,
-            nameof(Tenant),
+            nameof(Organizacao),
             tenant.Id,
             TipoOperacaoAuditoria.CREATE,
             "127.0.0.1", // TODO: Obter IP real
@@ -117,7 +117,7 @@ public class TenantAppService : ITenantAppService
         await _auditoriaService.RegistrarOperacaoAsync(
             tenant.Id,
             _currentUserService.UserId,
-            nameof(Tenant),
+            nameof(Organizacao),
             tenant.Id,
             TipoOperacaoAuditoria.UPDATE,
             "127.0.0.1", // TODO: Obter IP real
@@ -142,7 +142,7 @@ public class TenantAppService : ITenantAppService
         await _auditoriaService.RegistrarOperacaoAsync(
             tenant.Id,
             _currentUserService.UserId,
-            nameof(Tenant),
+            nameof(Organizacao),
             tenant.Id,
             TipoOperacaoAuditoria.DELETE,
             "127.0.0.1", // TODO: Obter IP real

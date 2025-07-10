@@ -1,11 +1,13 @@
-using Tsc.GestaoDocumentos.Domain.Common;
+using DddBase.Base;
+using Tsc.GestaoDocumentos.Domain.Organizacoes;
+using Tsc.GestaoDocumentos.Domain.Repositories;
 
 namespace Tsc.GestaoDocumentos.Domain.Entities;
 
-public class DocumentoDonoDocumento : TenantEntity
+public class DocumentoDonoDocumento : EntidadeComAuditoriaEOrganizacao<IdDocumentoDonoDocumento>, IRaizAgregado
 {
-    public Guid DocumentoId { get; private set; }
-    public Guid DonoDocumentoId { get; private set; }
+    public IdDocumento IdDocumento { get; private set; } = null!;
+    public IdDonoDocumento IdDonoDocumento { get; private set; } = null!;
 
     // Navegação
     public Documento Documento { get; private set; } = null!;
@@ -13,10 +15,10 @@ public class DocumentoDonoDocumento : TenantEntity
 
     protected DocumentoDonoDocumento() : base() { }
 
-    public DocumentoDonoDocumento(Guid documentoId, Guid donoDocumentoId, Guid tenantId)
-        : base(tenantId)
+    public DocumentoDonoDocumento(IdDocumento idDocumento, IdDonoDocumento idDonoDocumento, IdOrganizacao idOrganizacao)
+        : base(IdDocumentoDonoDocumento.CriarNovo(), idOrganizacao)
     {
-        DocumentoId = documentoId;
-        DonoDocumentoId = donoDocumentoId;
+        IdDocumento = idDocumento;
+        IdDonoDocumento = idDonoDocumento;
     }
 }

@@ -1,4 +1,6 @@
+using Tsc.GestaoDocumentos.Domain.Organizacoes;
 using Tsc.GestaoDocumentos.Domain.Repositories;
+using Tsc.GestaoDocumentos.Domain.Usuarios;
 
 namespace Tsc.GestaoDocumentos.Domain.Common;
 

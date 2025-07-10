@@ -1,14 +1,17 @@
+using DddBase.Base;
 using Tsc.GestaoDocumentos.Domain.Common;
+using Tsc.GestaoDocumentos.Domain.Organizacoes;
+using Tsc.GestaoDocumentos.Domain.Usuarios;
 
 namespace Tsc.GestaoDocumentos.Domain.Entities;
 
-public class TipoDocumento : TenantEntity
+public class TipoDocumento : EntidadeComAuditoriaEOrganizacao<IdTipoDocumento>, IRaizAgregado
 {
     public string Nome { get; private set; } = string.Empty;
     public bool PermiteMultiplosDocumentos { get; private set; }
 
     // Navegação
-    public Tenant Tenant { get; private set; } = null!;
+    public Organizacao Tenant { get; private set; } = null!;
     
     private readonly List<Documento> _documentos = new();
     public IReadOnlyCollection<Documento> Documentos => _documentos.AsReadOnly();
@@ -19,11 +22,11 @@ public class TipoDocumento : TenantEntity
     protected TipoDocumento() : base() { }
 
     public TipoDocumento(
-        Guid tenantId, 
+        IdOrganizacao idOrganizacao, 
         string nome, 
         bool permiteMultiplosDocumentos, 
-        Guid usuarioCriacao)
-        : base(tenantId)
+        IdUsuario usuarioCriacao)
+        : base(IdTipoDocumento.CriarNovo(), idOrganizacao)
     {
         DefinirNome(nome);
         PermiteMultiplosDocumentos = permiteMultiplosDocumentos;
@@ -42,7 +45,7 @@ public class TipoDocumento : TenantEntity
         Nome = nome.Trim();
     }
 
-    public void AlterarPermissaoMultiplosDocumentos(bool permiteMultiplos, Guid usuarioAlteracao)
+    public void AlterarPermissaoMultiplosDocumentos(bool permiteMultiplos, IdUsuario usuarioAlteracao)
     {
         PermiteMultiplosDocumentos = permiteMultiplos;
         AtualizarDataAlteracao(usuarioAlteracao);
@@ -50,27 +53,27 @@ public class TipoDocumento : TenantEntity
 
     public void VincularTipoDono(TipoDono tipoDono)
     {
-        if (tipoDono.TenantId != TenantId)
+        if (tipoDono.IdOrganizacao != IdOrganizacao)
             throw new ArgumentException("Tipo de dono deve pertencer ao mesmo tenant");
 
-        if (_tiposDonoVinculados.Any(x => x.TipoDonoId == tipoDono.Id.Valor))
+        if (_tiposDonoVinculados.Any(x => x.IdTipoDono == tipoDono.Id))
             return; // Já vinculado
 
-        var vinculo = new TipoDonoTipoDocumento(tipoDono.Id.Valor, Id.Valor, TenantId);
+        var vinculo = new TipoDonoTipoDocumento(tipoDono.Id, Id, IdOrganizacao);
         _tiposDonoVinculados.Add(vinculo);
     }
 
-    public void DesvincularTipoDono(Guid tipoDonoId)
+    public void DesvincularTipoDono(IdTipoDono idTipoDono)
     {
-        var vinculo = _tiposDonoVinculados.FirstOrDefault(x => x.TipoDonoId == tipoDonoId);
+        var vinculo = _tiposDonoVinculados.FirstOrDefault(x => x.IdTipoDono == idTipoDono);
         if (vinculo != null)
         {
             _tiposDonoVinculados.Remove(vinculo);
         }
     }
 
-    public bool PodeSerUsadoPorTipoDono(Guid tipoDonoId)
+    public bool PodeSerUsadoPorTipoDono(IdTipoDono idTipoDono)
     {
-        return _tiposDonoVinculados.Any(x => x.TipoDonoId == tipoDonoId);
+        return _tiposDonoVinculados.Any(x => x.IdTipoDono == idTipoDono);
     }
 }

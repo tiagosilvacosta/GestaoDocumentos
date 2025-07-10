@@ -1,6 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Tsc.GestaoDocumentos.Domain.Entities;
+using Tsc.GestaoDocumentos.Domain.Usuarios;
 
 namespace Tsc.GestaoDocumentos.Infrastructure.Data.Configurations;
 
@@ -15,7 +16,7 @@ public class UsuarioConfiguration : IEntityTypeConfiguration<Usuario>
         builder.Property(u => u.Id)
             .ValueGeneratedNever();
 
-        builder.Property(u => u.TenantId)
+        builder.Property(u => u.IdOrganizacao)
             .IsRequired();
 
         builder.Property(u => u.Nome)
@@ -43,24 +44,24 @@ public class UsuarioConfiguration : IEntityTypeConfiguration<Usuario>
             .IsRequired();
 
         // Índices compostos para multi-tenancy
-        builder.HasIndex(u => new { u.TenantId, u.Email })
+        builder.HasIndex(u => new { u.IdOrganizacao, u.Email })
             .IsUnique()
             .HasDatabaseName("IX_Usuarios_TenantId_Email");
 
-        builder.HasIndex(u => new { u.TenantId, u.Login })
+        builder.HasIndex(u => new { u.IdOrganizacao, u.Login })
             .IsUnique()
             .HasDatabaseName("IX_Usuarios_TenantId_Login");
 
-        builder.HasIndex(u => new { u.TenantId, u.Status })
+        builder.HasIndex(u => new { u.IdOrganizacao, u.Status })
             .HasDatabaseName("IX_Usuarios_TenantId_Status");
 
-        builder.HasIndex(u => new { u.TenantId, u.Perfil })
+        builder.HasIndex(u => new { u.IdOrganizacao, u.Perfil })
             .HasDatabaseName("IX_Usuarios_TenantId_Perfil");
 
         // Relacionamento
-        builder.HasOne(u => u.Tenant)
+        builder.HasOne(u => u.Organizacao)
             .WithMany(t => t.Usuarios)
-            .HasForeignKey(u => u.TenantId)
+            .HasForeignKey(u => u.IdOrganizacao)
             .OnDelete(DeleteBehavior.Cascade);
     }
 }
