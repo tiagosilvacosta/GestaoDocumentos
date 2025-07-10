@@ -151,16 +151,16 @@ public class DocumentoDonoDocumentoConfiguration : IEntityTypeConfiguration<Docu
             .IsUnique()
             .HasDatabaseName("IX_DocumentoDonoDocumento_IdOrganizacao_IdDocumento_IdDonoDocumento");
 
-        // Relacionamentos
+        // Relacionamentos - alterado para evitar múltiplos caminhos de cascata
         builder.HasOne(ddd => ddd.Documento)
             .WithMany(d => d.DonosVinculados)
             .HasForeignKey(ddd => ddd.IdDocumento)
-            .OnDelete(DeleteBehavior.Cascade);
+            .OnDelete(DeleteBehavior.Restrict);
 
         builder.HasOne(ddd => ddd.DonoDocumento)
             .WithMany(dd => dd.DocumentosVinculados)
             .HasForeignKey(ddd => ddd.IdDonoDocumento)
-            .OnDelete(DeleteBehavior.Cascade);
+            .OnDelete(DeleteBehavior.Restrict);
     }
 }
 
@@ -272,15 +272,15 @@ public class TipoDonoTipoDocumentoConfiguration : IEntityTypeConfiguration<TipoD
             .IsUnique()
             .HasDatabaseName("IX_TipoDonoTipoDocumento_IdOrganizacao_IdTipoDono_IdTipoDocumento");
 
-        // Relacionamentos
+        // Relacionamentos - alterado para evitar múltiplos caminhos de cascata
         builder.HasOne(tdtd => tdtd.TipoDono)
             .WithMany(td => td.TiposDocumentoVinculados)
             .HasForeignKey(tdtd => tdtd.IdTipoDono)
-            .OnDelete(DeleteBehavior.Cascade);
+            .OnDelete(DeleteBehavior.Restrict);
 
         builder.HasOne(tdtd => tdtd.TipoDocumento)
             .WithMany(td => td.TiposDonoVinculados)
             .HasForeignKey(tdtd => tdtd.IdTipoDocumento)
-            .OnDelete(DeleteBehavior.Cascade);
+            .OnDelete(DeleteBehavior.Restrict);
     }
 }
