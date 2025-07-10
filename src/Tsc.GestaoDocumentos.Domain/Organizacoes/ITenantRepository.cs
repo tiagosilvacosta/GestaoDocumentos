@@ -1,5 +1,4 @@
 using DddBase.Repositorio;
-using Tsc.GestaoDocumentos.Domain.Common;
 
 namespace Tsc.GestaoDocumentos.Domain.Organizacoes;
 
@@ -31,5 +30,5 @@ public interface ITenantRepository : IRepositorio<Organizacao, IdOrganizacao>
     /// <param name="excluirId">ID a ser excluído da verificação</param>
     /// <param name="cancellationToken">Token de cancelamento</param>
     /// <returns>True se existe, false caso contrário</returns>
-    Task<bool> SlugExisteAsync(string slug, EntityId excluirId, CancellationToken cancellationToken = default);
+    Task<bool> SlugExisteAsync(string slug, IdOrganizacao excluirId, CancellationToken cancellationToken = default);
 }

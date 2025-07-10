@@ -1,7 +1,6 @@
-using Tsc.GestaoDocumentos.Domain.Entities;
 using Tsc.GestaoDocumentos.Domain.Organizacoes;
 
-namespace Tsc.GestaoDocumentos.Domain.Repositories;
+namespace Tsc.GestaoDocumentos.Domain.Documentos;
 
 public interface IDocumentoRepository : IRepositorioComOrganizacao<Documento, IdDocumento>
 {

@@ -1,6 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using Tsc.GestaoDocumentos.Domain.Entities;
+using Tsc.GestaoDocumentos.Domain.Documentos;
+using Tsc.GestaoDocumentos.Domain.Logs;
 
 namespace Tsc.GestaoDocumentos.Infrastructure.Data.Configurations;
 
@@ -15,32 +16,32 @@ public class DonoDocumentoConfiguration : IEntityTypeConfiguration<DonoDocumento
         builder.Property(dd => dd.Id)
             .ValueGeneratedNever();
 
-        builder.Property(dd => dd.TenantId)
+        builder.Property(dd => dd.IdOrganizacao)
             .IsRequired();
 
         builder.Property(dd => dd.NomeAmigavel)
             .HasMaxLength(255)
             .IsRequired();
 
-        builder.Property(dd => dd.TipoDonoId)
+        builder.Property(dd => dd.IdTipoDono)
             .IsRequired();
 
         // Índices compostos para multi-tenancy
-        builder.HasIndex(dd => new { dd.TenantId, dd.NomeAmigavel })
-            .HasDatabaseName("IX_DonosDocumento_TenantId_NomeAmigavel");
+        builder.HasIndex(dd => new { dd.IdOrganizacao, dd.NomeAmigavel })
+            .HasDatabaseName("IX_DonosDocumento_IdOrganizacao_NomeAmigavel");
 
-        builder.HasIndex(dd => new { dd.TenantId, dd.TipoDonoId })
-            .HasDatabaseName("IX_DonosDocumento_TenantId_TipoDonoId");
+        builder.HasIndex(dd => new { dd.IdOrganizacao, dd.IdTipoDono })
+            .HasDatabaseName("IX_DonosDocumento_IdOrganizacao_IdTipoDono");
 
         // Relacionamentos
         builder.HasOne(dd => dd.Tenant)
             .WithMany(t => t.DonosDocumento)
-            .HasForeignKey(dd => dd.TenantId)
+            .HasForeignKey(dd => dd.IdOrganizacao)
             .OnDelete(DeleteBehavior.Cascade);
 
         builder.HasOne(dd => dd.TipoDono)
             .WithMany(td => td.DonosDocumento)
-            .HasForeignKey(dd => dd.TipoDonoId)
+            .HasForeignKey(dd => dd.IdTipoDono)
             .OnDelete(DeleteBehavior.Restrict);
     }
 }
@@ -56,7 +57,7 @@ public class DocumentoConfiguration : IEntityTypeConfiguration<Documento>
         builder.Property(d => d.Id)
             .ValueGeneratedNever();
 
-        builder.Property(d => d.TenantId)
+        builder.Property(d => d.IdOrganizacao)
             .IsRequired();
 
         builder.Property(d => d.NomeArquivo)
@@ -84,32 +85,32 @@ public class DocumentoConfiguration : IEntityTypeConfiguration<Documento>
             .HasConversion<int>()
             .IsRequired();
 
-        builder.Property(d => d.TipoDocumentoId)
+        builder.Property(d => d.IdTipoDocumento)
             .IsRequired();
 
         // Índices compostos para multi-tenancy
-        builder.HasIndex(d => new { d.TenantId, d.ChaveArmazenamento })
+        builder.HasIndex(d => new { d.IdOrganizacao, d.ChaveArmazenamento })
             .IsUnique()
-            .HasDatabaseName("IX_Documentos_TenantId_ChaveArmazenamento");
+            .HasDatabaseName("IX_Documentos_IdOrganizacao_ChaveArmazenamento");
 
-        builder.HasIndex(d => new { d.TenantId, d.TipoDocumentoId })
-            .HasDatabaseName("IX_Documentos_TenantId_TipoDocumentoId");
+        builder.HasIndex(d => new { d.IdOrganizacao, d.IdTipoDocumento })
+            .HasDatabaseName("IX_Documentos_IdOrganizacao_IdTipoDocumento");
 
-        builder.HasIndex(d => new { d.TenantId, d.Status })
-            .HasDatabaseName("IX_Documentos_TenantId_Status");
+        builder.HasIndex(d => new { d.IdOrganizacao, d.Status })
+            .HasDatabaseName("IX_Documentos_IdOrganizacao_Status");
 
-        builder.HasIndex(d => new { d.TenantId, d.DataUpload })
-            .HasDatabaseName("IX_Documentos_TenantId_DataUpload");
+        builder.HasIndex(d => new { d.IdOrganizacao, d.DataUpload })
+            .HasDatabaseName("IX_Documentos_IdOrganizacao_DataUpload");
 
         // Relacionamentos
         builder.HasOne(d => d.Tenant)
             .WithMany()
-            .HasForeignKey(d => d.TenantId)
+            .HasForeignKey(d => d.IdOrganizacao)
             .OnDelete(DeleteBehavior.Cascade);
 
         builder.HasOne(d => d.TipoDocumento)
             .WithMany(td => td.Documentos)
-            .HasForeignKey(d => d.TipoDocumentoId)
+            .HasForeignKey(d => d.IdTipoDocumento)
             .OnDelete(DeleteBehavior.Restrict);
     }
 }
@@ -125,29 +126,29 @@ public class DocumentoDonoDocumentoConfiguration : IEntityTypeConfiguration<Docu
         builder.Property(ddd => ddd.Id)
             .ValueGeneratedNever();
 
-        builder.Property(ddd => ddd.TenantId)
+        builder.Property(ddd => ddd.IdOrganizacao)
             .IsRequired();
 
-        builder.Property(ddd => ddd.DocumentoId)
+        builder.Property(ddd => ddd.IdDocumento)
             .IsRequired();
 
-        builder.Property(ddd => ddd.DonoDocumentoId)
+        builder.Property(ddd => ddd.IdDonoDocumento)
             .IsRequired();
 
         // Índice único composto
-        builder.HasIndex(ddd => new { ddd.TenantId, ddd.DocumentoId, ddd.DonoDocumentoId })
+        builder.HasIndex(ddd => new { ddd.IdOrganizacao, ddd.IdDocumento, ddd.IdDonoDocumento })
             .IsUnique()
-            .HasDatabaseName("IX_DocumentoDonoDocumento_TenantId_DocumentoId_DonoDocumentoId");
+            .HasDatabaseName("IX_DocumentoDonoDocumento_IdOrganizacao_IdDocumento_IdDonoDocumento");
 
         // Relacionamentos
         builder.HasOne(ddd => ddd.Documento)
             .WithMany(d => d.DonosVinculados)
-            .HasForeignKey(ddd => ddd.DocumentoId)
+            .HasForeignKey(ddd => ddd.IdDocumento)
             .OnDelete(DeleteBehavior.Cascade);
 
         builder.HasOne(ddd => ddd.DonoDocumento)
             .WithMany(dd => dd.DocumentosVinculados)
-            .HasForeignKey(ddd => ddd.DonoDocumentoId)
+            .HasForeignKey(ddd => ddd.IdDonoDocumento)
             .OnDelete(DeleteBehavior.Cascade);
     }
 }
@@ -163,17 +164,17 @@ public class LogAuditoriaConfiguration : IEntityTypeConfiguration<LogAuditoria>
         builder.Property(la => la.Id)
             .ValueGeneratedNever();
 
-        builder.Property(la => la.TenantId)
+        builder.Property(la => la.IdOrganizacao)
             .IsRequired();
 
-        builder.Property(la => la.UsuarioId)
+        builder.Property(la => la.IdUsuario)
             .IsRequired();
 
         builder.Property(la => la.EntidadeAfetada)
             .HasMaxLength(100)
             .IsRequired();
 
-        builder.Property(la => la.EntidadeId)
+        builder.Property(la => la.IdEntidade)
             .IsRequired();
 
         builder.Property(la => la.Operacao)
@@ -197,27 +198,27 @@ public class LogAuditoriaConfiguration : IEntityTypeConfiguration<LogAuditoria>
             .HasMaxLength(500);
 
         // Índices compostos para multi-tenancy
-        builder.HasIndex(la => new { la.TenantId, la.UsuarioId })
-            .HasDatabaseName("IX_LogsAuditoria_TenantId_UsuarioId");
+        builder.HasIndex(la => new { la.IdOrganizacao, la.IdUsuario })
+            .HasDatabaseName("IX_LogsAuditoria_IdOrganizacao_IdUsuario");
 
-        builder.HasIndex(la => new { la.TenantId, la.EntidadeAfetada, la.EntidadeId })
-            .HasDatabaseName("IX_LogsAuditoria_TenantId_EntidadeAfetada_EntidadeId");
+        builder.HasIndex(la => new { la.IdOrganizacao, la.EntidadeAfetada, la.IdEntidade })
+            .HasDatabaseName("IX_LogsAuditoria_IdOrganizacao_EntidadeAfetada_EntidadeId");
 
-        builder.HasIndex(la => new { la.TenantId, la.Operacao })
-            .HasDatabaseName("IX_LogsAuditoria_TenantId_Operacao");
+        builder.HasIndex(la => new { la.IdOrganizacao, la.Operacao })
+            .HasDatabaseName("IX_LogsAuditoria_IdOrganizacao_Operacao");
 
-        builder.HasIndex(la => new { la.TenantId, la.DataHoraOperacao })
-            .HasDatabaseName("IX_LogsAuditoria_TenantId_DataHoraOperacao");
+        builder.HasIndex(la => new { la.IdOrganizacao, la.DataHoraOperacao })
+            .HasDatabaseName("IX_LogsAuditoria_IdOrganizacao_DataHoraOperacao");
 
         // Relacionamentos
         builder.HasOne(la => la.Tenant)
             .WithMany()
-            .HasForeignKey(la => la.TenantId)
+            .HasForeignKey(la => la.IdOrganizacao)
             .OnDelete(DeleteBehavior.Cascade);
 
         builder.HasOne(la => la.Usuario)
             .WithMany()
-            .HasForeignKey(la => la.UsuarioId)
+            .HasForeignKey(la => la.IdUsuario)
             .OnDelete(DeleteBehavior.Restrict);
     }
 }

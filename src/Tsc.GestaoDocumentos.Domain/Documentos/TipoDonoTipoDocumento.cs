@@ -2,7 +2,7 @@ using DddBase.Base;
 using Tsc.GestaoDocumentos.Domain.Common;
 using Tsc.GestaoDocumentos.Domain.Organizacoes;
 
-namespace Tsc.GestaoDocumentos.Domain.Entities;
+namespace Tsc.GestaoDocumentos.Domain.Documentos;
 
 public class TipoDonoTipoDocumento : EntidadeComAuditoriaEOrganizacao<IdTipoDonoDocumento>, IRaizAgregado
 {

@@ -1,3 +1,5 @@
+using Tsc.GestaoDocumentos.Domain.Organizacoes;
+
 namespace Tsc.GestaoDocumentos.Application.DTOs.Common;
 
 public class BaseDto

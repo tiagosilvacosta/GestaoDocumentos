@@ -1,8 +1,7 @@
 using DddBase.Base;
 using Tsc.GestaoDocumentos.Domain.Organizacoes;
-using Tsc.GestaoDocumentos.Domain.Repositories;
 
-namespace Tsc.GestaoDocumentos.Domain.Entities;
+namespace Tsc.GestaoDocumentos.Domain.Documentos;
 
 public class DocumentoDonoDocumento : EntidadeComAuditoriaEOrganizacao<IdDocumentoDonoDocumento>, IRaizAgregado
 {

@@ -2,6 +2,7 @@ using AutoMapper;
 using Tsc.GestaoDocumentos.Application.DTOs;
 using Tsc.GestaoDocumentos.Application.DTOs.Common;
 using Tsc.GestaoDocumentos.Domain.Common;
+using Tsc.GestaoDocumentos.Domain.Documentos;
 
 namespace Tsc.GestaoDocumentos.Application.Services;
 
@@ -20,7 +21,7 @@ public class DonoDocumentoAppService : IDonoDocumentoAppService
         _mapper = mapper;
     }
 
-    public async Task<DonoDocumentoDto?> ObterPorIdAsync(Guid id, CancellationToken cancellationToken = default)
+    public async Task<DonoDocumentoDto?> ObterPorIdAsync(IdDonoDocumento id, CancellationToken cancellationToken = default)
     {
         var donoDocumento = await _unitOfWork.DonosDocumento.ObterPorIdAsync(id, cancellationToken);
         return donoDocumento != null ? _mapper.Map<DonoDocumentoDto>(donoDocumento) : null;
@@ -51,13 +52,13 @@ public class DonoDocumentoAppService : IDonoDocumentoAppService
         throw new NotImplementedException("Implementação pendente após criação das entidades de domínio");
     }
 
-    public Task<DonoDocumentoDto> AtualizarAsync(Guid id, UpdateDonoDocumentoDto updateDonoDocumento, CancellationToken cancellationToken = default)
+    public Task<DonoDocumentoDto> AtualizarAsync(IdDonoDocumento id, UpdateDonoDocumentoDto updateDonoDocumento, CancellationToken cancellationToken = default)
     {
         // TODO: Implementar lógica de atualização
         throw new NotImplementedException("Implementação pendente após criação das entidades de domínio");
     }
 
-    public Task<bool> RemoverAsync(Guid id, CancellationToken cancellationToken = default)
+    public Task<bool> RemoverAsync(IdDonoDocumento id, CancellationToken cancellationToken = default)
     {
         // TODO: Implementar lógica de remoção
         throw new NotImplementedException("Implementação pendente após criação das entidades de domínio");

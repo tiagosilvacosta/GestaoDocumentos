@@ -1,6 +1,6 @@
-using Tsc.GestaoDocumentos.Domain.Organizacoes;
+using Tsc.GestaoDocumentos.Domain.Usuarios;
 
-namespace Tsc.GestaoDocumentos.Domain.Common.Interfaces;
+namespace Tsc.GestaoDocumentos.Domain.Organizacoes;
 
 public interface ITenantContext
 {
@@ -10,7 +10,7 @@ public interface ITenantContext
 
 public interface ICurrentUserService
 {
-    Guid UserId { get; }
+    IdUsuario IdUsuario { get; }
     string UserName { get; }
     string Email { get; }
     IdOrganizacao idOrganizacao { get; }

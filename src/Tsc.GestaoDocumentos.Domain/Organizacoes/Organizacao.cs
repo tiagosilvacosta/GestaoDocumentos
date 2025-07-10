@@ -1,9 +1,15 @@
 using DddBase.Base;
-using Tsc.GestaoDocumentos.Domain.Entities;
-using Tsc.GestaoDocumentos.Domain.Enums;
+using Tsc.GestaoDocumentos.Domain.Documentos;
 using Tsc.GestaoDocumentos.Domain.Usuarios;
 
 namespace Tsc.GestaoDocumentos.Domain.Organizacoes;
+
+public enum StatusTenant
+{
+    Ativo = 1,
+    Inativo = 2,
+    Suspenso = 3
+}
 
 public class Organizacao : EntidadeComAuditoria<IdOrganizacao>, IRaizAgregado
 {
@@ -30,6 +36,7 @@ public class Organizacao : EntidadeComAuditoria<IdOrganizacao>, IRaizAgregado
     public Organizacao(string nomeOrganizacao, string slug, IdUsuario idUsuario)
         : base()
     {
+        Id = IdOrganizacao.CriarNovo();
         DefinirNomeOrganizacao(nomeOrganizacao);
         DefinirSlug(slug);
         Status = StatusTenant.Ativo;

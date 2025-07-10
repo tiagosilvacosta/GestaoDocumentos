@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using Tsc.GestaoDocumentos.Application.DTOs;
 using Tsc.GestaoDocumentos.Application.DTOs.Common;
 using Tsc.GestaoDocumentos.Application.Services;
+using Tsc.GestaoDocumentos.Domain.Organizacoes;
 
 namespace Tsc.GestaoDocumentos.Api.Controllers;
 
@@ -26,7 +27,7 @@ public class TenantsController : ControllerBase
     [HttpGet("{id}")]
     public async Task<ActionResult<TenantDto>> GetById(Guid id)
     {
-        var result = await _tenantAppService.ObterPorIdAsync(id);
+        var result = await _tenantAppService.ObterPorIdAsync(IdOrganizacao.CriarDeGuid(id));
         
         if (result == null)
             return NotFound();
@@ -64,7 +65,7 @@ public class TenantsController : ControllerBase
     {
         try
         {
-            var result = await _tenantAppService.AtualizarAsync(id, updateTenant);
+            var result = await _tenantAppService.AtualizarAsync(IdOrganizacao.CriarDeGuid(id), updateTenant);
             return Ok(result);
         }
         catch (InvalidOperationException ex)
@@ -76,7 +77,7 @@ public class TenantsController : ControllerBase
     [HttpDelete("{id}")]
     public async Task<ActionResult> Delete(Guid id)
     {
-        var result = await _tenantAppService.RemoverAsync(id);
+        var result = await _tenantAppService.RemoverAsync(IdOrganizacao.CriarDeGuid(id));
         
         if (!result)
             return NotFound();

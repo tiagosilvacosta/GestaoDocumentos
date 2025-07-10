@@ -1,7 +1,6 @@
 using AutoMapper;
 using Tsc.GestaoDocumentos.Application.DTOs;
-using Tsc.GestaoDocumentos.Domain.Entities;
-using Tsc.GestaoDocumentos.Domain.Enums;
+using Tsc.GestaoDocumentos.Domain.Documentos;
 using Tsc.GestaoDocumentos.Domain.Organizacoes;
 using Tsc.GestaoDocumentos.Domain.Usuarios;
 

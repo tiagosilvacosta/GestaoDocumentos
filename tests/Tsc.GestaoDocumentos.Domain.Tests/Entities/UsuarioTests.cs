@@ -1,5 +1,4 @@
 using FluentAssertions;
-using Tsc.GestaoDocumentos.Domain.Enums;
 using Tsc.GestaoDocumentos.Domain.Organizacoes;
 using Tsc.GestaoDocumentos.Domain.Usuarios;
 using Xunit;

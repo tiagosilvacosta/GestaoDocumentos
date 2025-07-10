@@ -58,17 +58,17 @@ public class TenantConfiguration : IEntityTypeConfiguration<Organizacao>
 
         builder.HasMany(t => t.TiposDono)
             .WithOne(td => td.Tenant)
-            .HasForeignKey(td => td.TenantId)
+            .HasForeignKey(td => td.IdOrganizacao)
             .OnDelete(DeleteBehavior.Cascade);
 
         builder.HasMany(t => t.TiposDocumento)
             .WithOne(td => td.Tenant)
-            .HasForeignKey(td => td.TenantId)
+            .HasForeignKey(td => td.IdOrganizacao)
             .OnDelete(DeleteBehavior.Cascade);
 
         builder.HasMany(t => t.DonosDocumento)
             .WithOne(dd => dd.Tenant)
-            .HasForeignKey(dd => dd.TenantId)
+            .HasForeignKey(dd => dd.IdOrganizacao)
             .OnDelete(DeleteBehavior.Cascade);
     }
 }

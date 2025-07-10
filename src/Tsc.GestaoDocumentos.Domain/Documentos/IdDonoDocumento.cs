@@ -1,6 +1,6 @@
 ﻿using DddBase.Base;
 
-namespace Tsc.GestaoDocumentos.Domain.Entities
+namespace Tsc.GestaoDocumentos.Domain.Documentos
 {
     public record IdDonoDocumento : IdEntidadeBase<Guid>
     {

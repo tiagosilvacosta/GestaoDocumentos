@@ -1,5 +1,6 @@
 using Tsc.GestaoDocumentos.Application.DTOs;
 using Tsc.GestaoDocumentos.Application.DTOs.Common;
+using Tsc.GestaoDocumentos.Domain.Documentos;
 
 namespace Tsc.GestaoDocumentos.Application.Services;
 
@@ -15,7 +16,7 @@ public interface ITipoDonoAppService
     /// <param name="id">ID do tipo de dono</param>
     /// <param name="cancellationToken">Token de cancelamento</param>
     /// <returns>Dados do tipo de dono ou null se não encontrado</returns>
-    Task<TipoDonoDto?> ObterPorIdAsync(Guid id, CancellationToken cancellationToken = default);
+    Task<TipoDonoDto?> ObterPorIdAsync(IdTipoDono id, CancellationToken cancellationToken = default);
 
     /// <summary>
     /// Obtém todos os tipos de dono do tenant atual com paginação.
@@ -40,7 +41,7 @@ public interface ITipoDonoAppService
     /// <param name="updateTipoDono">Dados para atualização do tipo de dono</param>
     /// <param name="cancellationToken">Token de cancelamento</param>
     /// <returns>Dados do tipo de dono atualizado</returns>
-    Task<TipoDonoDto> AtualizarAsync(Guid id, UpdateTipoDonoDto updateTipoDono, CancellationToken cancellationToken = default);
+    Task<TipoDonoDto> AtualizarAsync(IdTipoDono id, UpdateTipoDonoDto updateTipoDono, CancellationToken cancellationToken = default);
 
     /// <summary>
     /// Vincula tipos de documento a um tipo de dono.
@@ -49,7 +50,7 @@ public interface ITipoDonoAppService
     /// <param name="vincularTipoDocumento">IDs dos tipos de documento a serem vinculados</param>
     /// <param name="cancellationToken">Token de cancelamento</param>
     /// <returns>Dados do tipo de dono atualizado</returns>
-    Task<TipoDonoDto> VincularTiposDocumentoAsync(Guid id, VincularTipoDocumentoDto vincularTipoDocumento, CancellationToken cancellationToken = default);
+    Task<TipoDonoDto> VincularTiposDocumentoAsync(IdTipoDono id, VincularTipoDocumentoDto vincularTipoDocumento, CancellationToken cancellationToken = default);
 
     /// <summary>
     /// Remove um tipo de dono.
@@ -57,5 +58,5 @@ public interface ITipoDonoAppService
     /// <param name="id">ID do tipo de dono a ser removido</param>
     /// <param name="cancellationToken">Token de cancelamento</param>
     /// <returns>True se removido com sucesso, false se não encontrado</returns>
-    Task<bool> RemoverAsync(Guid id, CancellationToken cancellationToken = default);
+    Task<bool> RemoverAsync(IdTipoDono id, CancellationToken cancellationToken = default);
 }

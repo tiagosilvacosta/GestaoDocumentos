@@ -1,9 +1,8 @@
 using DddBase.Base;
 using DddBase.Repositorio;
-using Tsc.GestaoDocumentos.Domain.Common;
 using Tsc.GestaoDocumentos.Domain.Organizacoes;
 
-namespace Tsc.GestaoDocumentos.Domain.Repositories;
+namespace Tsc.GestaoDocumentos.Domain;
 
 /// <summary>
 /// Interface para repositórios multi-tenant.

@@ -8,7 +8,7 @@ using Tsc.GestaoDocumentos.Domain.Organizacoes;
 
 namespace Tsc.GestaoDocumentos.Domain
 {
-    public  class EntidadeComAuditoriaEOrganizacao<TId> : EntidadeComAuditoria<TId>
+    public abstract class EntidadeComAuditoriaEOrganizacao<TId> : EntidadeComAuditoria<TId>, IEntidadeComOrganizacao
         where TId : ObjetoDeValor
     {
         protected EntidadeComAuditoriaEOrganizacao() : base()
@@ -24,8 +24,11 @@ namespace Tsc.GestaoDocumentos.Domain
             IdOrganizacao = idOrganizacao ?? throw new ArgumentNullException(nameof(idOrganizacao), "IdOrganizacao não pode ser nulo");
         }
 
-        public IdOrganizacao IdOrganizacao { get; private set; } = null!;
+        public  IdOrganizacao IdOrganizacao { get; private set; } = null!;
 
-
+        public void AlterarOrganizacao(IdOrganizacao idOrganizacao)
+        {
+            IdOrganizacao = idOrganizacao ?? throw new ArgumentNullException(nameof(idOrganizacao), "IdOrganizacao não pode ser nulo");
+        }
     }
 }

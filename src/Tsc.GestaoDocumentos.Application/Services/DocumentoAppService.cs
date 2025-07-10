@@ -2,10 +2,9 @@ using AutoMapper;
 using Tsc.GestaoDocumentos.Application.DTOs;
 using Tsc.GestaoDocumentos.Application.DTOs.Common;
 using Tsc.GestaoDocumentos.Domain.Common;
-using Tsc.GestaoDocumentos.Domain.Common.Interfaces;
-using Tsc.GestaoDocumentos.Domain.Entities;
-using Tsc.GestaoDocumentos.Domain.Enums;
-using Tsc.GestaoDocumentos.Domain.Services;
+using Tsc.GestaoDocumentos.Domain.Documentos;
+using Tsc.GestaoDocumentos.Domain.Logs;
+using Tsc.GestaoDocumentos.Domain.Organizacoes;
 
 namespace Tsc.GestaoDocumentos.Application.Services;
 
@@ -32,7 +31,7 @@ public class DocumentoAppService : IDocumentoAppService
         _auditoriaService = auditoriaService;
     }
 
-    public async Task<DocumentoDto?> ObterPorIdAsync(Guid id, CancellationToken cancellationToken = default)
+    public async Task<DocumentoDto?> ObterPorIdAsync(IdDocumento id, CancellationToken cancellationToken = default)
     {
         var documento = await _unitOfWork.Documentos.ObterPorIdAsync(id, cancellationToken);
         return documento != null ? _mapper.Map<DocumentoDto>(documento) : null;
@@ -63,25 +62,25 @@ public class DocumentoAppService : IDocumentoAppService
         throw new NotImplementedException("Implementação pendente após criação do IArmazenamentoService");
     }
 
-    public Task<DocumentoDto> AtualizarAsync(Guid id, UpdateDocumentoDto updateDocumento, CancellationToken cancellationToken = default)
+    public Task<DocumentoDto> AtualizarAsync(IdDocumento id, UpdateDocumentoDto updateDocumento, CancellationToken cancellationToken = default)
     {
         // TODO: Implementar lógica de atualização
         throw new NotImplementedException("Implementação pendente após criação das entidades de domínio");
     }
 
-    public Task<DocumentoDto> CriarNovaVersaoAsync(Guid id, NovaVersaoDocumentoDto novaVersao, CancellationToken cancellationToken = default)
+    public Task<DocumentoDto> CriarNovaVersaoAsync(IdDocumento id, NovaVersaoDocumentoDto novaVersao, CancellationToken cancellationToken = default)
     {
         // TODO: Implementar lógica de nova versão
         throw new NotImplementedException("Implementação pendente após criação do IArmazenamentoService");
     }
 
-    public Task<bool> RemoverAsync(Guid id, CancellationToken cancellationToken = default)
+    public Task<bool> RemoverAsync(IdDocumento id, CancellationToken cancellationToken = default)
     {
         // TODO: Implementar lógica de remoção
         throw new NotImplementedException("Implementação pendente após criação das entidades de domínio");
     }
 
-    public Task<(Stream arquivo, string nomeArquivo, string tipoArquivo)?> FazerDownloadAsync(Guid id, CancellationToken cancellationToken = default)
+    public Task<(Stream arquivo, string nomeArquivo, string tipoArquivo)?> FazerDownloadAsync(IdDocumento id, CancellationToken cancellationToken = default)
     {
         // TODO: Implementar lógica de download
         throw new NotImplementedException("Implementação pendente após criação do IArmazenamentoService");

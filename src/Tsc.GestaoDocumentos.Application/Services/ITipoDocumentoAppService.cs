@@ -1,5 +1,6 @@
 using Tsc.GestaoDocumentos.Application.DTOs;
 using Tsc.GestaoDocumentos.Application.DTOs.Common;
+using Tsc.GestaoDocumentos.Domain.Documentos;
 
 namespace Tsc.GestaoDocumentos.Application.Services;
 
@@ -15,7 +16,7 @@ public interface ITipoDocumentoAppService
     /// <param name="id">ID do tipo de documento</param>
     /// <param name="cancellationToken">Token de cancelamento</param>
     /// <returns>Dados do tipo de documento ou null se não encontrado</returns>
-    Task<TipoDocumentoDto?> ObterPorIdAsync(Guid id, CancellationToken cancellationToken = default);
+    Task<TipoDocumentoDto?> ObterPorIdAsync(IdTipoDocumento id, CancellationToken cancellationToken = default);
 
     /// <summary>
     /// Obtém todos os tipos de documento do tenant atual com paginação.
@@ -40,7 +41,7 @@ public interface ITipoDocumentoAppService
     /// <param name="updateTipoDocumento">Dados para atualização do tipo de documento</param>
     /// <param name="cancellationToken">Token de cancelamento</param>
     /// <returns>Dados do tipo de documento atualizado</returns>
-    Task<TipoDocumentoDto> AtualizarAsync(Guid id, UpdateTipoDocumentoDto updateTipoDocumento, CancellationToken cancellationToken = default);
+    Task<TipoDocumentoDto> AtualizarAsync(IdTipoDocumento id, UpdateTipoDocumentoDto updateTipoDocumento, CancellationToken cancellationToken = default);
 
     /// <summary>
     /// Vincula tipos de dono a um tipo de documento.
@@ -49,7 +50,7 @@ public interface ITipoDocumentoAppService
     /// <param name="vincularTipoDono">IDs dos tipos de dono a serem vinculados</param>
     /// <param name="cancellationToken">Token de cancelamento</param>
     /// <returns>Dados do tipo de documento atualizado</returns>
-    Task<TipoDocumentoDto> VincularTiposDonoAsync(Guid id, VincularTipoDonoDto vincularTipoDono, CancellationToken cancellationToken = default);
+    Task<TipoDocumentoDto> VincularTiposDonoAsync(IdTipoDocumento id, VincularTipoDonoDto vincularTipoDono, CancellationToken cancellationToken = default);
 
     /// <summary>
     /// Remove um tipo de documento.
@@ -57,5 +58,5 @@ public interface ITipoDocumentoAppService
     /// <param name="id">ID do tipo de documento a ser removido</param>
     /// <param name="cancellationToken">Token de cancelamento</param>
     /// <returns>True se removido com sucesso, false se não encontrado</returns>
-    Task<bool> RemoverAsync(Guid id, CancellationToken cancellationToken = default);
+    Task<bool> RemoverAsync(IdTipoDocumento id, CancellationToken cancellationToken = default);
 }

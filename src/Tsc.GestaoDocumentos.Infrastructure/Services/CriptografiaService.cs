@@ -1,6 +1,6 @@
 using System.Security.Cryptography;
 using System.Text;
-using Tsc.GestaoDocumentos.Domain.Services;
+using Tsc.GestaoDocumentos.Domain.Usuarios;
 
 namespace Tsc.GestaoDocumentos.Infrastructure.Services;
 

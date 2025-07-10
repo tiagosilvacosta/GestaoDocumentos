@@ -5,7 +5,6 @@ using System.Linq.Expressions;
 using Tsc.GestaoDocumentos.Domain;
 using Tsc.GestaoDocumentos.Domain.Common;
 using Tsc.GestaoDocumentos.Domain.Organizacoes;
-using Tsc.GestaoDocumentos.Domain.Repositories;
 using Tsc.GestaoDocumentos.Infrastructure.Data;
 
 namespace Tsc.GestaoDocumentos.Infrastructure.Repositories;
@@ -92,11 +91,11 @@ public class BaseRepository<T, TId> : IRepositorio<T, TId>
 /// Implementação base do repositório para entidades multi-tenant.
 /// </summary>
 /// <typeparam name="T">Tipo da entidade que deve herdar de TenantEntity</typeparam>
-public class TenantBaseRepository<T, TId> : BaseRepository<T, TId>, IRepositorioComOrganizacao<T, TId> 
+public class RepositorioBaseComOrganizacao<T, TId> : BaseRepository<T, TId>, IRepositorioComOrganizacao<T, TId> 
     where T : EntidadeComAuditoriaEOrganizacao<TId>, IRaizAgregado
     where TId : ObjetoDeValor
 {
-    public TenantBaseRepository(GestaoDocumentosDbContext context) : base(context)
+    public RepositorioBaseComOrganizacao(GestaoDocumentosDbContext context) : base(context)
     {
     }
 

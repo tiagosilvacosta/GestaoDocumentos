@@ -3,7 +3,7 @@ using Tsc.GestaoDocumentos.Domain.Common;
 using Tsc.GestaoDocumentos.Domain.Organizacoes;
 using Tsc.GestaoDocumentos.Domain.Usuarios;
 
-namespace Tsc.GestaoDocumentos.Domain.Entities;
+namespace Tsc.GestaoDocumentos.Domain.Documentos;
 
 public class TipoDono : EntidadeComAuditoriaEOrganizacao<IdTipoDono>, IRaizAgregado
 {

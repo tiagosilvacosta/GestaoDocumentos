@@ -2,10 +2,8 @@ using AutoMapper;
 using Tsc.GestaoDocumentos.Application.DTOs;
 using Tsc.GestaoDocumentos.Application.DTOs.Common;
 using Tsc.GestaoDocumentos.Domain.Common;
-using Tsc.GestaoDocumentos.Domain.Common.Interfaces;
-using Tsc.GestaoDocumentos.Domain.Enums;
+using Tsc.GestaoDocumentos.Domain.Logs;
 using Tsc.GestaoDocumentos.Domain.Organizacoes;
-using Tsc.GestaoDocumentos.Domain.Services;
 
 namespace Tsc.GestaoDocumentos.Application.Services;
 
@@ -32,7 +30,7 @@ public class TenantAppService : ITenantAppService
         _auditoriaService = auditoriaService;
     }
 
-    public async Task<TenantDto?> ObterPorIdAsync(Guid id, CancellationToken cancellationToken = default)
+    public async Task<TenantDto?> ObterPorIdAsync(IdOrganizacao id, CancellationToken cancellationToken = default)
     {
         var tenant = await _unitOfWork.Tenants.ObterPorIdAsync(id, cancellationToken);
         return tenant != null ? _mapper.Map<TenantDto>(tenant) : null;
@@ -70,32 +68,32 @@ public class TenantAppService : ITenantAppService
         if (await _unitOfWork.Tenants.SlugExisteAsync(createTenant.Slug, cancellationToken))
             throw new InvalidOperationException("Slug já está em uso");
 
-        var tenant = new Organizacao(
+        var organizacao = new Organizacao(
             createTenant.NomeOrganizacao,
             createTenant.Slug,
-            _currentUserService.UserId);
+            _currentUserService.IdUsuario);
 
         if (createTenant.DataExpiracao.HasValue)
-            tenant.DefinirDataExpiracao(createTenant.DataExpiracao, _currentUserService.UserId);
+            organizacao.DefinirDataExpiracao(createTenant.DataExpiracao, _currentUserService.IdUsuario);
 
-        await _unitOfWork.Tenants.AdicionarAsync(tenant, cancellationToken);
+        await _unitOfWork.Tenants.AdicionarAsync(organizacao, cancellationToken);
         await _unitOfWork.SaveChangesAsync(cancellationToken);
 
         await _auditoriaService.RegistrarOperacaoAsync(
-            tenant.Id,
-            _currentUserService.UserId,
+            organizacao.Id,
+            _currentUserService.IdUsuario,
             nameof(Organizacao),
-            tenant.Id,
+            organizacao.Id.Valor,
             TipoOperacaoAuditoria.CREATE,
             "127.0.0.1", // TODO: Obter IP real
             null,
-            tenant,
+            organizacao,
             cancellationToken: cancellationToken);
 
-        return _mapper.Map<TenantDto>(tenant);
+        return _mapper.Map<TenantDto>(organizacao);
     }
 
-    public async Task<TenantDto> AtualizarAsync(Guid id, UpdateTenantDto updateTenant, CancellationToken cancellationToken = default)
+    public async Task<TenantDto> AtualizarAsync(IdOrganizacao id, UpdateTenantDto updateTenant, CancellationToken cancellationToken = default)
     {
         var tenant = await _unitOfWork.Tenants.ObterPorIdAsync(id, cancellationToken);
         if (tenant == null)
@@ -106,19 +104,19 @@ public class TenantAppService : ITenantAppService
         tenant.DefinirNomeOrganizacao(updateTenant.NomeOrganizacao);
         
         if (Enum.TryParse<StatusTenant>(updateTenant.Status, out var status))
-            tenant.AlterarStatus(status, _currentUserService.UserId);
+            tenant.AlterarStatus(status, _currentUserService.IdUsuario);
 
         if (updateTenant.DataExpiracao.HasValue)
-            tenant.DefinirDataExpiracao(updateTenant.DataExpiracao, _currentUserService.UserId);
+            tenant.DefinirDataExpiracao(updateTenant.DataExpiracao, _currentUserService.IdUsuario);
 
         await _unitOfWork.Tenants.AtualizarAsync(tenant, cancellationToken);
         await _unitOfWork.SaveChangesAsync(cancellationToken);
 
         await _auditoriaService.RegistrarOperacaoAsync(
             tenant.Id,
-            _currentUserService.UserId,
+            _currentUserService.IdUsuario,
             nameof(Organizacao),
-            tenant.Id,
+            tenant.Id.Valor,
             TipoOperacaoAuditoria.UPDATE,
             "127.0.0.1", // TODO: Obter IP real
             dadosAnteriores,
@@ -128,7 +126,7 @@ public class TenantAppService : ITenantAppService
         return _mapper.Map<TenantDto>(tenant);
     }
 
-    public async Task<bool> RemoverAsync(Guid id, CancellationToken cancellationToken = default)
+    public async Task<bool> RemoverAsync(IdOrganizacao id, CancellationToken cancellationToken = default)
     {
         var tenant = await _unitOfWork.Tenants.ObterPorIdAsync(id, cancellationToken);
         if (tenant == null)
@@ -141,9 +139,9 @@ public class TenantAppService : ITenantAppService
 
         await _auditoriaService.RegistrarOperacaoAsync(
             tenant.Id,
-            _currentUserService.UserId,
+            _currentUserService.IdUsuario,
             nameof(Organizacao),
-            tenant.Id,
+            tenant.Id.Valor,
             TipoOperacaoAuditoria.DELETE,
             "127.0.0.1", // TODO: Obter IP real
             dadosAnteriores,

@@ -1,5 +1,6 @@
 using Tsc.GestaoDocumentos.Application.DTOs;
 using Tsc.GestaoDocumentos.Application.DTOs.Common;
+using Tsc.GestaoDocumentos.Domain.Usuarios;
 
 namespace Tsc.GestaoDocumentos.Application.Services;
 
@@ -15,7 +16,7 @@ public interface IUsuarioAppService
     /// <param name="id">ID do usuário</param>
     /// <param name="cancellationToken">Token de cancelamento</param>
     /// <returns>Dados do usuário ou null se não encontrado</returns>
-    Task<UsuarioDto?> ObterPorIdAsync(Guid id, CancellationToken cancellationToken = default);
+    Task<UsuarioDto?> ObterPorIdAsync(IdUsuario id, CancellationToken cancellationToken = default);
 
     /// <summary>
     /// Obtém todos os usuários do tenant atual com paginação.

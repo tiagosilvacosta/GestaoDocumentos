@@ -1,4 +1,4 @@
-namespace Tsc.GestaoDocumentos.Domain.Services;
+namespace Tsc.GestaoDocumentos.Domain.Usuarios;
 
 public interface ICriptografiaService
 {

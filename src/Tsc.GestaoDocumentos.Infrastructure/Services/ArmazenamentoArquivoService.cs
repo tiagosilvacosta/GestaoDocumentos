@@ -1,6 +1,7 @@
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
-using Tsc.GestaoDocumentos.Domain.Services;
+using Tsc.GestaoDocumentos.Domain.Documentos;
+using Tsc.GestaoDocumentos.Domain.Organizacoes;
 
 namespace Tsc.GestaoDocumentos.Infrastructure.Services;
 
@@ -30,8 +31,8 @@ public class ArmazenamentoArquivoService : IArmazenamentoArquivoService
     {
         try
         {
-            var documentoId = Guid.NewGuid();
-            var chaveArmazenamento = GerarChaveArmazenamento(nomeArquivo, tenantId, documentoId);
+            var idDocumento = IdDocumento.CriarNovo();
+            var chaveArmazenamento = GerarChaveArmazenamento(nomeArquivo, idOrganizacao, idDocumento);
             var caminhoCompleto = Path.Combine(_basePath, chaveArmazenamento);
 
             // Garantir que o diretório existe
@@ -50,7 +51,7 @@ public class ArmazenamentoArquivoService : IArmazenamentoArquivoService
         }
         catch (Exception ex)
         {
-            _logger.LogError(ex, "Erro ao armazenar arquivo {NomeArquivo} para tenant {TenantId}", nomeArquivo, tenantId);
+            _logger.LogError(ex, "Erro ao armazenar arquivo {NomeArquivo} para tenant {TenantId}", nomeArquivo, idOrganizacao);
             throw;
         }
     }
@@ -115,7 +116,7 @@ public class ArmazenamentoArquivoService : IArmazenamentoArquivoService
         }
     }
 
-    public string GerarChaveArmazenamento(string nomeArquivo, IdOrganizacao idOrganizacao, Guid documentoId)
+    public string GerarChaveArmazenamento(string nomeArquivo, IdOrganizacao idOrganizacao, IdDocumento idDocumento)
     {
         var extensao = Path.GetExtension(nomeArquivo);
         var nomeSeguro = Path.GetFileNameWithoutExtension(nomeArquivo)
@@ -136,10 +137,10 @@ public class ArmazenamentoArquivoService : IArmazenamentoArquivoService
         var dia = dataAtual.Day.ToString("D2");
 
         return Path.Combine(
-            tenantId.ToString(),
+            idOrganizacao.ToString(),
             ano.ToString(),
             mes,
             dia,
-            $"{documentoId}_{nomeSeguro}{extensao}");
+            $"{idDocumento}_{nomeSeguro}{extensao}");
     }
 }

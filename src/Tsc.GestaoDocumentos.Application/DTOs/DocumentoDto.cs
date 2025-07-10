@@ -1,4 +1,5 @@
 using Tsc.GestaoDocumentos.Application.DTOs.Common;
+using Tsc.GestaoDocumentos.Domain.Documentos;
 
 namespace Tsc.GestaoDocumentos.Application.DTOs;
 
@@ -12,7 +13,7 @@ public class DocumentoDto : TenantBaseDto
     public string TipoArquivo { get; set; } = string.Empty;
     public int Versao { get; set; }
     public string Status { get; set; } = string.Empty;
-    public IdTipoDocumento idTipoDocumento { get; set; }
+    public IdTipoDocumento idTipoDocumento { get; set; } = null!;
     public string TipoDocumentoNome { get; set; } = string.Empty;
     public List<DonoDocumentoDto> DonosVinculados { get; set; } = new();
 }

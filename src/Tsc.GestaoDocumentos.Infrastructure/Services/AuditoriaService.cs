@@ -1,8 +1,8 @@
 using System.Text.Json;
 using Tsc.GestaoDocumentos.Domain.Common;
-using Tsc.GestaoDocumentos.Domain.Entities;
-using Tsc.GestaoDocumentos.Domain.Enums;
-using Tsc.GestaoDocumentos.Domain.Services;
+using Tsc.GestaoDocumentos.Domain.Documentos;
+using Tsc.GestaoDocumentos.Domain.Logs;
+using Tsc.GestaoDocumentos.Domain.Organizacoes;
 using Tsc.GestaoDocumentos.Domain.Usuarios;
 
 namespace Tsc.GestaoDocumentos.Infrastructure.Services;
@@ -18,7 +18,7 @@ public class AuditoriaService : IAuditoriaService
 
     public async Task RegistrarOperacaoAsync(
         IdOrganizacao idOrganizacao,
-        Guid usuarioId,
+        IdUsuario idUsuario,
         string entidadeAfetada,
         Guid entidadeId,
         TipoOperacaoAuditoria operacao,
@@ -29,8 +29,8 @@ public class AuditoriaService : IAuditoriaService
         CancellationToken cancellationToken = default)
     {
         var logAuditoria = new LogAuditoria(
-            tenantId,
-            usuarioId,
+            idOrganizacao,
+            idUsuario,
             entidadeAfetada,
             entidadeId,
             operacao,
@@ -44,16 +44,16 @@ public class AuditoriaService : IAuditoriaService
 
     public async Task RegistrarLoginAsync(
         IdOrganizacao idOrganizacao,
-        Guid usuarioId,
+        IdUsuario idUsuario,
         string ipUsuario,
         string? userAgent = null,
         CancellationToken cancellationToken = default)
     {
         await RegistrarOperacaoAsync(
-            tenantId,
-            usuarioId,
+            idOrganizacao,
+            idUsuario,
             nameof(Usuario),
-            usuarioId,
+            idUsuario.Valor,
             TipoOperacaoAuditoria.LOGIN,
             ipUsuario,
             null,
@@ -64,16 +64,16 @@ public class AuditoriaService : IAuditoriaService
 
     public async Task RegistrarLogoutAsync(
         IdOrganizacao idOrganizacao,
-        Guid usuarioId,
+        IdUsuario idUsuario,
         string ipUsuario,
         string? userAgent = null,
         CancellationToken cancellationToken = default)
     {
         await RegistrarOperacaoAsync(
-            tenantId,
-            usuarioId,
+            idOrganizacao,
+            idUsuario,
             nameof(Usuario),
-            usuarioId,
+            idUsuario.Valor,
             TipoOperacaoAuditoria.LOGOUT,
             ipUsuario,
             null,
@@ -84,17 +84,17 @@ public class AuditoriaService : IAuditoriaService
 
     public async Task RegistrarDownloadDocumentoAsync(
         IdOrganizacao idOrganizacao,
-        Guid usuarioId,
-        Guid documentoId,
+        IdUsuario idUsuario,
+        IdDocumento idDocumento,
         string ipUsuario,
         string? userAgent = null,
         CancellationToken cancellationToken = default)
     {
         await RegistrarOperacaoAsync(
-            tenantId,
-            usuarioId,
+            idOrganizacao,
+            idUsuario,
             nameof(Documento),
-            documentoId,
+            idDocumento.Valor,
             TipoOperacaoAuditoria.DOWNLOAD,
             ipUsuario,
             null,

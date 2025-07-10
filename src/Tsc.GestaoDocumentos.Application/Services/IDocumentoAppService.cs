@@ -1,5 +1,6 @@
 using Tsc.GestaoDocumentos.Application.DTOs;
 using Tsc.GestaoDocumentos.Application.DTOs.Common;
+using Tsc.GestaoDocumentos.Domain.Documentos;
 
 namespace Tsc.GestaoDocumentos.Application.Services;
 
@@ -15,7 +16,7 @@ public interface IDocumentoAppService
     /// <param name="id">ID do documento</param>
     /// <param name="cancellationToken">Token de cancelamento</param>
     /// <returns>Dados do documento ou null se não encontrado</returns>
-    Task<DocumentoDto?> ObterPorIdAsync(Guid id, CancellationToken cancellationToken = default);
+    Task<DocumentoDto?> ObterPorIdAsync(IdDocumento id, CancellationToken cancellationToken = default);
 
     /// <summary>
     /// Obtém todos os documentos do tenant atual com paginação.
@@ -40,7 +41,7 @@ public interface IDocumentoAppService
     /// <param name="updateDocumento">Dados para atualização do documento</param>
     /// <param name="cancellationToken">Token de cancelamento</param>
     /// <returns>Dados do documento atualizado</returns>
-    Task<DocumentoDto> AtualizarAsync(Guid id, UpdateDocumentoDto updateDocumento, CancellationToken cancellationToken = default);
+    Task<DocumentoDto> AtualizarAsync(IdDocumento id, UpdateDocumentoDto updateDocumento, CancellationToken cancellationToken = default);
 
     /// <summary>
     /// Cria uma nova versão de um documento existente.
@@ -49,7 +50,7 @@ public interface IDocumentoAppService
     /// <param name="novaVersao">Dados da nova versão</param>
     /// <param name="cancellationToken">Token de cancelamento</param>
     /// <returns>Dados do documento com nova versão</returns>
-    Task<DocumentoDto> CriarNovaVersaoAsync(Guid id, NovaVersaoDocumentoDto novaVersao, CancellationToken cancellationToken = default);
+    Task<DocumentoDto> CriarNovaVersaoAsync(IdDocumento id, NovaVersaoDocumentoDto novaVersao, CancellationToken cancellationToken = default);
 
     /// <summary>
     /// Remove um documento.
@@ -57,7 +58,7 @@ public interface IDocumentoAppService
     /// <param name="id">ID do documento a ser removido</param>
     /// <param name="cancellationToken">Token de cancelamento</param>
     /// <returns>True se removido com sucesso, false se não encontrado</returns>
-    Task<bool> RemoverAsync(Guid id, CancellationToken cancellationToken = default);
+    Task<bool> RemoverAsync(IdDocumento id, CancellationToken cancellationToken = default);
 
     /// <summary>
     /// Faz download de um documento.
@@ -65,5 +66,5 @@ public interface IDocumentoAppService
     /// <param name="id">ID do documento</param>
     /// <param name="cancellationToken">Token de cancelamento</param>
     /// <returns>Stream do arquivo e informações do documento</returns>
-    Task<(Stream arquivo, string nomeArquivo, string tipoArquivo)?> FazerDownloadAsync(Guid id, CancellationToken cancellationToken = default);
+    Task<(Stream arquivo, string nomeArquivo, string tipoArquivo)?> FazerDownloadAsync(IdDocumento id, CancellationToken cancellationToken = default);
 }

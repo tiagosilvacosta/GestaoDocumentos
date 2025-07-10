@@ -2,6 +2,7 @@ using AutoMapper;
 using Tsc.GestaoDocumentos.Application.DTOs;
 using Tsc.GestaoDocumentos.Application.DTOs.Common;
 using Tsc.GestaoDocumentos.Domain.Common;
+using Tsc.GestaoDocumentos.Domain.Documentos;
 
 namespace Tsc.GestaoDocumentos.Application.Services;
 
@@ -20,7 +21,7 @@ public class TipoDonoAppService : ITipoDonoAppService
         _mapper = mapper;
     }
 
-    public async Task<TipoDonoDto?> ObterPorIdAsync(Guid id, CancellationToken cancellationToken = default)
+    public async Task<TipoDonoDto?> ObterPorIdAsync(IdTipoDono id, CancellationToken cancellationToken = default)
     {
         var tipoDono = await _unitOfWork.TiposDono.ObterPorIdAsync(id, cancellationToken);
         return tipoDono != null ? _mapper.Map<TipoDonoDto>(tipoDono) : null;
@@ -51,19 +52,19 @@ public class TipoDonoAppService : ITipoDonoAppService
         throw new NotImplementedException("Implementação pendente após criação das entidades de domínio");
     }
 
-    public Task<TipoDonoDto> AtualizarAsync(Guid id, UpdateTipoDonoDto updateTipoDono, CancellationToken cancellationToken = default)
+    public Task<TipoDonoDto> AtualizarAsync(IdTipoDono id, UpdateTipoDonoDto updateTipoDono, CancellationToken cancellationToken = default)
     {
         // TODO: Implementar lógica de atualização
         throw new NotImplementedException("Implementação pendente após criação das entidades de domínio");
     }
 
-    public Task<TipoDonoDto> VincularTiposDocumentoAsync(Guid id, VincularTipoDocumentoDto vincularTipoDocumento, CancellationToken cancellationToken = default)
+    public Task<TipoDonoDto> VincularTiposDocumentoAsync(IdTipoDono id, VincularTipoDocumentoDto vincularTipoDocumento, CancellationToken cancellationToken = default)
     {
         // TODO: Implementar lógica de vinculação
         throw new NotImplementedException("Implementação pendente após criação das entidades de domínio");
     }
 
-    public Task<bool> RemoverAsync(Guid id, CancellationToken cancellationToken = default)
+    public Task<bool> RemoverAsync(IdTipoDono id, CancellationToken cancellationToken = default)
     {
         // TODO: Implementar lógica de remoção
         throw new NotImplementedException("Implementação pendente após criação das entidades de domínio");

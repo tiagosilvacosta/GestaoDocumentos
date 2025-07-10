@@ -1,6 +1,7 @@
 using Microsoft.EntityFrameworkCore;
-using Tsc.GestaoDocumentos.Domain.Common.Interfaces;
-using Tsc.GestaoDocumentos.Domain.Entities;
+using Tsc.GestaoDocumentos.Domain;
+using Tsc.GestaoDocumentos.Domain.Documentos;
+using Tsc.GestaoDocumentos.Domain.Logs;
 using Tsc.GestaoDocumentos.Domain.Organizacoes;
 using Tsc.GestaoDocumentos.Domain.Usuarios;
 using Tsc.GestaoDocumentos.Infrastructure.Data.Configurations;
@@ -56,25 +57,25 @@ public class GestaoDocumentosDbContext : DbContext
                 .HasQueryFilter(e => e.IdOrganizacao == _tenantContext.IdOrganizacao);
 
             modelBuilder.Entity<TipoDono>()
-                .HasQueryFilter(e => e.TenantId == _tenantContext.IdOrganizacao);
+                .HasQueryFilter(e => e.IdOrganizacao == _tenantContext.IdOrganizacao);
 
             modelBuilder.Entity<TipoDocumento>()
-                .HasQueryFilter(e => e.TenantId == _tenantContext.IdOrganizacao);
+                .HasQueryFilter(e => e.IdOrganizacao == _tenantContext.IdOrganizacao);
 
             modelBuilder.Entity<TipoDonoTipoDocumento>()
-                .HasQueryFilter(e => e.TenantId == _tenantContext.IdOrganizacao);
+                .HasQueryFilter(e => e.IdOrganizacao == _tenantContext.IdOrganizacao);
 
             modelBuilder.Entity<DonoDocumento>()
-                .HasQueryFilter(e => e.TenantId == _tenantContext.IdOrganizacao);
+                .HasQueryFilter(e => e.IdOrganizacao == _tenantContext.IdOrganizacao);
 
             modelBuilder.Entity<Documento>()
-                .HasQueryFilter(e => e.TenantId == _tenantContext.IdOrganizacao);
+                .HasQueryFilter(e => e.IdOrganizacao == _tenantContext.IdOrganizacao);
 
             modelBuilder.Entity<DocumentoDonoDocumento>()
-                .HasQueryFilter(e => e.TenantId == _tenantContext.IdOrganizacao);
+                .HasQueryFilter(e => e.IdOrganizacao == _tenantContext.IdOrganizacao);
 
             modelBuilder.Entity<LogAuditoria>()
-                .HasQueryFilter(e => e.TenantId == _tenantContext.IdOrganizacao);
+                .HasQueryFilter(e => e.IdOrganizacao == _tenantContext.IdOrganizacao);
         }
     }
 
@@ -84,13 +85,13 @@ public class GestaoDocumentosDbContext : DbContext
         if (_tenantContext != null)
         {
             var tenantEntries = ChangeTracker.Entries()
-                .Where(e => e.Entity is Domain.Common.TenantEntity && e.State == EntityState.Added)
-                .Select(e => e.Entity as Domain.Common.TenantEntity)
-                .Where(e => e != null && e.TenantId == Guid.Empty);
+                .Where(e => e.Entity is IEntidadeComOrganizacao && e.State == EntityState.Added)
+                .Select(e => e.Entity as IEntidadeComOrganizacao)
+                .Where(e => e != null && e.IdOrganizacao.Valor == Guid.Empty);
 
             foreach (var entity in tenantEntries)
             {
-                entity!.DefinirTenant(_tenantContext.TenantId);
+                entity!.AlterarOrganizacao(_tenantContext.IdOrganizacao);
             }
         }
 

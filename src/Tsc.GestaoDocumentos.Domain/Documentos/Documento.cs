@@ -1,10 +1,14 @@
 using DddBase.Base;
-using Tsc.GestaoDocumentos.Domain.Enums;
 using Tsc.GestaoDocumentos.Domain.Organizacoes;
-using Tsc.GestaoDocumentos.Domain.Repositories;
 using Tsc.GestaoDocumentos.Domain.Usuarios;
 
-namespace Tsc.GestaoDocumentos.Domain.Entities;
+namespace Tsc.GestaoDocumentos.Domain.Documentos;
+
+public enum StatusDocumento
+{
+    Ativo = 1,
+    Inativo = 2
+}
 
 public class Documento : EntidadeComAuditoriaEOrganizacao<IdDocumento>, IRaizAgregado
 {

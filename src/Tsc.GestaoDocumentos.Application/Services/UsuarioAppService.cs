@@ -2,10 +2,9 @@ using AutoMapper;
 using Tsc.GestaoDocumentos.Application.DTOs;
 using Tsc.GestaoDocumentos.Application.DTOs.Common;
 using Tsc.GestaoDocumentos.Domain.Common;
-using Tsc.GestaoDocumentos.Domain.Common.Interfaces;
-using Tsc.GestaoDocumentos.Domain.Entities;
-using Tsc.GestaoDocumentos.Domain.Enums;
-using Tsc.GestaoDocumentos.Domain.Services;
+using Tsc.GestaoDocumentos.Domain.Logs;
+using Tsc.GestaoDocumentos.Domain.Organizacoes;
+using Tsc.GestaoDocumentos.Domain.Usuarios;
 
 namespace Tsc.GestaoDocumentos.Application.Services;
 
@@ -32,7 +31,7 @@ public class UsuarioAppService : IUsuarioAppService
         _auditoriaService = auditoriaService;
     }
 
-    public async Task<UsuarioDto?> ObterPorIdAsync(Guid id, CancellationToken cancellationToken = default)
+    public async Task<UsuarioDto?> ObterPorIdAsync(IdUsuario id, CancellationToken cancellationToken = default)
     {
         var usuario = await _unitOfWork.Usuarios.ObterPorIdAsync(id, cancellationToken);
         return usuario != null ? _mapper.Map<UsuarioDto>(usuario) : null;
