@@ -1,18 +1,18 @@
 using FluentAssertions;
 using Microsoft.EntityFrameworkCore;
 using Tsc.GestaoDocumentos.Infrastructure.Data;
-using Tsc.GestaoDocumentos.Infrastructure.Services;
+using Tsc.GestaoDocumentos.Infrastructure.Usuarios;
 using Xunit;
 
 namespace Tsc.GestaoDocumentos.Infrastructure.Tests.Services;
 
 public class CriptografiaServiceTests
 {
-    private readonly CriptografiaService _service;
+    private readonly ServicoCriptografia _service;
 
     public CriptografiaServiceTests()
     {
-        _service = new CriptografiaService();
+        _service = new ServicoCriptografia();
     }
 
     [Fact]

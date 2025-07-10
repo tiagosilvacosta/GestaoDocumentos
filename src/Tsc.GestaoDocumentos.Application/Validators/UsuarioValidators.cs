@@ -1,5 +1,5 @@
 using FluentValidation;
-using Tsc.GestaoDocumentos.Application.DTOs;
+using Tsc.GestaoDocumentos.Application.Usuarios;
 
 namespace Tsc.GestaoDocumentos.Application.Validators;
 
@@ -31,7 +31,7 @@ public class CreateUsuarioDtoValidator : AbstractValidator<CreateUsuarioDto>
             .Must(BeValidPerfil).WithMessage("Perfil deve ser Administrador ou Usuario");
     }
 
-    private bool BeValidPerfil(string perfil)
+    private static bool BeValidPerfil(string perfil)
     {
         return perfil is "Administrador" or "Usuario";
     }
@@ -63,12 +63,12 @@ public class UpdateUsuarioDtoValidator : AbstractValidator<UpdateUsuarioDto>
             .Must(BeValidPerfil).WithMessage("Perfil deve ser Administrador ou Usuario");
     }
 
-    private bool BeValidStatus(string status)
+    private static bool BeValidStatus(string status)
     {
         return status is "Ativo" or "Inativo";
     }
 
-    private bool BeValidPerfil(string perfil)
+    private static bool BeValidPerfil(string perfil)
     {
         return perfil is "Administrador" or "Usuario";
     }

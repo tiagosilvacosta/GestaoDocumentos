@@ -30,4 +30,9 @@
     <PackageReference Include="Microsoft.Extensions.Logging" Version="9.0.7" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Data\Configurations\" />
+    <Folder Include="Services\" />
+  </ItemGroup>
+
 </Project>

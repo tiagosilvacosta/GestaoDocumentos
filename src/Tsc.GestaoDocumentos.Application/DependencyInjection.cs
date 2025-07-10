@@ -1,8 +1,10 @@
 using FluentValidation;
 using Microsoft.Extensions.DependencyInjection;
 using System.Reflection;
+using Tsc.GestaoDocumentos.Application.Documentos;
 using Tsc.GestaoDocumentos.Application.Mappings;
-using Tsc.GestaoDocumentos.Application.Services;
+using Tsc.GestaoDocumentos.Application.Organizacoes;
+using Tsc.GestaoDocumentos.Application.Usuarios;
 
 namespace Tsc.GestaoDocumentos.Application;
 
@@ -13,12 +15,12 @@ public static class DependencyInjection
         var assembly = Assembly.GetExecutingAssembly();
 
         // Serviços de Aplicação
-        services.AddScoped<ITenantAppService, TenantAppService>();
-        services.AddScoped<IUsuarioAppService, UsuarioAppService>();
-        services.AddScoped<IDocumentoAppService, DocumentoAppService>();
-        services.AddScoped<IDonoDocumentoAppService, DonoDocumentoAppService>();
-        services.AddScoped<ITipoDocumentoAppService, TipoDocumentoAppService>();
-        services.AddScoped<ITipoDonoAppService, TipoDonoAppService>();
+        services.AddScoped<IServicoAppOrganizacao, ServicoAppOrganizacao>();
+        services.AddScoped<IServicoAppUsuario, ServicoAppUsuario>();
+        services.AddScoped<IServicoAppDocumento, ServicoAppDocumento>();
+        services.AddScoped<IServicoAppDonoDocumento, ServicoAppDonoDocumento>();
+        services.AddScoped<IServicoAppTipoDocumento, ServicoAppTipoDocumento>();
+        services.AddScoped<IServicoAppTipoDono, ServicoAppTipoDono>();
 
         // AutoMapper
         services.AddAutoMapper(typeof(DomainToDtoProfile));

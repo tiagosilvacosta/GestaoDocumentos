@@ -5,6 +5,10 @@ using Tsc.GestaoDocumentos.Domain.Logs;
 using Tsc.GestaoDocumentos.Domain.Organizacoes;
 using Tsc.GestaoDocumentos.Domain.Usuarios;
 using Tsc.GestaoDocumentos.Infrastructure.Data;
+using Tsc.GestaoDocumentos.Infrastructure.Documentos;
+using Tsc.GestaoDocumentos.Infrastructure.Logs;
+using Tsc.GestaoDocumentos.Infrastructure.Organizacoes;
+using Tsc.GestaoDocumentos.Infrastructure.Usuarios;
 
 namespace Tsc.GestaoDocumentos.Infrastructure.Repositories;
 
@@ -17,22 +21,22 @@ public class UnitOfWork : IUnitOfWork
     {
         _context = context;
         
-        Tenants = new TenantRepository(_context);
-        Usuarios = new UsuarioRepository(_context);
-        TiposDono = new TipoDonoRepository(_context);
-        TiposDocumento = new TipoDocumentoRepository(_context);
-        DonosDocumento = new DonoDocumentoRepository(_context);
-        Documentos = new DocumentoRepository(_context);
-        LogsAuditoria = new LogAuditoriaRepository(_context);
+        Tenants = new RepositorioOrganizacao(_context);
+        Usuarios = new RepositorioUsuario(_context);
+        TiposDono = new RepositorioTipoDono(_context);
+        TiposDocumento = new RepositorioTipoDocumento(_context);
+        DonosDocumento = new RepositorioDonoDocumento(_context);
+        Documentos = new RepositorioDocumento(_context);
+        LogsAuditoria = new RepositorioLogAuditoria(_context);
     }
 
-    public ITenantRepository Tenants { get; }
-    public IUsuarioRepository Usuarios { get; }
-    public ITipoDonoRepository TiposDono { get; }
-    public ITipoDocumentoRepository TiposDocumento { get; }
-    public IDonoDocumentoRepository DonosDocumento { get; }
-    public IDocumentoRepository Documentos { get; }
-    public ILogAuditoriaRepository LogsAuditoria { get; }
+    public IRepositorioOrganizacao Tenants { get; }
+    public IRepositorioUsuario Usuarios { get; }
+    public IRepositorioTipoDono TiposDono { get; }
+    public IRepositorioTipoDocumento TiposDocumento { get; }
+    public IRepositorioDonoDocumento DonosDocumento { get; }
+    public IRepositorioDocumento Documentos { get; }
+    public IRepositorioLogAuditoria LogsAuditoria { get; }
 
     public async Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
     {

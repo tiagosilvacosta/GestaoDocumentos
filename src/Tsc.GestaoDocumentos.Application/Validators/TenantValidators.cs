@@ -1,5 +1,5 @@
 using FluentValidation;
-using Tsc.GestaoDocumentos.Application.DTOs;
+using Tsc.GestaoDocumentos.Application.Organizacoes;
 
 namespace Tsc.GestaoDocumentos.Application.Validators;
 
@@ -39,7 +39,7 @@ public class UpdateTenantDtoValidator : AbstractValidator<UpdateTenantDto>
             .When(x => x.DataExpiracao.HasValue);
     }
 
-    private bool BeValidStatus(string status)
+    private static bool BeValidStatus(string status)
     {
         return status is "Ativo" or "Inativo" or "Suspenso";
     }

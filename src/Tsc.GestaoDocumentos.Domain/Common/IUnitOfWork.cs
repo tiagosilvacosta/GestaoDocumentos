@@ -7,13 +7,13 @@ namespace Tsc.GestaoDocumentos.Domain.Common;
 
 public interface IUnitOfWork : IDisposable
 {
-    ITenantRepository Tenants { get; }
-    IUsuarioRepository Usuarios { get; }
-    ITipoDonoRepository TiposDono { get; }
-    ITipoDocumentoRepository TiposDocumento { get; }
-    IDonoDocumentoRepository DonosDocumento { get; }
-    IDocumentoRepository Documentos { get; }
-    ILogAuditoriaRepository LogsAuditoria { get; }
+    IRepositorioOrganizacao Tenants { get; }
+    IRepositorioUsuario Usuarios { get; }
+    IRepositorioTipoDono TiposDono { get; }
+    IRepositorioTipoDocumento TiposDocumento { get; }
+    IRepositorioDonoDocumento DonosDocumento { get; }
+    IRepositorioDocumento Documentos { get; }
+    IRepositorioLogAuditoria LogsAuditoria { get; }
 
     Task<int> SaveChangesAsync(CancellationToken cancellationToken = default);
     Task BeginTransactionAsync(CancellationToken cancellationToken = default);

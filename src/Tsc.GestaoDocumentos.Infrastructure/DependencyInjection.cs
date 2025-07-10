@@ -7,8 +7,11 @@ using Tsc.GestaoDocumentos.Domain.Logs;
 using Tsc.GestaoDocumentos.Domain.Organizacoes;
 using Tsc.GestaoDocumentos.Domain.Usuarios;
 using Tsc.GestaoDocumentos.Infrastructure.Data;
+using Tsc.GestaoDocumentos.Infrastructure.Documentos;
+using Tsc.GestaoDocumentos.Infrastructure.Logs;
+using Tsc.GestaoDocumentos.Infrastructure.Organizacoes;
 using Tsc.GestaoDocumentos.Infrastructure.Repositories;
-using Tsc.GestaoDocumentos.Infrastructure.Services;
+using Tsc.GestaoDocumentos.Infrastructure.Usuarios;
 
 namespace Tsc.GestaoDocumentos.Infrastructure;
 
@@ -21,21 +24,21 @@ public static class DependencyInjection
             options.UseSqlServer(configuration.GetConnectionString("DefaultConnection")));
 
         // Repositories
-        services.AddScoped<ITenantRepository, TenantRepository>();
-        services.AddScoped<IUsuarioRepository, UsuarioRepository>();
-        services.AddScoped<ITipoDonoRepository, TipoDonoRepository>();
-        services.AddScoped<ITipoDocumentoRepository, TipoDocumentoRepository>();
-        services.AddScoped<IDonoDocumentoRepository, DonoDocumentoRepository>();
-        services.AddScoped<IDocumentoRepository, DocumentoRepository>();
-        services.AddScoped<ILogAuditoriaRepository, LogAuditoriaRepository>();
+        services.AddScoped<IRepositorioOrganizacao, RepositorioOrganizacao>();
+        services.AddScoped<IRepositorioUsuario, RepositorioUsuario>();
+        services.AddScoped<IRepositorioTipoDono, RepositorioTipoDono>();
+        services.AddScoped<IRepositorioTipoDocumento, RepositorioTipoDocumento>();
+        services.AddScoped<IRepositorioDonoDocumento, RepositorioDonoDocumento>();
+        services.AddScoped<IRepositorioDocumento, RepositorioDocumento>();
+        services.AddScoped<IRepositorioLogAuditoria, RepositorioLogAuditoria>();
 
         // Unit of Work
         services.AddScoped<IUnitOfWork, UnitOfWork>();
 
         // Services
-        services.AddScoped<IAuditoriaService, AuditoriaService>();
-        services.AddScoped<ICriptografiaService, CriptografiaService>();
-        services.AddScoped<IArmazenamentoArquivoService, ArmazenamentoArquivoService>();
+        services.AddScoped<IServicoAuditoria, ServicoAuditoria>();
+        services.AddScoped<IServicoCriptografia, ServicoCriptografia>();
+        services.AddScoped<IServicoArmazenamentoArquivo, ServicoArmazenamentoArquivo>();
 
         return services;
     }

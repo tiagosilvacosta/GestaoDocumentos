@@ -4,13 +4,16 @@ using Tsc.GestaoDocumentos.Domain.Documentos;
 using Tsc.GestaoDocumentos.Domain.Logs;
 using Tsc.GestaoDocumentos.Domain.Organizacoes;
 using Tsc.GestaoDocumentos.Domain.Usuarios;
-using Tsc.GestaoDocumentos.Infrastructure.Data.Configurations;
+using Tsc.GestaoDocumentos.Infrastructure.Documentos;
+using Tsc.GestaoDocumentos.Infrastructure.Logs;
+using Tsc.GestaoDocumentos.Infrastructure.Organizacoes;
+using Tsc.GestaoDocumentos.Infrastructure.Usuarios;
 
 namespace Tsc.GestaoDocumentos.Infrastructure.Data;
 
 public class GestaoDocumentosDbContext : DbContext
 {
-    private readonly ITenantContext? _tenantContext;
+    private readonly IContextoOrganizacao? _tenantContext;
 
     public GestaoDocumentosDbContext(DbContextOptions<GestaoDocumentosDbContext> options)
         : base(options)
@@ -19,7 +22,7 @@ public class GestaoDocumentosDbContext : DbContext
 
     public GestaoDocumentosDbContext(
         DbContextOptions<GestaoDocumentosDbContext> options,
-        ITenantContext tenantContext)
+        IContextoOrganizacao tenantContext)
         : base(options)
     {
         _tenantContext = tenantContext;
@@ -40,15 +43,15 @@ public class GestaoDocumentosDbContext : DbContext
         base.OnModelCreating(modelBuilder);
 
         // Aplicar configurações
-        modelBuilder.ApplyConfiguration(new TenantConfiguration());
-        modelBuilder.ApplyConfiguration(new UsuarioConfiguration());
+        modelBuilder.ApplyConfiguration(new ConfiguracaoOrganizacao());
+        modelBuilder.ApplyConfiguration(new ConfiguracaoUsuario());
         modelBuilder.ApplyConfiguration(new TipoDonoConfiguration());
         modelBuilder.ApplyConfiguration(new TipoDocumentoConfiguration());
         modelBuilder.ApplyConfiguration(new TipoDonoTipoDocumentoConfiguration());
         modelBuilder.ApplyConfiguration(new DonoDocumentoConfiguration());
-        modelBuilder.ApplyConfiguration(new DocumentoConfiguration());
+        modelBuilder.ApplyConfiguration(new ConfiguracaoDocumento());
         modelBuilder.ApplyConfiguration(new DocumentoDonoDocumentoConfiguration());
-        modelBuilder.ApplyConfiguration(new LogAuditoriaConfiguration());
+        modelBuilder.ApplyConfiguration(new ConfiguracaoLogAuditoria());
 
         // Filtros globais para multi-tenancy
         if (_tenantContext != null)

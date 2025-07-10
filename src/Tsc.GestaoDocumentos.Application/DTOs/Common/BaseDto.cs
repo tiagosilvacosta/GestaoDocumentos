@@ -11,9 +11,9 @@ public class BaseDto
     public Guid UsuarioUltimaAlteracao { get; set; }
 }
 
-public class TenantBaseDto : BaseDto
+public class OrganizacaoBaseDto : BaseDto
 {
-    public IdOrganizacao idOrganizacao { get; set; }
+    public IdOrganizacao IdOrganizacao { get; set; } = null!;
 }
 
 public class PagedResult<T>
