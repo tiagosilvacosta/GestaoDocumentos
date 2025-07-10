@@ -9,16 +9,10 @@ namespace Tsc.GestaoDocumentos.Application.Documentos;
 /// Serviço de aplicação para gerenciamento de Tipos de Dono.
 /// Responsável por orquestrar operações relacionadas a Tipos de Dono.
 /// </summary>
-public class ServicoAppTipoDono : IServicoAppTipoDono
+public class ServicoAppTipoDono(IUnitOfWork unitOfWork, IMapper mapper) : IServicoAppTipoDono
 {
-    private readonly IUnitOfWork _unitOfWork;
-    private readonly IMapper _mapper;
-
-    public ServicoAppTipoDono(IUnitOfWork unitOfWork, IMapper mapper)
-    {
-        _unitOfWork = unitOfWork;
-        _mapper = mapper;
-    }
+    private readonly IUnitOfWork _unitOfWork = unitOfWork;
+    private readonly IMapper _mapper = mapper;
 
     public async Task<TipoDonoDto?> ObterPorIdAsync(IdTipoDono id, CancellationToken cancellationToken = default)
     {

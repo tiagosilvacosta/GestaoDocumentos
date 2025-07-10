@@ -6,12 +6,8 @@ using Tsc.GestaoDocumentos.Infrastructure.Repositories;
 
 namespace Tsc.GestaoDocumentos.Infrastructure.Documentos;
 
-public class RepositorioDocumento : RepositorioBaseComOrganizacao<Documento, IdDocumento>, IRepositorioDocumento
+public class RepositorioDocumento(GestaoDocumentosDbContext context) : RepositorioBaseComOrganizacao<Documento, IdDocumento>(context), IRepositorioDocumento
 {
-    public RepositorioDocumento(GestaoDocumentosDbContext context) : base(context)
-    {
-    }
-
     public async Task<IEnumerable<Documento>> ObterPorTipoDocumentoAsync(IdTipoDocumento idTipoDocumento, IdOrganizacao idOrganizacao, CancellationToken cancellationToken = default)
     {
         return await _dbSet

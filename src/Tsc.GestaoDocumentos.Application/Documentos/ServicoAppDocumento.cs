@@ -11,24 +11,16 @@ namespace Tsc.GestaoDocumentos.Application.Documentos;
 /// Serviço de aplicação para gerenciamento de Documentos.
 /// Responsável por orquestrar operações relacionadas a Documentos.
 /// </summary>
-public class ServicoAppDocumento : IServicoAppDocumento
+public class ServicoAppDocumento(
+    IUnitOfWork unitOfWork,
+    IMapper mapper,
+    ICurrentUserService currentUserService,
+    IServicoAuditoria auditoriaService) : IServicoAppDocumento
 {
-    private readonly IUnitOfWork _unitOfWork;
-    private readonly IMapper _mapper;
-    private readonly ICurrentUserService _currentUserService;
-    private readonly IServicoAuditoria _auditoriaService;
-
-    public ServicoAppDocumento(
-        IUnitOfWork unitOfWork,
-        IMapper mapper,
-        ICurrentUserService currentUserService,
-        IServicoAuditoria auditoriaService)
-    {
-        _unitOfWork = unitOfWork;
-        _mapper = mapper;
-        _currentUserService = currentUserService;
-        _auditoriaService = auditoriaService;
-    }
+    private readonly IUnitOfWork _unitOfWork = unitOfWork;
+    private readonly IMapper _mapper = mapper;
+    private readonly ICurrentUserService _currentUserService = currentUserService;
+    private readonly IServicoAuditoria _auditoriaService = auditoriaService;
 
     public async Task<DocumentoDto?> ObterPorIdAsync(IdDocumento id, CancellationToken cancellationToken = default)
     {

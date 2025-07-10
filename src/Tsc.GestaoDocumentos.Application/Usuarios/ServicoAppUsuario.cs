@@ -11,24 +11,16 @@ namespace Tsc.GestaoDocumentos.Application.Usuarios;
 /// Serviço de aplicação para gerenciamento de Usuários.
 /// Responsável por orquestrar operações relacionadas a Usuários.
 /// </summary>
-public class ServicoAppUsuario : IServicoAppUsuario
+public class ServicoAppUsuario(
+    IUnitOfWork unitOfWork,
+    IMapper mapper,
+    ICurrentUserService currentUserService,
+    IServicoAuditoria auditoriaService) : IServicoAppUsuario
 {
-    private readonly IUnitOfWork _unitOfWork;
-    private readonly IMapper _mapper;
-    private readonly ICurrentUserService _currentUserService;
-    private readonly IServicoAuditoria _auditoriaService;
-
-    public ServicoAppUsuario(
-        IUnitOfWork unitOfWork,
-        IMapper mapper,
-        ICurrentUserService currentUserService,
-        IServicoAuditoria auditoriaService)
-    {
-        _unitOfWork = unitOfWork;
-        _mapper = mapper;
-        _currentUserService = currentUserService;
-        _auditoriaService = auditoriaService;
-    }
+    private readonly IUnitOfWork _unitOfWork = unitOfWork;
+    private readonly IMapper _mapper = mapper;
+    private readonly ICurrentUserService _currentUserService = currentUserService;
+    private readonly IServicoAuditoria _auditoriaService = auditoriaService;
 
     public async Task<UsuarioDto?> ObterPorIdAsync(IdUsuario id, CancellationToken cancellationToken = default)
     {

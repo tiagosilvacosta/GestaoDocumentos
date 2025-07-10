@@ -9,16 +9,10 @@ namespace Tsc.GestaoDocumentos.Application.Documentos;
 /// Serviço de aplicação para gerenciamento de Donos de Documento.
 /// Responsável por orquestrar operações relacionadas a Donos de Documento.
 /// </summary>
-public class ServicoAppDonoDocumento : IServicoAppDonoDocumento
+public class ServicoAppDonoDocumento(IUnitOfWork unitOfWork, IMapper mapper) : IServicoAppDonoDocumento
 {
-    private readonly IUnitOfWork _unitOfWork;
-    private readonly IMapper _mapper;
-
-    public ServicoAppDonoDocumento(IUnitOfWork unitOfWork, IMapper mapper)
-    {
-        _unitOfWork = unitOfWork;
-        _mapper = mapper;
-    }
+    private readonly IUnitOfWork _unitOfWork = unitOfWork;
+    private readonly IMapper _mapper = mapper;
 
     public async Task<DonoDocumentoDto?> ObterPorIdAsync(IdDonoDocumento id, CancellationToken cancellationToken = default)
     {

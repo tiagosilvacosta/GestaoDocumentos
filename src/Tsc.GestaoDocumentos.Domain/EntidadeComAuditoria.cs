@@ -22,12 +22,12 @@ namespace Tsc.GestaoDocumentos.Domain
         /// <summary>
         /// Usuário que criou a entidade.
         /// </summary>
-        public IdUsuario UsuarioCriacao { get; protected set; }
+        public IdUsuario UsuarioCriacao { get; protected set; } = null!;
 
         /// <summary>
         /// Usuário que fez a última alteração na entidade.
         /// </summary>
-        public IdUsuario UsuarioUltimaAlteracao { get; protected set; }
+        public IdUsuario UsuarioUltimaAlteracao { get; protected set; } = null!;
 
         /// <summary>
         /// Construtor protegido para uso por classes derivadas.

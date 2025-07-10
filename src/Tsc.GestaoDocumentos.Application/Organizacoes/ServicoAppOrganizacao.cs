@@ -10,24 +10,16 @@ namespace Tsc.GestaoDocumentos.Application.Organizacoes;
 /// Serviço de aplicação para gerenciamento de Tenants.
 /// Responsável por orquestrar operações relacionadas a Tenants.
 /// </summary>
-public class ServicoAppOrganizacao : IServicoAppOrganizacao
+public class ServicoAppOrganizacao(
+    IUnitOfWork unitOfWork,
+    IMapper mapper,
+    ICurrentUserService currentUserService,
+    IServicoAuditoria auditoriaService) : IServicoAppOrganizacao
 {
-    private readonly IUnitOfWork _unitOfWork;
-    private readonly IMapper _mapper;
-    private readonly ICurrentUserService _currentUserService;
-    private readonly IServicoAuditoria _auditoriaService;
-
-    public ServicoAppOrganizacao(
-        IUnitOfWork unitOfWork,
-        IMapper mapper,
-        ICurrentUserService currentUserService,
-        IServicoAuditoria auditoriaService)
-    {
-        _unitOfWork = unitOfWork;
-        _mapper = mapper;
-        _currentUserService = currentUserService;
-        _auditoriaService = auditoriaService;
-    }
+    private readonly IUnitOfWork _unitOfWork = unitOfWork;
+    private readonly IMapper _mapper = mapper;
+    private readonly ICurrentUserService _currentUserService = currentUserService;
+    private readonly IServicoAuditoria _auditoriaService = auditoriaService;
 
     public async Task<OrganizacaoDto?> ObterPorIdAsync(IdOrganizacao id, CancellationToken cancellationToken = default)
     {
@@ -94,10 +86,7 @@ public class ServicoAppOrganizacao : IServicoAppOrganizacao
 
     public async Task<OrganizacaoDto> AtualizarAsync(IdOrganizacao id, UpdateTenantDto updateTenant, CancellationToken cancellationToken = default)
     {
-        var tenant = await _unitOfWork.Tenants.ObterPorIdAsync(id, cancellationToken);
-        if (tenant == null)
-            throw new InvalidOperationException("Tenant não encontrado");
-
+        var tenant = await _unitOfWork.Tenants.ObterPorIdAsync(id, cancellationToken) ?? throw new InvalidOperationException("Tenant não encontrado");
         var dadosAnteriores = _mapper.Map<OrganizacaoDto>(tenant);
 
         tenant.DefinirNomeOrganizacao(updateTenant.NomeOrganizacao);

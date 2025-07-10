@@ -28,7 +28,7 @@ public class RepositorioBase<T, TId> : IRepositorio<T, TId>
 
     public virtual async Task<T?> ObterPorIdAsync(TId id, CancellationToken cancellationToken = default)
     {
-        return await _dbSet.FindAsync(new object[] { id }, cancellationToken);
+        return await _dbSet.FindAsync([id], cancellationToken);
     }
 
     public virtual async Task<IEnumerable<T>> ObterPorCondicaoAsync(Expression<Func<T, bool>> predicado, CancellationToken cancellationToken = default)
@@ -73,7 +73,7 @@ public class RepositorioBase<T, TId> : IRepositorio<T, TId>
 
     public virtual async Task<bool> ExisteAsync(TId id, CancellationToken cancellationToken = default)
     {
-        return await _dbSet.FindAsync(new object[] { id }, cancellationToken) != null;
+        return await _dbSet.FindAsync([id], cancellationToken) != null;
     }
 
     public virtual async Task<int> ContarAsync(CancellationToken cancellationToken = default)

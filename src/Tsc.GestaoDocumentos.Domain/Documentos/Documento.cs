@@ -19,13 +19,13 @@ public class Documento : EntidadeComAuditoriaEOrganizacao<IdDocumento>, IRaizAgr
     public string TipoArquivo { get; private set; } = string.Empty;
     public int Versao { get; private set; }
     public StatusDocumento Status { get; private set; }
-    public IdTipoDocumento IdTipoDocumento { get; private set; }
+    public IdTipoDocumento IdTipoDocumento { get; private set; } = null!;
 
     // Navegação
     public Organizacao Tenant { get; private set; } = null!;
     public TipoDocumento TipoDocumento { get; private set; } = null!;
     
-    private readonly List<DocumentoDonoDocumento> _donosVinculados = new();
+    private readonly List<DocumentoDonoDocumento> _donosVinculados = [];
     public IReadOnlyCollection<DocumentoDonoDocumento> DonosVinculados => _donosVinculados.AsReadOnly();
 
     protected Documento() : base() { }
@@ -137,14 +137,14 @@ public class Documento : EntidadeComAuditoriaEOrganizacao<IdDocumento>, IRaizAgr
 
     public string ObterTamanhoFormatado()
     {
-        string[] tamanhos = { "B", "KB", "MB", "GB", "TB" };
+        string[] tamanhos = ["B", "KB", "MB", "GB", "TB"];
         double tamanho = TamanhoArquivo;
         int ordem = 0;
         
         while (tamanho >= 1024 && ordem < tamanhos.Length - 1)
         {
             ordem++;
-            tamanho = tamanho / 1024;
+            tamanho /= 1024;
         }
 
         return $"{tamanho:0.##} {tamanhos[ordem]}";

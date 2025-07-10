@@ -7,7 +7,6 @@ namespace Tsc.GestaoDocumentos.Infrastructure.Documentos;
 
 public class ServicoArmazenamentoArquivo : IServicoArmazenamentoArquivo
 {
-    private readonly IConfiguration _configuration;
     private readonly ILogger<ServicoArmazenamentoArquivo> _logger;
     private readonly string _basePath;
 
@@ -15,9 +14,8 @@ public class ServicoArmazenamentoArquivo : IServicoArmazenamentoArquivo
         IConfiguration configuration,
         ILogger<ServicoArmazenamentoArquivo> logger)
     {
-        _configuration = configuration;
         _logger = logger;
-        _basePath = _configuration.GetValue<string>("ArmazenamentoArquivos:CaminhoBase") 
+        _basePath = configuration.GetValue<string>("ArmazenamentoArquivos:CaminhoBase") 
                    ?? Path.Combine(Directory.GetCurrentDirectory(), "uploads");
         
         // Garantir que o diretório base existe

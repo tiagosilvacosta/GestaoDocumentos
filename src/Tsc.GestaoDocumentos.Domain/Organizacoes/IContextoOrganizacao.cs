@@ -13,5 +13,5 @@ public interface ICurrentUserService
     IdUsuario IdUsuario { get; }
     string UserName { get; }
     string Email { get; }
-    IdOrganizacao idOrganizacao { get; }
+    IdOrganizacao IdOrganizacao { get; }
 }

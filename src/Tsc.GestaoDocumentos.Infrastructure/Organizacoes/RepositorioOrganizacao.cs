@@ -17,19 +17,19 @@ public class RepositorioOrganizacao : RepositorioBase<Organizacao, IdOrganizacao
     public async Task<Organizacao?> ObterPorSlugAsync(string slug, CancellationToken cancellationToken = default)
     {
         return await _dbSet
-            .Where(t => t.Slug == slug.ToLowerInvariant())
+            .Where(t => t.Slug.Equals(slug, StringComparison.InvariantCultureIgnoreCase))
             .FirstOrDefaultAsync(cancellationToken);
     }
 
     public async Task<bool> SlugExisteAsync(string slug, CancellationToken cancellationToken = default)
     {
         return await _dbSet
-            .AnyAsync(t => t.Slug == slug.ToLowerInvariant(), cancellationToken);
+            .AnyAsync(t => t.Slug.Equals(slug, StringComparison.InvariantCultureIgnoreCase), cancellationToken);
     }
 
     public async Task<bool> SlugExisteAsync(string slug, IdOrganizacao excluirId, CancellationToken cancellationToken = default)
     {
         return await _dbSet
-            .AnyAsync(t => t.Slug == slug.ToLowerInvariant() && t.Id.Valor != excluirId.Valor, cancellationToken);
+            .AnyAsync(t => t.Slug.Equals(slug, StringComparison.InvariantCultureIgnoreCase) && t.Id.Valor != excluirId.Valor, cancellationToken);
     }
 }

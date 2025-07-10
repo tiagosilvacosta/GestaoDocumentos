@@ -6,12 +6,8 @@ using Tsc.GestaoDocumentos.Infrastructure.Repositories;
 
 namespace Tsc.GestaoDocumentos.Infrastructure.Documentos;
 
-public class RepositorioTipoDocumento : RepositorioBaseComOrganizacao<TipoDocumento, IdTipoDocumento>, IRepositorioTipoDocumento
+public class RepositorioTipoDocumento(GestaoDocumentosDbContext context) : RepositorioBaseComOrganizacao<TipoDocumento, IdTipoDocumento>(context), IRepositorioTipoDocumento
 {
-    public RepositorioTipoDocumento(GestaoDocumentosDbContext context) : base(context)
-    {
-    }
-
     public async Task<bool> NomeExisteAsync(string nome, IdOrganizacao idOrganizacao, CancellationToken cancellationToken = default)
     {
         return await _dbSet

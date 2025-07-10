@@ -12,7 +12,7 @@ using Tsc.GestaoDocumentos.Infrastructure.Usuarios;
 
 namespace Tsc.GestaoDocumentos.Infrastructure.Repositories;
 
-public class UnitOfWork : IUnitOfWork
+public sealed class UnitOfWork : IUnitOfWork
 {
     private readonly GestaoDocumentosDbContext _context;
     private IDbContextTransaction? _transaction;

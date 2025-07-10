@@ -45,7 +45,7 @@ public class ServicoCriptografia : IServicoCriptografia
         return Convert.ToBase64String(GerarSaltBytes());
     }
 
-    private byte[] GerarSaltBytes()
+    private static byte[] GerarSaltBytes()
     {
         using var rng = RandomNumberGenerator.Create();
         var salt = new byte[SaltSize];
@@ -53,7 +53,7 @@ public class ServicoCriptografia : IServicoCriptografia
         return salt;
     }
 
-    private byte[] GerarHash(string senha, byte[] salt)
+    private static byte[] GerarHash(string senha, byte[] salt)
     {
         using var pbkdf2 = new Rfc2898DeriveBytes(
             Encoding.UTF8.GetBytes(senha),
@@ -64,7 +64,7 @@ public class ServicoCriptografia : IServicoCriptografia
         return pbkdf2.GetBytes(HashSize);
     }
 
-    private byte[] CombinarSaltEHash(byte[] salt, byte[] hash)
+    private static byte[] CombinarSaltEHash(byte[] salt, byte[] hash)
     {
         var combined = new byte[SaltSize + HashSize];
         Array.Copy(salt, 0, combined, 0, SaltSize);
@@ -72,7 +72,7 @@ public class ServicoCriptografia : IServicoCriptografia
         return combined;
     }
 
-    private (byte[] salt, byte[] hash) ExtrairSaltEHash(byte[] combined)
+    private static (byte[] salt, byte[] hash) ExtrairSaltEHash(byte[] combined)
     {
         if (combined.Length != SaltSize + HashSize)
             throw new ArgumentException("Hash inválido");

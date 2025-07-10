@@ -94,7 +94,7 @@ public class CriptografiaServiceTests
     }
 }
 
-public class DbContextTests : IDisposable
+public sealed class DbContextTests : IDisposable
 {
     private readonly GestaoDocumentosDbContext _context;
 
