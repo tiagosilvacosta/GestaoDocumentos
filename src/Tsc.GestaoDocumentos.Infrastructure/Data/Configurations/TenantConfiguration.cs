@@ -30,7 +30,7 @@ public class TenantConfiguration : IEntityTypeConfiguration<Tenant>
         builder.Property(t => t.DataCriacao)
             .IsRequired();
 
-        builder.Property(t => t.DataUltimaAlteracao)
+        builder.Property(t => t.DataAtualizacao)
             .IsRequired();
 
         builder.Property(t => t.UsuarioCriacao)

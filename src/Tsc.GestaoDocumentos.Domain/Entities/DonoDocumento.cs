@@ -60,10 +60,10 @@ public class DonoDocumento : TenantEntity
                 throw new InvalidOperationException("Já existe um documento ativo deste tipo para este dono");
         }
 
-        if (_documentosVinculados.Any(x => x.DocumentoId == documento.Id))
+        if (_documentosVinculados.Any(x => x.DocumentoId == documento.Id.Valor))
             return; // Já vinculado
 
-        var vinculo = new DocumentoDonoDocumento(documento.Id, Id, TenantId);
+        var vinculo = new DocumentoDonoDocumento(documento.Id.Valor, Id.Valor, TenantId);
         _documentosVinculados.Add(vinculo);
     }
 

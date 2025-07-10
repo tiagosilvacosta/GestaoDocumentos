@@ -1,6 +1,7 @@
 using FluentAssertions;
 using Tsc.GestaoDocumentos.Domain.Entities;
 using Tsc.GestaoDocumentos.Domain.Enums;
+using Xunit;
 
 namespace Tsc.GestaoDocumentos.Domain.Tests.Entities;
 
@@ -36,7 +37,7 @@ public class UsuarioTests
     [InlineData("")]
     [InlineData(" ")]
     [InlineData(null)]
-    public void Usuario_DeveRejeitarNomeInvalido(string nomeInvalido)
+    public void Usuario_DeveRejeitarNomeInvalido(string? nomeInvalido)
     {
         // Arrange
         var tenantId = Guid.NewGuid();
@@ -48,7 +49,7 @@ public class UsuarioTests
 
         // Act & Assert
         Assert.Throws<ArgumentException>(() => 
-            new Usuario(tenantId, nomeInvalido, email, login, senhaHash, perfil, usuarioCriacao));
+            new Usuario(tenantId, nomeInvalido ?? "", email, login, senhaHash, perfil, usuarioCriacao));
     }
 
     [Theory]

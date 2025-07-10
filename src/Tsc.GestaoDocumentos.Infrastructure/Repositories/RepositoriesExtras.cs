@@ -20,7 +20,7 @@ public class TipoDonoRepository : TenantBaseRepository<TipoDono>, ITipoDonoRepos
     public async Task<bool> NomeExisteAsync(string nome, Guid tenantId, Guid excluirId, CancellationToken cancellationToken = default)
     {
         return await _dbSet
-            .AnyAsync(td => td.Nome == nome && td.TenantId == tenantId && td.Id != excluirId, cancellationToken);
+            .AnyAsync(td => td.Nome == nome && td.TenantId == tenantId && td.Id.Valor != excluirId, cancellationToken);
     }
 
     public async Task<IEnumerable<TipoDono>> ObterComTiposDocumentoAsync(Guid tenantId, CancellationToken cancellationToken = default)
@@ -48,7 +48,7 @@ public class TipoDocumentoRepository : TenantBaseRepository<TipoDocumento>, ITip
     public async Task<bool> NomeExisteAsync(string nome, Guid tenantId, Guid excluirId, CancellationToken cancellationToken = default)
     {
         return await _dbSet
-            .AnyAsync(td => td.Nome == nome && td.TenantId == tenantId && td.Id != excluirId, cancellationToken);
+            .AnyAsync(td => td.Nome == nome && td.TenantId == tenantId && td.Id.Valor != excluirId, cancellationToken);
     }
 
     public async Task<IEnumerable<TipoDocumento>> ObterComTiposDonoAsync(Guid tenantId, CancellationToken cancellationToken = default)
@@ -107,7 +107,7 @@ public class DonoDocumentoRepository : TenantBaseRepository<DonoDocumento>, IDon
             .Include(dd => dd.DocumentosVinculados)
                 .ThenInclude(dv => dv.Documento)
                     .ThenInclude(d => d.TipoDocumento)
-            .Where(dd => dd.Id == id && dd.TenantId == tenantId)
+            .Where(dd => dd.Id.Valor == id && dd.TenantId == tenantId)
             .FirstOrDefaultAsync(cancellationToken);
     }
 }

@@ -3,7 +3,7 @@ using Tsc.GestaoDocumentos.Domain.Enums;
 
 namespace Tsc.GestaoDocumentos.Domain.Entities;
 
-public class Tenant : Entity
+public class Tenant : AggregateRoot
 {
     public string NomeOrganizacao { get; private set; } = string.Empty;
     public string Slug { get; private set; } = string.Empty;
@@ -77,7 +77,7 @@ public class Tenant : Entity
 
     public void AdicionarUsuario(Usuario usuario)
     {
-        if (usuario.TenantId != Id)
+        if (usuario.TenantId != Id.Valor)
             throw new ArgumentException("Usuário deve pertencer ao mesmo tenant");
 
         _usuarios.Add(usuario);

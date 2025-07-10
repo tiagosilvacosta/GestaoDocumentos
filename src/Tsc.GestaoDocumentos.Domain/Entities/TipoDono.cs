@@ -41,10 +41,10 @@ public class TipoDono : TenantEntity
         if (tipoDocumento.TenantId != TenantId)
             throw new ArgumentException("Tipo de documento deve pertencer ao mesmo tenant");
 
-        if (_tiposDocumentoVinculados.Any(x => x.TipoDocumentoId == tipoDocumento.Id))
+        if (_tiposDocumentoVinculados.Any(x => x.TipoDocumentoId == tipoDocumento.Id.Valor))
             return; // Já vinculado
 
-        var vinculo = new TipoDonoTipoDocumento(Id, tipoDocumento.Id, TenantId);
+        var vinculo = new TipoDonoTipoDocumento(Id.Valor, tipoDocumento.Id.Valor, TenantId);
         _tiposDocumentoVinculados.Add(vinculo);
     }
 

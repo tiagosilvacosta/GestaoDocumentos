@@ -7,7 +7,7 @@ Este é um sistema completo de gerenciamento de documentos multi-tenant desenvol
 O projeto está organizado em camadas:
 
 - **Domain**: Entidades, Value Objects, Repositórios (interfaces), Serviços de Domínio
-- **Application**: DTOs, Commands/Queries (CQRS), Handlers, Validators, Mappings
+- **Application**: DTOs, Serviços de Aplicação, Validators, Mappings
 - **Infrastructure**: Implementação de Repositórios, DbContext, Serviços de Infraestrutura
 - **API**: Controllers, Middleware, Configurações
 
@@ -16,7 +16,6 @@ O projeto está organizado em camadas:
 - **.NET 8**
 - **Entity Framework Core 8**
 - **SQL Server**
-- **MediatR** (CQRS)
 - **AutoMapper**
 - **FluentValidation**
 - **xUnit** (Testes)

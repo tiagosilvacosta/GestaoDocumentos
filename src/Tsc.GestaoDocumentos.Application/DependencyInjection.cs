@@ -2,6 +2,7 @@ using FluentValidation;
 using Microsoft.Extensions.DependencyInjection;
 using System.Reflection;
 using Tsc.GestaoDocumentos.Application.Mappings;
+using Tsc.GestaoDocumentos.Application.Services;
 
 namespace Tsc.GestaoDocumentos.Application;
 
@@ -11,8 +12,13 @@ public static class DependencyInjection
     {
         var assembly = Assembly.GetExecutingAssembly();
 
-        // MediatR
-        services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(assembly));
+        // Serviços de Aplicação
+        services.AddScoped<ITenantAppService, TenantAppService>();
+        services.AddScoped<IUsuarioAppService, UsuarioAppService>();
+        services.AddScoped<IDocumentoAppService, DocumentoAppService>();
+        services.AddScoped<IDonoDocumentoAppService, DonoDocumentoAppService>();
+        services.AddScoped<ITipoDocumentoAppService, TipoDocumentoAppService>();
+        services.AddScoped<ITipoDonoAppService, TipoDonoAppService>();
 
         // AutoMapper
         services.AddAutoMapper(typeof(DomainToDtoProfile));

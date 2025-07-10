@@ -1,63 +1,70 @@
+using DddBase.Base;
+
 namespace Tsc.GestaoDocumentos.Domain.Common;
 
-public abstract class Entity
+/// <summary>
+/// Classe base para todas as entidades do domínio.
+/// Herda de EntidadeBase do pacote Tsc.DddBase.
+/// </summary>
+public abstract class Entity : EntidadeBase<EntityId>
 {
-    public Guid Id { get; protected set; }
-    public DateTime DataCriacao { get; protected set; }
+    /// <summary>
+    /// Data de criação da entidade.
+    /// </summary>
+    public DateTime DataCriacao { get; private set; }
+
+    /// <summary>
+    /// Data da última atualização da entidade.
+    /// </summary>
+    public DateTime DataAtualizacao { get; private set; }
+
+    /// <summary>
+    /// Usuário que criou a entidade.
+    /// </summary>
     public Guid UsuarioCriacao { get; protected set; }
-    public DateTime DataUltimaAlteracao { get; protected set; }
+
+    /// <summary>
+    /// Usuário que fez a última alteração na entidade.
+    /// </summary>
     public Guid UsuarioUltimaAlteracao { get; protected set; }
 
+    /// <summary>
+    /// Construtor protegido para uso por classes derivadas.
+    /// Gera automaticamente um novo ID único.
+    /// </summary>
     protected Entity()
     {
-        Id = Guid.NewGuid();
+        Id = EntityId.NovoId();
         DataCriacao = DateTime.UtcNow;
-        DataUltimaAlteracao = DateTime.UtcNow;
+        DataAtualizacao = DateTime.UtcNow;
     }
 
-    protected Entity(Guid id) : this()
+    /// <summary>
+    /// Construtor protegido com ID específico para uso por classes derivadas.
+    /// </summary>
+    /// <param name="id">Identificador único da entidade</param>
+    protected Entity(EntityId id)
     {
-        Id = id;
+        Id = id ?? throw new ArgumentNullException(nameof(id));
+        DataCriacao = DateTime.UtcNow;
+        DataAtualizacao = DateTime.UtcNow;
     }
 
-    public void AtualizarDataAlteracao(Guid usuarioId)
+    /// <summary>
+    /// Atualiza a data de modificação da entidade.
+    /// </summary>
+    protected void AtualizarDataModificacao()
     {
-        DataUltimaAlteracao = DateTime.UtcNow;
-        UsuarioUltimaAlteracao = usuarioId;
+        DataAtualizacao = DateTime.UtcNow;
     }
 
-    public override bool Equals(object? obj)
+    /// <summary>
+    /// Atualiza a data de alteração e o usuário que fez a alteração.
+    /// </summary>
+    /// <param name="usuarioAlteracao">ID do usuário que fez a alteração</param>
+    protected void AtualizarDataAlteracao(Guid usuarioAlteracao)
     {
-        if (obj is not Entity other)
-            return false;
-
-        if (ReferenceEquals(this, other))
-            return true;
-
-        if (GetType() != other.GetType())
-            return false;
-
-        return Id == other.Id;
-    }
-
-    public static bool operator ==(Entity? a, Entity? b)
-    {
-        if (a is null && b is null)
-            return true;
-
-        if (a is null || b is null)
-            return false;
-
-        return a.Equals(b);
-    }
-
-    public static bool operator !=(Entity? a, Entity? b)
-    {
-        return !(a == b);
-    }
-
-    public override int GetHashCode()
-    {
-        return Id.GetHashCode();
+        DataAtualizacao = DateTime.UtcNow;
+        UsuarioUltimaAlteracao = usuarioAlteracao;
     }
 }

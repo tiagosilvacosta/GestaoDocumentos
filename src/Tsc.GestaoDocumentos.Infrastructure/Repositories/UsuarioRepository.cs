@@ -34,7 +34,7 @@ public class UsuarioRepository : TenantBaseRepository<Usuario>, IUsuarioReposito
     public async Task<bool> EmailExisteAsync(string email, Guid tenantId, Guid excluirId, CancellationToken cancellationToken = default)
     {
         return await _dbSet
-            .AnyAsync(u => u.Email == email.ToLowerInvariant() && u.TenantId == tenantId && u.Id != excluirId, cancellationToken);
+            .AnyAsync(u => u.Email == email.ToLowerInvariant() && u.TenantId == tenantId && u.Id.Valor != excluirId, cancellationToken);
     }
 
     public async Task<bool> LoginExisteAsync(string login, Guid tenantId, CancellationToken cancellationToken = default)
@@ -46,7 +46,7 @@ public class UsuarioRepository : TenantBaseRepository<Usuario>, IUsuarioReposito
     public async Task<bool> LoginExisteAsync(string login, Guid tenantId, Guid excluirId, CancellationToken cancellationToken = default)
     {
         return await _dbSet
-            .AnyAsync(u => u.Login == login.ToLowerInvariant() && u.TenantId == tenantId && u.Id != excluirId, cancellationToken);
+            .AnyAsync(u => u.Login == login.ToLowerInvariant() && u.TenantId == tenantId && u.Id.Valor != excluirId, cancellationToken);
     }
 
     public async Task<IEnumerable<Usuario>> ObterPorPerfilAsync(int perfil, Guid tenantId, CancellationToken cancellationToken = default)

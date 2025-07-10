@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using Tsc.GestaoDocumentos.Domain.Common;
 using Tsc.GestaoDocumentos.Domain.Entities;
 using Tsc.GestaoDocumentos.Domain.Repositories;
 using Tsc.GestaoDocumentos.Infrastructure.Data;
@@ -80,14 +81,14 @@ public class DocumentoRepository : TenantBaseRepository<Documento>, IDocumentoRe
             .AnyAsync(d => d.ChaveArmazenamento == chaveArmazenamento, cancellationToken);
     }
 
-    public override async Task<Documento?> ObterPorIdAsync(Guid id, CancellationToken cancellationToken = default)
+    public override async Task<Documento?> ObterPorIdAsync(EntityId id, CancellationToken cancellationToken = default)
     {
         return await _dbSet
             .Include(d => d.TipoDocumento)
             .Include(d => d.DonosVinculados)
                 .ThenInclude(dv => dv.DonoDocumento)
                     .ThenInclude(dd => dd.TipoDono)
-            .Where(d => d.Id == id)
+            .Where(d => d.Id.Valor == id.Valor)
             .FirstOrDefaultAsync(cancellationToken);
     }
 }

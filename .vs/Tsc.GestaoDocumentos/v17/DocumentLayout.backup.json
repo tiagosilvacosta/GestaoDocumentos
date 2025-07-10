@@ -1,0 +1,180 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\tiago\\projects\\GestaoDocumentos\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{9F2F4F8F-8901-1234-5678-890123456789}|tests\\Tsc.GestaoDocumentos.Infrastructure.Tests\\Tsc.GestaoDocumentos.Infrastructure.Tests.csproj|c:\\tiago\\projects\\gestaodocumentos\\tests\\tsc.gestaodocumentos.infrastructure.tests\\services\\servicetests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9F2F4F8F-8901-1234-5678-890123456789}|tests\\Tsc.GestaoDocumentos.Infrastructure.Tests\\Tsc.GestaoDocumentos.Infrastructure.Tests.csproj|solutionrelative:tests\\tsc.gestaodocumentos.infrastructure.tests\\services\\servicetests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4D7F9E3F-3456-6789-0123-345678901234}|src\\Tsc.GestaoDocumentos.Infrastructure\\Tsc.GestaoDocumentos.Infrastructure.csproj|c:\\tiago\\projects\\gestaodocumentos\\src\\tsc.gestaodocumentos.infrastructure\\services\\armazenamentoarquivoservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4D7F9E3F-3456-6789-0123-345678901234}|src\\Tsc.GestaoDocumentos.Infrastructure\\Tsc.GestaoDocumentos.Infrastructure.csproj|solutionrelative:src\\tsc.gestaodocumentos.infrastructure\\services\\armazenamentoarquivoservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7F0F2F6F-6789-9012-3456-678901234567}|tests\\Tsc.GestaoDocumentos.Domain.Tests\\Tsc.GestaoDocumentos.Domain.Tests.csproj|c:\\tiago\\projects\\gestaodocumentos\\tests\\tsc.gestaodocumentos.domain.tests\\entities\\usuariotests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7F0F2F6F-6789-9012-3456-678901234567}|tests\\Tsc.GestaoDocumentos.Domain.Tests\\Tsc.GestaoDocumentos.Domain.Tests.csproj|solutionrelative:tests\\tsc.gestaodocumentos.domain.tests\\entities\\usuariotests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7F0F2F6F-6789-9012-3456-678901234567}|tests\\Tsc.GestaoDocumentos.Domain.Tests\\Tsc.GestaoDocumentos.Domain.Tests.csproj|c:\\tiago\\projects\\gestaodocumentos\\tests\\tsc.gestaodocumentos.domain.tests\\entities\\tenanttests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7F0F2F6F-6789-9012-3456-678901234567}|tests\\Tsc.GestaoDocumentos.Domain.Tests\\Tsc.GestaoDocumentos.Domain.Tests.csproj|solutionrelative:tests\\tsc.gestaodocumentos.domain.tests\\entities\\tenanttests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 619,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "ServiceTests.cs",
+              "DocumentMoniker": "C:\\tiago\\projects\\GestaoDocumentos\\tests\\Tsc.GestaoDocumentos.Infrastructure.Tests\\Services\\ServiceTests.cs",
+              "RelativeDocumentMoniker": "tests\\Tsc.GestaoDocumentos.Infrastructure.Tests\\Services\\ServiceTests.cs",
+              "ToolTip": "C:\\tiago\\projects\\GestaoDocumentos\\tests\\Tsc.GestaoDocumentos.Infrastructure.Tests\\Services\\ServiceTests.cs",
+              "RelativeToolTip": "tests\\Tsc.GestaoDocumentos.Infrastructure.Tests\\Services\\ServiceTests.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABgAAAAiAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-10T00:08:00.515Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{0ad07096-bba9-4900-a651-0598d26f6d24}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:130:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:129:0:{13b12e3e-c1b4-4539-9371-4fe9a0d523fc}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{e1b7d1f8-9b3c-49b1-8f4f-bfc63a88835d}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:134:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:135:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:133:0:{13b12e3e-c1b4-4539-9371-4fe9a0d523fc}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{aa2115a1-9712-457b-9047-dbb71ca2cdd2}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:131:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{34e76e81-ee4a-11d0-ae2e-00a0c90fffc3}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "ArmazenamentoArquivoService.cs",
+              "DocumentMoniker": "C:\\tiago\\projects\\GestaoDocumentos\\src\\Tsc.GestaoDocumentos.Infrastructure\\Services\\ArmazenamentoArquivoService.cs",
+              "RelativeDocumentMoniker": "src\\Tsc.GestaoDocumentos.Infrastructure\\Services\\ArmazenamentoArquivoService.cs",
+              "ToolTip": "C:\\tiago\\projects\\GestaoDocumentos\\src\\Tsc.GestaoDocumentos.Infrastructure\\Services\\ArmazenamentoArquivoService.cs",
+              "RelativeToolTip": "src\\Tsc.GestaoDocumentos.Infrastructure\\Services\\ArmazenamentoArquivoService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABMAAABPAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-10T00:07:34.616Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "UsuarioTests.cs",
+              "DocumentMoniker": "C:\\tiago\\projects\\GestaoDocumentos\\tests\\Tsc.GestaoDocumentos.Domain.Tests\\Entities\\UsuarioTests.cs",
+              "RelativeDocumentMoniker": "tests\\Tsc.GestaoDocumentos.Domain.Tests\\Entities\\UsuarioTests.cs",
+              "ToolTip": "C:\\tiago\\projects\\GestaoDocumentos\\tests\\Tsc.GestaoDocumentos.Domain.Tests\\Entities\\UsuarioTests.cs",
+              "RelativeToolTip": "tests\\Tsc.GestaoDocumentos.Domain.Tests\\Entities\\UsuarioTests.cs",
+              "ViewState": "AgIAABYAAAAAAAAAAAArwCYAAAAQAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-10T00:05:48.93Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "TenantTests.cs",
+              "DocumentMoniker": "C:\\tiago\\projects\\GestaoDocumentos\\tests\\Tsc.GestaoDocumentos.Domain.Tests\\Entities\\TenantTests.cs",
+              "RelativeDocumentMoniker": "tests\\Tsc.GestaoDocumentos.Domain.Tests\\Entities\\TenantTests.cs",
+              "ToolTip": "C:\\tiago\\projects\\GestaoDocumentos\\tests\\Tsc.GestaoDocumentos.Domain.Tests\\Entities\\TenantTests.cs",
+              "RelativeToolTip": "tests\\Tsc.GestaoDocumentos.Domain.Tests\\Entities\\TenantTests.cs",
+              "ViewState": "AgIAABAAAAAAAAAAAAAUwCMAAAASAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-10T00:05:47.923Z",
+              "EditorCaption": ""
+            }
+          ]
+        },
+        {
+          "DockedWidth": 921,
+          "SelectedChildIndex": -1,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{9a7cebbb-dc5c-4986-bc49-962da46aa506}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{5a4e9529-b6a0-46b5-be4f-0f0b239bc0eb}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{d78612c7-9962-4b83-95d9-268046dad23a}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:130:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:128:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:129:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:131:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            }
+          ]
+        },
+        {
+          "DockedWidth": 921,
+          "SelectedChildIndex": -1,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c64b9c2-e352-428e-a56d-0ace190b99a6}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -2,6 +2,7 @@ using FluentAssertions;
 using Microsoft.EntityFrameworkCore;
 using Tsc.GestaoDocumentos.Infrastructure.Data;
 using Tsc.GestaoDocumentos.Infrastructure.Services;
+using Xunit;
 
 namespace Tsc.GestaoDocumentos.Infrastructure.Tests.Services;
 

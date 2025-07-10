@@ -1,6 +1,7 @@
 using FluentAssertions;
 using Tsc.GestaoDocumentos.Domain.Entities;
 using Tsc.GestaoDocumentos.Domain.Enums;
+using Xunit;
 
 namespace Tsc.GestaoDocumentos.Domain.Tests.Entities;
 
@@ -22,7 +23,7 @@ public class TenantTests
         tenant.Slug.Should().Be(slug);
         tenant.Status.Should().Be(StatusTenant.Ativo);
         tenant.UsuarioCriacao.Should().Be(usuarioCriacao);
-        tenant.Id.Should().NotBeEmpty();
+        tenant.Id.Should().NotBeNull();
         tenant.DataCriacao.Should().BeCloseTo(DateTime.UtcNow, TimeSpan.FromSeconds(1));
     }
 

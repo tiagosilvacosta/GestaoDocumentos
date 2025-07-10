@@ -105,10 +105,10 @@ public class Documento : TenantEntity
         if (donoDocumento.TenantId != TenantId)
             throw new ArgumentException("Dono do documento deve pertencer ao mesmo tenant");
 
-        if (_donosVinculados.Any(x => x.DonoDocumentoId == donoDocumento.Id))
+        if (_donosVinculados.Any(x => x.DonoDocumentoId == donoDocumento.Id.Valor))
             return; // Já vinculado
 
-        var vinculo = new DocumentoDonoDocumento(Id, donoDocumento.Id, TenantId);
+        var vinculo = new DocumentoDonoDocumento(Id.Valor, donoDocumento.Id.Valor, TenantId);
         _donosVinculados.Add(vinculo);
     }
 
