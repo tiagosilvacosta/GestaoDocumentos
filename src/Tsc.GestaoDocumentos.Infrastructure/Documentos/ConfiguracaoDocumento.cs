@@ -1,8 +1,10 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Tsc.GestaoDocumentos.Domain.Documentos;
+using Tsc.GestaoDocumentos.Infrastructure.Data;
 
 namespace Tsc.GestaoDocumentos.Infrastructure.Documentos;
+
 
 public class DonoDocumentoConfiguration : IEntityTypeConfiguration<DonoDocumento>
 {
@@ -13,9 +15,11 @@ public class DonoDocumentoConfiguration : IEntityTypeConfiguration<DonoDocumento
         builder.HasKey(dd => dd.Id);
 
         builder.Property(dd => dd.Id)
+            .HasConversion<IdDonoDocumentoConverter>()            
             .ValueGeneratedNever();
 
         builder.Property(dd => dd.IdOrganizacao)
+            .HasConversion<IdOrganizacaoConverter>()
             .IsRequired();
 
         builder.Property(dd => dd.NomeAmigavel)
@@ -23,6 +27,7 @@ public class DonoDocumentoConfiguration : IEntityTypeConfiguration<DonoDocumento
             .IsRequired();
 
         builder.Property(dd => dd.IdTipoDono)
+            .HasConversion<IdTipoDonoConverter>()
             .IsRequired();
 
         // Índices compostos para multi-tenancy
@@ -33,7 +38,7 @@ public class DonoDocumentoConfiguration : IEntityTypeConfiguration<DonoDocumento
             .HasDatabaseName("IX_DonosDocumento_IdOrganizacao_IdTipoDono");
 
         // Relacionamentos
-        builder.HasOne(dd => dd.Tenant)
+        builder.HasOne(dd => dd.Organizacao)
             .WithMany(t => t.DonosDocumento)
             .HasForeignKey(dd => dd.IdOrganizacao)
             .OnDelete(DeleteBehavior.Cascade);
@@ -54,9 +59,11 @@ public class ConfiguracaoDocumento : IEntityTypeConfiguration<Documento>
         builder.HasKey(d => d.Id);
 
         builder.Property(d => d.Id)
+            .HasConversion<IdDocumentoConverter>()
             .ValueGeneratedNever();
 
         builder.Property(d => d.IdOrganizacao)
+            .HasConversion<IdOrganizacaoConverter>()
             .IsRequired();
 
         builder.Property(d => d.NomeArquivo)
@@ -85,6 +92,7 @@ public class ConfiguracaoDocumento : IEntityTypeConfiguration<Documento>
             .IsRequired();
 
         builder.Property(d => d.IdTipoDocumento)
+            .HasConversion<IdTipoDocumentoConverter>()
             .IsRequired();
 
         // Índices compostos para multi-tenancy
@@ -102,7 +110,7 @@ public class ConfiguracaoDocumento : IEntityTypeConfiguration<Documento>
             .HasDatabaseName("IX_Documentos_IdOrganizacao_DataUpload");
 
         // Relacionamentos
-        builder.HasOne(d => d.Tenant)
+        builder.HasOne(d => d.Organizacao)
             .WithMany()
             .HasForeignKey(d => d.IdOrganizacao)
             .OnDelete(DeleteBehavior.Cascade);
@@ -123,15 +131,19 @@ public class DocumentoDonoDocumentoConfiguration : IEntityTypeConfiguration<Docu
         builder.HasKey(ddd => ddd.Id);
 
         builder.Property(ddd => ddd.Id)
+            .HasConversion<IdDocumentoDonoDocumentoConverter>()
             .ValueGeneratedNever();
 
         builder.Property(ddd => ddd.IdOrganizacao)
+            .HasConversion<IdOrganizacaoConverter>()
             .IsRequired();
 
         builder.Property(ddd => ddd.IdDocumento)
+            .HasConversion<IdDocumentoConverter>()
             .IsRequired();
 
         builder.Property(ddd => ddd.IdDonoDocumento)
+            .HasConversion<IdDonoDocumentoConverter>()
             .IsRequired();
 
         // Índice único composto
@@ -148,6 +160,127 @@ public class DocumentoDonoDocumentoConfiguration : IEntityTypeConfiguration<Docu
         builder.HasOne(ddd => ddd.DonoDocumento)
             .WithMany(dd => dd.DocumentosVinculados)
             .HasForeignKey(ddd => ddd.IdDonoDocumento)
+            .OnDelete(DeleteBehavior.Cascade);
+    }
+}
+
+public class TipoDonoConfiguration : IEntityTypeConfiguration<TipoDono>
+{
+    public void Configure(EntityTypeBuilder<TipoDono> builder)
+    {
+        builder.ToTable("TiposDono");
+
+        builder.HasKey(td => td.Id);
+
+        builder.Property(td => td.Id)
+            .HasConversion<IdTipoDonoConverter>()
+            .ValueGeneratedNever();
+
+        builder.Property(td => td.IdOrganizacao)
+            .HasConversion<IdOrganizacaoConverter>()
+            .IsRequired();
+
+        builder.Property(td => td.Nome)
+            .HasMaxLength(255)
+            .IsRequired();
+
+        // Índices compostos para multi-tenancy
+        builder.HasIndex(td => new { td.IdOrganizacao, td.Nome })
+            .IsUnique()
+            .HasDatabaseName("IX_TiposDono_IdOrganizacao_Nome");
+
+        // Relacionamento
+        builder.HasOne(td => td.Tenant)
+            .WithMany(t => t.TiposDono)
+            .HasForeignKey(td => td.IdOrganizacao)
+            .OnDelete(DeleteBehavior.Cascade);
+
+        builder.HasMany(td => td.DonosDocumento)
+            .WithOne(dd => dd.TipoDono)
+            .HasForeignKey(dd => dd.IdTipoDono)
+            .OnDelete(DeleteBehavior.Restrict);
+    }
+}
+
+public class TipoDocumentoConfiguration : IEntityTypeConfiguration<TipoDocumento>
+{
+    public void Configure(EntityTypeBuilder<TipoDocumento> builder)
+    {
+        builder.ToTable("TiposDocumento");
+
+        builder.HasKey(td => td.Id);
+
+        builder.Property(td => td.Id)
+            .HasConversion<IdTipoDocumentoConverter>()
+            .ValueGeneratedNever();
+
+        builder.Property(td => td.IdOrganizacao)
+            .HasConversion<IdOrganizacaoConverter>()
+            .IsRequired();
+
+        builder.Property(td => td.Nome)
+            .HasMaxLength(255)
+            .IsRequired();
+
+        builder.Property(td => td.PermiteMultiplosDocumentos)
+            .IsRequired();
+
+        // Índices compostos para multi-tenancy
+        builder.HasIndex(td => new { td.IdOrganizacao, td.Nome })
+            .IsUnique()
+            .HasDatabaseName("IX_TiposDocumento_IdOrganizacao_Nome");
+
+        // Relacionamento
+        builder.HasOne(td => td.Tenant)
+            .WithMany(t => t.TiposDocumento)
+            .HasForeignKey(td => td.IdOrganizacao)
+            .OnDelete(DeleteBehavior.Cascade);
+
+        builder.HasMany(td => td.Documentos)
+            .WithOne(d => d.TipoDocumento)
+            .HasForeignKey(d => d.IdTipoDocumento)
+            .OnDelete(DeleteBehavior.Restrict);
+    }
+}
+
+public class TipoDonoTipoDocumentoConfiguration : IEntityTypeConfiguration<TipoDonoTipoDocumento>
+{
+    public void Configure(EntityTypeBuilder<TipoDonoTipoDocumento> builder)
+    {
+        builder.ToTable("TipoDonoTipoDocumento");
+
+        builder.HasKey(tdtd => tdtd.Id);
+
+        builder.Property(tdtd => tdtd.Id)
+            .HasConversion<IdTipoDonoTipoDocumentoConverter>()
+            .ValueGeneratedNever();
+
+        builder.Property(tdtd => tdtd.IdOrganizacao)
+            .HasConversion<IdOrganizacaoConverter>()
+            .IsRequired();
+
+        builder.Property(tdtd => tdtd.IdTipoDono)
+            .HasConversion<IdTipoDonoConverter>()
+            .IsRequired();
+
+        builder.Property(tdtd => tdtd.IdTipoDocumento)
+            .HasConversion<IdTipoDocumentoConverter>()
+            .IsRequired();
+
+        // Índice único composto
+        builder.HasIndex(tdtd => new { tdtd.IdOrganizacao, tdtd.IdTipoDono, tdtd.IdTipoDocumento })
+            .IsUnique()
+            .HasDatabaseName("IX_TipoDonoTipoDocumento_IdOrganizacao_IdTipoDono_IdTipoDocumento");
+
+        // Relacionamentos
+        builder.HasOne(tdtd => tdtd.TipoDono)
+            .WithMany(td => td.TiposDocumentoVinculados)
+            .HasForeignKey(tdtd => tdtd.IdTipoDono)
+            .OnDelete(DeleteBehavior.Cascade);
+
+        builder.HasOne(tdtd => tdtd.TipoDocumento)
+            .WithMany(td => td.TiposDonoVinculados)
+            .HasForeignKey(tdtd => tdtd.IdTipoDocumento)
             .OnDelete(DeleteBehavior.Cascade);
     }
 }

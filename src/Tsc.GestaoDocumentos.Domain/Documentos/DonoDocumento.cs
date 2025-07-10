@@ -10,7 +10,7 @@ public class DonoDocumento : EntidadeComAuditoriaEOrganizacao<IdDonoDocumento>, 
     public IdTipoDono IdTipoDono { get; private set; } = null!;
 
     // Navegação
-    public Organizacao Tenant { get; private set; } = null!;
+    public Organizacao Organizacao { get; private set; } = null!;
     public TipoDono TipoDono { get; private set; } = null!;
     
     private readonly List<DocumentoDonoDocumento> _documentosVinculados = new();

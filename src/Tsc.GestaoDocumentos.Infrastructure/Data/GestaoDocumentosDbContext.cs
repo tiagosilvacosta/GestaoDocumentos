@@ -42,6 +42,17 @@ public class GestaoDocumentosDbContext : DbContext
     {
         base.OnModelCreating(modelBuilder);
 
+        // Explicitly ignore value objects that should not be treated as entities
+        modelBuilder.Ignore<IdUsuario>();
+        modelBuilder.Ignore<IdOrganizacao>();
+        modelBuilder.Ignore<IdDonoDocumento>();
+        modelBuilder.Ignore<IdDocumento>();
+        modelBuilder.Ignore<IdTipoDono>();
+        modelBuilder.Ignore<IdTipoDocumento>();
+        modelBuilder.Ignore<IdDocumentoDonoDocumento>();
+        modelBuilder.Ignore<IdTipoDonoTipoDocumento>();
+        modelBuilder.Ignore<IdLogAuditoria>();
+
         // Aplicar configurações
         modelBuilder.ApplyConfiguration(new ConfiguracaoOrganizacao());
         modelBuilder.ApplyConfiguration(new ConfiguracaoUsuario());

@@ -6,12 +6,8 @@ using Tsc.GestaoDocumentos.Infrastructure.Repositories;
 
 namespace Tsc.GestaoDocumentos.Infrastructure.Usuarios;
 
-public class RepositorioUsuario : RepositorioBaseComOrganizacao<Usuario, IdUsuario>, IRepositorioUsuario
+public class RepositorioUsuario(GestaoDocumentosDbContext context) : RepositorioBaseComOrganizacao<Usuario, IdUsuario>(context), IRepositorioUsuario
 {
-    public RepositorioUsuario(GestaoDocumentosDbContext context) : base(context)
-    {
-    }
-
     public async Task<Usuario?> ObterPorEmailAsync(string email, IdOrganizacao idOrganizacao, CancellationToken cancellationToken = default)
     {
         return await _dbSet

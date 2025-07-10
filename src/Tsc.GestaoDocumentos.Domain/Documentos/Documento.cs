@@ -22,7 +22,7 @@ public class Documento : EntidadeComAuditoriaEOrganizacao<IdDocumento>, IRaizAgr
     public IdTipoDocumento IdTipoDocumento { get; private set; } = null!;
 
     // Navegação
-    public Organizacao Tenant { get; private set; } = null!;
+    public Organizacao Organizacao { get; private set; } = null!;
     public TipoDocumento TipoDocumento { get; private set; } = null!;
     
     private readonly List<DocumentoDonoDocumento> _donosVinculados = [];

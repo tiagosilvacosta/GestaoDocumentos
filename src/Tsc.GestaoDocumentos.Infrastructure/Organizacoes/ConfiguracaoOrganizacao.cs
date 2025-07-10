@@ -1,6 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Tsc.GestaoDocumentos.Domain.Organizacoes;
+using Tsc.GestaoDocumentos.Infrastructure.Data;
 
 namespace Tsc.GestaoDocumentos.Infrastructure.Organizacoes;
 
@@ -13,6 +14,7 @@ public class ConfiguracaoOrganizacao : IEntityTypeConfiguration<Organizacao>
         builder.HasKey(t => t.Id);
 
         builder.Property(t => t.Id)
+            .HasConversion<IdOrganizacaoConverter>()
             .ValueGeneratedNever();
 
         builder.Property(t => t.NomeOrganizacao)
@@ -34,9 +36,11 @@ public class ConfiguracaoOrganizacao : IEntityTypeConfiguration<Organizacao>
             .IsRequired();
 
         builder.Property(t => t.UsuarioCriacao)
+            .HasConversion<IdUsuarioConverter>()
             .IsRequired();
 
         builder.Property(t => t.UsuarioUltimaAlteracao)
+            .HasConversion<IdUsuarioConverter>()
             .IsRequired();
 
         // Índices
@@ -67,7 +71,7 @@ public class ConfiguracaoOrganizacao : IEntityTypeConfiguration<Organizacao>
             .OnDelete(DeleteBehavior.Cascade);
 
         builder.HasMany(t => t.DonosDocumento)
-            .WithOne(dd => dd.Tenant)
+            .WithOne(dd => dd.Organizacao)
             .HasForeignKey(dd => dd.IdOrganizacao)
             .OnDelete(DeleteBehavior.Cascade);
     }

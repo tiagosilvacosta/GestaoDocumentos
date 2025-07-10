@@ -13,18 +13,12 @@ namespace Tsc.GestaoDocumentos.Infrastructure.Repositories;
 /// Implementação base do repositório usando Entity Framework.
 /// </summary>
 /// <typeparam name="T">Tipo da entidade que deve herdar de AggregateRoot</typeparam>
-public class RepositorioBase<T, TId> : IRepositorio<T, TId> 
+public class RepositorioBase<T, TId>(GestaoDocumentosDbContext context) : IRepositorio<T, TId> 
     where T : EntidadeBase<TId>, IRaizAgregado
     where TId : ObjetoDeValor
 {
-    protected readonly GestaoDocumentosDbContext _context;
-    protected readonly DbSet<T> _dbSet;
-
-    public RepositorioBase(GestaoDocumentosDbContext context)
-    {
-        _context = context;
-        _dbSet = context.Set<T>();
-    }
+    protected readonly GestaoDocumentosDbContext _context = context;
+    protected readonly DbSet<T> _dbSet = context.Set<T>();
 
     public virtual async Task<T?> ObterPorIdAsync(TId id, CancellationToken cancellationToken = default)
     {
@@ -91,14 +85,10 @@ public class RepositorioBase<T, TId> : IRepositorio<T, TId>
 /// Implementação base do repositório para entidades multi-tenant.
 /// </summary>
 /// <typeparam name="T">Tipo da entidade que deve herdar de TenantEntity</typeparam>
-public class RepositorioBaseComOrganizacao<T, TId> : RepositorioBase<T, TId>, IRepositorioComOrganizacao<T, TId> 
+public class RepositorioBaseComOrganizacao<T, TId>(GestaoDocumentosDbContext context) : RepositorioBase<T, TId>(context), IRepositorioComOrganizacao<T, TId> 
     where T : EntidadeComAuditoriaEOrganizacao<TId>, IRaizAgregado
     where TId : ObjetoDeValor
 {
-    public RepositorioBaseComOrganizacao(GestaoDocumentosDbContext context) : base(context)
-    {
-    }
-
     public virtual async Task<T?> ObterPorIdETOrganizacaoAsync(TId id, IdOrganizacao idOrganizacao, CancellationToken cancellationToken = default)
     {
         return await _dbSet

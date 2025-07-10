@@ -1,6 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Tsc.GestaoDocumentos.Domain.Logs;
+using Tsc.GestaoDocumentos.Infrastructure.Data;
 
 namespace Tsc.GestaoDocumentos.Infrastructure.Logs;
 
@@ -13,12 +14,15 @@ public class ConfiguracaoLogAuditoria : IEntityTypeConfiguration<LogAuditoria>
         builder.HasKey(la => la.Id);
 
         builder.Property(la => la.Id)
+            .HasConversion<IdLogAuditoriaConverter>()
             .ValueGeneratedNever();
 
         builder.Property(la => la.IdOrganizacao)
+            .HasConversion<IdOrganizacaoConverter>()
             .IsRequired();
 
         builder.Property(la => la.IdUsuario)
+            .HasConversion<IdUsuarioConverter>()
             .IsRequired();
 
         builder.Property(la => la.EntidadeAfetada)
@@ -67,9 +71,11 @@ public class ConfiguracaoLogAuditoria : IEntityTypeConfiguration<LogAuditoria>
             .HasForeignKey(la => la.IdOrganizacao)
             .OnDelete(DeleteBehavior.Cascade);
 
+        // Configurar corretamente o relacionamento, especificando que IdUsuario mapeia para Usuario.Id
         builder.HasOne(la => la.Usuario)
             .WithMany()
             .HasForeignKey(la => la.IdUsuario)
+            .HasPrincipalKey(u => u.Id)
             .OnDelete(DeleteBehavior.Restrict);
     }
 }
