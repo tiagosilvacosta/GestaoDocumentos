@@ -14,10 +14,12 @@ public class DocumentoDonoDocumento : EntidadeComAuditoriaEOrganizacao<IdDocumen
 
     protected DocumentoDonoDocumento() : base() { }
 
-    public DocumentoDonoDocumento(IdDocumento idDocumento, IdDonoDocumento idDonoDocumento, IdOrganizacao idOrganizacao)
+    public DocumentoDonoDocumento(Documento documento, DonoDocumento donoDocumento, IdOrganizacao idOrganizacao)
         : base(IdDocumentoDonoDocumento.CriarNovo(), idOrganizacao)
     {
-        IdDocumento = idDocumento;
-        IdDonoDocumento = idDonoDocumento;
+        IdDocumento = documento.Id;
+        Documento = documento;
+        IdDonoDocumento = donoDocumento.Id;
+        DonoDocumento = donoDocumento;
     }
 }

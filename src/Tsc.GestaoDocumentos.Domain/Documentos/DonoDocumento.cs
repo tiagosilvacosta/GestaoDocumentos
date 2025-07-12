@@ -65,7 +65,7 @@ public class DonoDocumento : EntidadeComAuditoriaEOrganizacao<IdDonoDocumento>, 
         if (_documentosVinculados.Any(x => x.IdDocumento == documento.Id))
             return; // Já vinculado
 
-        var vinculo = new DocumentoDonoDocumento(documento.Id, Id, IdOrganizacao);
+        var vinculo = new DocumentoDonoDocumento(documento, this, IdOrganizacao);
         _documentosVinculados.Add(vinculo);
     }
 

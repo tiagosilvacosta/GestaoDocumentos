@@ -13,26 +13,51 @@ public class DomainToDtoProfile : Profile
     public DomainToDtoProfile()
     {
         CreateMap<Organizacao, OrganizacaoDto>()
+            .ForMember(dest => dest.Id, opt => opt.MapFrom(src => src.Id.Valor))
+            .ForMember(dest => dest.UsuarioCriacao, opt => opt.MapFrom(src => src.UsuarioCriacao.Valor))
+            .ForMember(dest => dest.UsuarioUltimaAlteracao, opt => opt.MapFrom(src => src.UsuarioUltimaAlteracao.Valor))
+            .ForMember(dest => dest.DataUltimaAlteracao, opt => opt.MapFrom(src => src.DataAtualizacao))
             .ForMember(dest => dest.Status, opt => opt.MapFrom(src => src.Status.ToString()));
 
         CreateMap<Usuario, UsuarioDto>()
+            .ForMember(dest => dest.Id, opt => opt.MapFrom(src => src.Id.Valor))
+            .ForMember(dest => dest.UsuarioCriacao, opt => opt.MapFrom(src => src.UsuarioCriacao.Valor))
+            .ForMember(dest => dest.UsuarioUltimaAlteracao, opt => opt.MapFrom(src => src.UsuarioUltimaAlteracao.Valor))
+            .ForMember(dest => dest.DataUltimaAlteracao, opt => opt.MapFrom(src => src.DataAtualizacao))
             .ForMember(dest => dest.Status, opt => opt.MapFrom(src => src.Status.ToString()))
             .ForMember(dest => dest.Perfil, opt => opt.MapFrom(src => src.Perfil.ToString()));
 
         CreateMap<TipoDono, TipoDonoDto>()
+            .ForMember(dest => dest.Id, opt => opt.MapFrom(src => src.Id.Valor))
+            .ForMember(dest => dest.UsuarioCriacao, opt => opt.MapFrom(src => src.UsuarioCriacao.Valor))
+            .ForMember(dest => dest.UsuarioUltimaAlteracao, opt => opt.MapFrom(src => src.UsuarioUltimaAlteracao.Valor))
+            .ForMember(dest => dest.DataUltimaAlteracao, opt => opt.MapFrom(src => src.DataAtualizacao))
             .ForMember(dest => dest.TiposDocumentoVinculados, opt => opt.MapFrom(src => 
                 src.TiposDocumentoVinculados.Select(x => x.TipoDocumento)));
 
         CreateMap<TipoDocumento, TipoDocumentoDto>()
+            .ForMember(dest => dest.Id, opt => opt.MapFrom(src => src.Id.Valor))
+            .ForMember(dest => dest.UsuarioCriacao, opt => opt.MapFrom(src => src.UsuarioCriacao.Valor))
+            .ForMember(dest => dest.UsuarioUltimaAlteracao, opt => opt.MapFrom(src => src.UsuarioUltimaAlteracao.Valor))
+            .ForMember(dest => dest.DataUltimaAlteracao, opt => opt.MapFrom(src => src.DataAtualizacao))
             .ForMember(dest => dest.TiposDonoVinculados, opt => opt.MapFrom(src => 
                 src.TiposDonoVinculados.Select(x => x.TipoDono)));
 
         CreateMap<DonoDocumento, DonoDocumentoDto>()
+            .ForMember(dest => dest.Id, opt => opt.MapFrom(src => src.Id.Valor))
+            .ForMember(dest => dest.UsuarioCriacao, opt => opt.MapFrom(src => src.UsuarioCriacao.Valor))
+            .ForMember(dest => dest.UsuarioUltimaAlteracao, opt => opt.MapFrom(src => src.UsuarioUltimaAlteracao.Valor))
+            .ForMember(dest => dest.DataUltimaAlteracao, opt => opt.MapFrom(src => src.DataAtualizacao))
+            .ForMember(dest => dest.TipoDonoId, opt => opt.MapFrom(src => src.IdTipoDono.Valor))
             .ForMember(dest => dest.TipoDonoNome, opt => opt.MapFrom(src => src.TipoDono.Nome))
             .ForMember(dest => dest.DocumentosVinculados, opt => opt.MapFrom(src => 
                 src.DocumentosVinculados.Select(x => x.Documento)));
 
         CreateMap<Documento, DocumentoDto>()
+            .ForMember(dest => dest.Id, opt => opt.MapFrom(src => src.Id.Valor))
+            .ForMember(dest => dest.UsuarioCriacao, opt => opt.MapFrom(src => src.UsuarioCriacao.Valor))
+            .ForMember(dest => dest.UsuarioUltimaAlteracao, opt => opt.MapFrom(src => src.UsuarioUltimaAlteracao.Valor))
+            .ForMember(dest => dest.DataUltimaAlteracao, opt => opt.MapFrom(src => src.DataAtualizacao))
             .ForMember(dest => dest.Status, opt => opt.MapFrom(src => src.Status.ToString()))
             .ForMember(dest => dest.TipoDocumentoNome, opt => opt.MapFrom(src => src.TipoDocumento.Nome))
             .ForMember(dest => dest.TamanhoFormatado, opt => opt.MapFrom(src => src.ObterTamanhoFormatado()))

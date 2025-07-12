@@ -115,7 +115,7 @@ public class Documento : EntidadeComAuditoriaEOrganizacao<IdDocumento>, IRaizAgr
         if (_donosVinculados.Any(x => x.IdDonoDocumento == donoDocumento.Id))
             return; // Já vinculado
 
-        var vinculo = new DocumentoDonoDocumento(Id, donoDocumento.Id, IdOrganizacao);
+        var vinculo = new DocumentoDonoDocumento(this, donoDocumento, IdOrganizacao);
         _donosVinculados.Add(vinculo);
     }
 
